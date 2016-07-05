@@ -1,0 +1,13 @@
+pkgbase = libhsakmt-git
+	pkgdesc = AMD HSA KMT Library (freedesktop)
+	pkgver = 1.0.0.2.gfd24c14
+	pkgrel = 1
+	url = https://cgit.freedesktop.org/amd/hsakmt/
+	arch = x86_64
+	license = custom:AMD
+	provides = libhsakmt
+	source = libhsakmt::git://anongit.freedesktop.org/amd/hsakmt
+	md5sums = SKIP
+
+pkgname = libhsakmt-git
+
