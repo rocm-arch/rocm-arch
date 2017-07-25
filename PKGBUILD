@@ -16,7 +16,7 @@ replaces=()
 backup=()
 options=()
 source=("http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-ext-rocr-dev/${_debfile}")
-md5sums=('SKIP')
+sha256sums=('0b78e91459fdc9cf19945e1a6e66bb578c6b00568e365a469a74827c3c8c6a61')
 
 package() {
 	cd "$srcdir"
