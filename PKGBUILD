@@ -50,6 +50,6 @@ package() {
 	mkdir -p "$pkgdir/usr/bin"
 	for fn in hcc hcc-config
 	do
-	    ln -s /opt/rocm/hcc*/bin/$fn "$pkgdir/usr/bin/$fn"
-    done
+	    ln -s /opt/rocm/hcc-1.0/bin/$fn "$pkgdir/usr/bin/$fn"
+	done
 }
