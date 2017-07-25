@@ -1,0 +1,15 @@
+pkgbase = hsa-ext-rocr
+	pkgdesc = ROCm Platform Runtime: Closed source components
+	pkgver = 1.1.6
+	pkgrel = 33
+	url = https://github.com/RadeonOpenCompute/ROCm
+	arch = x86_64
+	license = EULA
+	depends = hsa-rocr
+	provides = hsa-ext-rocr
+	conflicts = hsa-ext-rocr
+	source = http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-ext-rocr-dev/hsa-ext-rocr-dev_1.1.6-33-g9f17990_amd64.deb
+	md5sums = SKIP
+
+pkgname = hsa-ext-rocr
+
