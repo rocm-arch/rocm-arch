@@ -1,14 +1,14 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 pkgname=hsakmt-roct
 pkgver=1.6.1.r0.a65d730
-pkgrel=1
+pkgrel=2
 pkgdesc="Radeon Open Compute Thunk Interface"
 _gitdir=ROCT-Thunk-Interface
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
 license=('X11/MIT')
 groups=()
-depends=()
+depends=(pciutils)
 makedepends=('git cmake gcc') 
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
@@ -29,11 +29,23 @@ build() {
 	cd "$srcdir/${_gitdir}"
 	mkdir -p build && \
 	cd build && \
-	cmake -DCMAKE_INSTALL_PREFIX=/usr .. && \
+	cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm .. && \
 	make
 }
 
 package() {
 	cd "$srcdir/${_gitdir}/build"
 	make DESTDIR="$pkgdir/" install
+
+	# additional links
+	mkdir -p "$pkgdir/usr/include"
+	ln -s opt/rocm/libhsakmt/include/libhsakmt "$pkgdir/usr/include"
+
+	# ldconfig
+	mkdir -p "$pkgdir/etc/ld.so.conf.d"
+	echo "/opt/rocm/libhsakmt/lib" > "$pkgdir/etc/ld.so.conf.d/libhsakmt.conf"
+
+	# cleanup
+	rm -Rf "$pkgdir/opt/rocm/include"
+	rm -Rf "$pkgdir/opt/rocm/lib"
 }
