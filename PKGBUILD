@@ -1,6 +1,6 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 pkgname=hsa-rocr
-pkgver=1.1.0.r17.9f1f9f8
+pkgver=1.1.0.r18.8d56c60
 pkgrel=1
 pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 _gitdir=ROCR-Runtime
@@ -29,11 +29,23 @@ build() {
 	cd "$srcdir/${_gitdir}"
 	mkdir -p build && \
 	cd build && \
-	cmake -DCMAKE_INSTALL_PREFIX=/usr ../src && \
+	cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_PREFIX_PATH=/opt/rocm/libhsakmt ../src && \
 	make
 }
 
 package() {
 	cd "$srcdir/${_gitdir}/build"
 	make DESTDIR="$pkgdir/" install
+
+	# additional links
+	mkdir -p "$pkgdir/usr/include"
+	ln -s opt/rocm/hsa/include/hsa "$pkgdir/usr/include"
+
+	# ldconfig
+	mkdir -p "$pkgdir/etc/ld.so.conf.d"
+	echo "/opt/rocm/hsa/lib" > "$pkgdir/etc/ld.so.conf.d/hsa.conf"
+
+	# cleanup
+	rm -Rf "$pkgdir/opt/rocm/include"
+	rm -Rf "$pkgdir/opt/rocm/lib"
 }

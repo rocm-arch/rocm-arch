@@ -1,6 +1,6 @@
 pkgbase = hsa-rocr
 	pkgdesc = ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime
-	pkgver = 1.1.0.r17.9f1f9f8
+	pkgver = 1.1.0.r18.8d56c60
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
 	arch = x86_64
