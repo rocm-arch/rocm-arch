@@ -22,7 +22,7 @@ package() {
 	cd "$srcdir"
 	tar xf data.tar.gz
 	
-	mkdir -p ${pkgdir}/usr/bin
+	mkdir -p ${pkgdir}/opt/rocm/bin
 	
-	cp -ax opt/rocm/bin/* ${pkgdir}/usr/bin
+	cp -ax opt/rocm/bin/* ${pkgdir}/opt/rocm/bin
 }
