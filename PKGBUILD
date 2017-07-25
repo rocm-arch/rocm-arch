@@ -52,4 +52,8 @@ package() {
 	do
 	    ln -s /opt/rocm/hcc-1.0/bin/$fn "$pkgdir/usr/bin/$fn"
 	done
+
+	# additional link to make hcc demos happy
+	mkdir -p "$pkgdir/opt/rocm/include"
+	ln -s /opt/rocm/hcc-1.0/include "$pkgdir/opt/rocm/include/hcc"
 }
