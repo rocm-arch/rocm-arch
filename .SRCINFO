@@ -9,7 +9,7 @@ pkgbase = hsa-ext-rocr
 	provides = hsa-ext-rocr
 	conflicts = hsa-ext-rocr
 	source = http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-ext-rocr-dev/hsa-ext-rocr-dev_1.1.6-33-g9f17990_amd64.deb
-	md5sums = SKIP
+	sha256sums = 0b78e91459fdc9cf19945e1a6e66bb578c6b00568e365a469a74827c3c8c6a61
 
 pkgname = hsa-ext-rocr
 
