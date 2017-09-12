@@ -1,14 +1,14 @@
 pkgbase = rocm-utils
 	pkgdesc = ROCm Platform Runtime: Closed source utils
 	pkgver = 1.0.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/RadeonOpenCompute/ROCm
 	arch = x86_64
 	license = EULA
 	provides = rocm-utils
 	conflicts = rocm-utils
 	source = http://repo.radeon.com/rocm/apt/debian/pool/main/r/rocm-utils/rocm-utils_1.0.0_amd64.deb
-	sha256sums = 961cd958b7fb2b6bdc21cfd4e88ca7efdac985ecef6e98f21e01bfd3967c0ede
+	sha256sums = e2feebcdd061f4bbdfb8b38210104510d0967099465de778190ab0fc66bf1c95
 
 pkgname = rocm-utils
 
