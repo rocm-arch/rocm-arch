@@ -14,7 +14,6 @@ md5sums=(
 )
 
 build() {
-    ls "$srcdir/HIP-preview_${pkgver}"
     cd $srcdir
     mkdir -p build
     cd build
@@ -32,4 +31,17 @@ build() {
 package() {
     cd $srcdir/build
     make DESTDIR=${pkgdir} install
+
+    # Nobody wants your source code, AMD..
+    rm -R "${pkgdir}/opt/rocm/hip/src"
+
+    # Put the finder script somewhere even vaguely convenient.
+    mkdir -p "${pkgdir}/usr/share/cmake-3.9"
+    cp -R "${pkgdir}/opt/rocm/hip/cmake" "${pkgdir}/usr/share/cmake-3.9"
+    rm -R "${pkgdir}/opt/rocm/hip/cmake"
+
+    # Synthesise an entry for /etc/profile.d to sort out the /bin stuff.
+    mkdir -p "${pkgdir}/etc/profile.d"
+    echo "export PATH=\$PATH:/opt/rocm/hip/bin" > "${pkgdir}/etc/profile.d/hip.sh"
+    chmod a+x "${pkgdir}/etc/profile.d/hip.sh"
 }
