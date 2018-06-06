@@ -1,21 +1,21 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 pkgname=hsa-rocr
-pkgver=1.1.0.r18.8d56c60
+pkgver=1.1.0.r26.e8c89f9
 pkgrel=1
 pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 _gitdir=ROCR-Runtime
 arch=('x86_64')
-url="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
+url="https://github.com/RadeonOpenCompute/ROCR-Runtime"
 license=('X11/MIT')
 groups=()
-depends=()
+depends=(hsakmt-roct)
 makedepends=(git cmake gcc hsakmt-roct) 
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 replaces=()
 backup=()
 options=()
-source=('git+https://github.com/RadeonOpenCompute/ROCR-Runtime.git#branch=roc-1.6.x')
+source=('git+https://github.com/RadeonOpenCompute/ROCR-Runtime.git#branch=roc-1.8.x')
 md5sums=('SKIP')
 
 pkgver() {
@@ -27,6 +27,12 @@ pkgver() {
 
 build() {
 	cd "$srcdir/${_gitdir}"
+
+	# fix build with gcc8
+	git remote add build-fix https://github.com/oleid/ROCR-Runtime.git
+	git fetch build-fix
+	git cherry-pick b68be8f5101f00b583797781606bf906de973fff
+
 	mkdir -p build && \
 	cd build && \
 	cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm -DCMAKE_PREFIX_PATH=/opt/rocm/libhsakmt ../src && \
