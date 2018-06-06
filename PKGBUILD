@@ -1,6 +1,6 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 pkgname=hsakmt-roct
-pkgver=1.6.3.r0.25a9bc2
+pkgver=1.8.0.r0.e3dd067
 pkgrel=1
 pkgdesc="Radeon Open Compute Thunk Interface"
 _gitdir=ROCT-Thunk-Interface
@@ -8,14 +8,14 @@ arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
 license=('X11/MIT')
 groups=()
-depends=(pciutils)
+depends=(pciutils numactl)
 makedepends=(git cmake gcc) 
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 replaces=()
 backup=()
 options=()
-source=('git+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git#branch=roc-1.6.x')
+source=('git+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git#branch=roc-1.8.x')
 md5sums=('SKIP')
 
 pkgver() {
@@ -27,9 +27,6 @@ pkgver() {
 
 build() {
 	cd "$srcdir/${_gitdir}"
-	
-	# build fix for gcc-7.2 from drm-next-wip branch
-	git cherry-pick f13442e0a9ff117e6610d3f93b198082b95942bb
 	
 	mkdir -p build && \
 	cd build && \
