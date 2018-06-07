@@ -4,7 +4,7 @@
 pkgname=rock-dkms
 pkgver=1.8.151
 _pkgver=1.8-151
-pkgrel=1
+pkgrel=2
 pkgdesc="Linux AMD GPU kernel driver from ROC in DKMS format."
 arch=('any')
 url=""
@@ -15,7 +15,7 @@ backup=('etc/modprobe.d/blacklist-radeon.conf')
 options=('!strip' '!emptydirs')
 
 source=("http://repo.radeon.com/rocm/apt/debian/pool/main/r/rock-dkms/rock-dkms_${_pkgver}_all.deb"
-	"https://github.com/oleid/amdgpu-dkms/commit/6f3251fb74aecd821568c07b3cf6288ba2f6ee89.patch")
+	"https://github.com/oleid/amdgpu-dkms/commit/7d11254249da86c987601b7d8a1860e12efabefa.patch")
 sha512sums=(
 	'c3fc094c44bb5d2a21c5f18e24429a5720eed729669f9347308cec48f4c78335732e72acf3db4cb646dd4441160f6bc3531f650c213d67c5584c50b5028e2a53'
 	'SKIP')
@@ -28,5 +28,5 @@ package(){
 	# patching for >=4.14 - 4.16 (at least) compatibility
 
 	cd ${pkgdir}/usr/src/amdgpu-${_pkgver}
-        patch -p1 < "${srcdir}/6f3251fb74aecd821568c07b3cf6288ba2f6ee89.patch"
+        patch -p1 < "${srcdir}/7d11254249da86c987601b7d8a1860e12efabefa.patch"
 }
