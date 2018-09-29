@@ -1,0 +1,15 @@
+pkgbase = hipsycl-rocm-git
+	pkgdesc = SYCL implementation over CUDA/HIP for AMD devices.
+	pkgver = 0.6.8
+	pkgrel = 1
+	url = https://github.com/illuhad/hipSYCL
+	arch = x86_64
+	license = BSD
+	makedepends = cmake
+	provides = hipSYCL
+	provides = SYCL
+	source = hipSYCL::git+https://github.com/illuhad/hipSYCL.git
+	md5sums = SKIP
+
+pkgname = hipsycl-rocm-git
+
