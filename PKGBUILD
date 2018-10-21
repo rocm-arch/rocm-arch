@@ -1,6 +1,6 @@
 # Maintainer: Aksel Alpay <alpay at stud dot uni-heidelberg dot de>
 pkgname=hipsycl-cuda-git
-pkgver=0.6.8
+pkgver=0.7.0
 pkgrel=1
 pkgdesc="SYCL implementation over CUDA/HIP for NVIDIA devices."
 arch=("x86_64")
@@ -8,7 +8,7 @@ url="https://github.com/illuhad/hipSYCL"
 makedepends=("cmake")
 provides=("hipSYCL" "SYCL")
 license=("BSD")
-depends=("cuda")
+depends=("cuda" "llvm" "clang" "boost")
 
 source=('hipSYCL::git+https://github.com/illuhad/hipSYCL.git')
 
