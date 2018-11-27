@@ -1,13 +1,11 @@
 pkgbase = rocm-smi
-	pkgdesc = Includes the rocm-smi tool. This tool exposes functionality for clock and temperature management of AMD ROCm enabled systems.
+	pkgdesc = Utility to manage and monitor AMDGPU / ROCm systems.
 	pkgver = 1.9.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROC-smi/
-	arch = x86_64
+	arch = any
 	license = MIT
 	depends = python
-	provides = rocm-smi
-	conflicts = rocm-smi
 	source = rocm-smi-1.9.2.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/roc-1.9.2.tar.gz
 	sha256sums = 14388908953798b3ea761011e3ef972a47c9ae1e253b651f4056c3161ae86f30
 
