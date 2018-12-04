@@ -1,6 +1,7 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
+# Maintainer: Bruno Filipe <bmilreu@gmail.com>
 pkgname=hsa-rocr
-pkgver=1.1.0.r26.e8c89f9
+pkgver=1.1.0.r31.bc92d3a
 pkgrel=1
 pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 _gitdir=ROCR-Runtime
@@ -15,7 +16,7 @@ conflicts=("${pkgname%-git}")
 replaces=()
 backup=()
 options=()
-source=('git+https://github.com/RadeonOpenCompute/ROCR-Runtime.git#branch=roc-1.8.x')
+source=('git+https://github.com/RadeonOpenCompute/ROCR-Runtime.git#branch=roc-1.9.x')
 md5sums=('SKIP')
 
 pkgver() {
@@ -27,11 +28,6 @@ pkgver() {
 
 build() {
 	cd "$srcdir/${_gitdir}"
-
-	# fix build with gcc8
-	git remote add build-fix https://github.com/oleid/ROCR-Runtime.git
-	git fetch build-fix
-	git cherry-pick b68be8f5101f00b583797781606bf906de973fff
 
 	mkdir -p build && \
 	cd build && \
