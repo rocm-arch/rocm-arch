@@ -1,0 +1,16 @@
+pkgbase = rocminfo
+	pkgdesc = ROCm info tools - rocm_agent_enumerator
+	pkgver = 1.0.0.1bb0cc7
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/rocminfo
+	arch = x86_64
+	license = unknown
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	depends = pciutils
+	source = git+https://github.com/RadeonOpenCompute/rocminfo.git#commit=1bb0ccc731f772bb1a553e37b41d06eb0a684926
+	md5sums = SKIP
+
+pkgname = rocminfo
+
