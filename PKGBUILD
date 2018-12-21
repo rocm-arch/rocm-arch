@@ -2,7 +2,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hip
 pkgver=2.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 url="https://github.com/ROCm-Developer-Tools/HIP"
 arch=(x86_64)
@@ -27,6 +27,11 @@ build() {
 
 package() {
   DESTDIR="$pkgdir" ninja -C "$srcdir/build" install
+
+  mkdir -p $pkgdir/etc/ld.so.conf.d
+  cat <<-EOF > $pkgdir/etc/ld.so.conf.d/hip.conf
+    /opt/rocm/hip/lib/
+		EOF
 
   # Nobody wants your source code, AMD..
   rm -r "${pkgdir}/opt/rocm/hip/src"
