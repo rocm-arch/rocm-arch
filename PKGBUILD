@@ -2,10 +2,11 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hip
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 url="https://github.com/ROCm-Developer-Tools/HIP"
 arch=(x86_64)
+depends=(rocminfo)
 makedepends=("hcc>=2.0.0" git cmake ninja)
 source=("git+https://github.com/ROCm-Developer-Tools/HIP.git#tag=roc-2.0.0")
 md5sums=("SKIP")
@@ -18,7 +19,6 @@ build() {
   #       they contain references to $srcdir, I tried a bunch of things but nothing helps
 
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DHCC_HOME=/opt/rocm \
         -G Ninja \
         "$srcdir/HIP"
 
