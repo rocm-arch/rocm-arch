@@ -24,7 +24,7 @@ build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$pkgdir/opt/rocm \
+        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/hcc" \
         -G Ninja \
         "$srcdir/hcc"
   ninja
