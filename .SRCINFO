@@ -1,0 +1,17 @@
+pkgbase = rocfft
+	pkgdesc = Next generation FFT implementation for ROCm
+	pkgver = 0.8.8
+	pkgrel = 1
+	url = https://github.com/ROCmSoftwarePlatform/rocfft
+	arch = x86_64
+	makedepends = hcc>=2.0.0
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	depends = boost
+	depends = fftw
+	source = git+https://github.com/ROCmSoftwarePlatform/rocfft.git#tag=v0.8.8
+	md5sums = SKIP
+
+pkgname = rocfft
+
