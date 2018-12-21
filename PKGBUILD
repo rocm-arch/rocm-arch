@@ -1,7 +1,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=miopen
 pkgver=1.7.0
-pkgrel=1
+pkgrel=2
 pkgdesc="AMD's Machine Intelligence Library"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/MIOpen"
@@ -31,5 +31,10 @@ build() {
 
 package() {
   ninja -C "$srcdir/build" install
+
+  mkdir -p $pkgdir/etc/ld.so.conf.d
+  cat <<-EOF > $pkgdir/etc/ld.so.conf.d/miopen.conf
+    /opt/rocm/miopen/lib/
+		EOF
 }
 
