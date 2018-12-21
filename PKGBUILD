@@ -1,59 +1,46 @@
-# Maintainer: Olaf Leidinger <oleid@mescharet.de>
+# Submitter: Olaf Leidinger <oleid@mescharet.de>
+# Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
-pkgver=1.0.17236.r102.g9b43ce89
+pkgver=2.0.0
 pkgrel=1
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
-_gitdir=hcc
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
 license=('NCSAOSL')
-groups=()
-depends=(rocm-utils hsakmt-roct hsa-rocr hsa-ext-rocr)
-makedepends=(git cmake gcc) 
+depends=(rocr-runtime z3)
+makedepends=(git cmake gcc ninja z3)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-replaces=()
-backup=()
 options=(!staticlibs strip)
-source=('git+https://github.com/RadeonOpenCompute/hcc.git#branch=clang_tot_upgrade')
+source=("git+https://github.com/RadeonOpenCompute/hcc.git#tag=roc-2.0.0")
 md5sums=('SKIP')
 
-pkgver() {
-    cd "$srcdir/${_gitdir}"
-
-    git describe --long --tags | sed 's/^preview_//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
-
 prepare() {
-    cd "$srcdir/${_gitdir}"
-    git submodule init
-    git submodule update
+  cd "$srcdir/hcc"
+  git submodule update --init
 }
 
 build() {
-	cd "$srcdir/${_gitdir}"
-	mkdir -p build
-	cd build
-	cmake \
-	    -DCMAKE_BUILD_TYPE=Release \
-	    -DAMDHSACOD=/usr/bin/amdhsacod \
-	    -DHSA_HEADER=/opt/rocm/hsa/include \
-	    -DHSA_LIBRARY=/opt/rocm/hsa/lib/libhsa-runtime64.so.1 \
-	    ..
+  mkdir -p "$srcdir/build"
+  cd "$srcdir/build"
+  cmake -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=$pkgdir/opt/rocm \
+        -G Ninja \
+        "$srcdir/hcc"
+  ninja
 }
 
 package() {
-	cd "$srcdir/${_gitdir}/build"
-	env DESTDIR="$pkgdir/" make install
-	
-	# add links
-	mkdir -p "$pkgdir/usr/bin"
-	for fn in hcc hcc-config
-	do
-	    ln -s /opt/rocm/hcc-1.0/bin/$fn "$pkgdir/usr/bin/$fn"
-	done
+  ninja -C "$srcdir/build" install
 
-	# additional link to make hcc demos happy
-	mkdir -p "$pkgdir/opt/rocm/include"
-	ln -s /opt/rocm/hcc-1.0/include "$pkgdir/opt/rocm/include/hcc"
+  # add links
+  mkdir -p "$pkgdir/usr/bin"
+  for fn in hcc hcc-config
+  do
+    ln -s /opt/rocm/bin/$fn "$pkgdir/usr/bin/$fn"
+  done
+
+  # additional link to make hcc demos happy
+  mkdir -p "$pkgdir/opt/rocm/include"
+  ln -s /opt/rocm/hcc/include "$pkgdir/opt/rocm/include/hcc"
 }

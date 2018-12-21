@@ -1,6 +1,6 @@
 pkgbase = hcc
 	pkgdesc = HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute
-	pkgver = 1.0.17236.r102.g9b43ce89
+	pkgver = 2.0.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/hcc
 	arch = x86_64
@@ -8,15 +8,15 @@ pkgbase = hcc
 	makedepends = git
 	makedepends = cmake
 	makedepends = gcc
-	depends = rocm-utils
-	depends = hsakmt-roct
-	depends = hsa-rocr
-	depends = hsa-ext-rocr
+	makedepends = ninja
+	makedepends = z3
+	depends = rocr-runtime
+	depends = z3
 	provides = hcc
 	conflicts = hcc
 	options = !staticlibs
 	options = strip
-	source = git+https://github.com/RadeonOpenCompute/hcc.git#branch=clang_tot_upgrade
+	source = git+https://github.com/RadeonOpenCompute/hcc.git#tag=roc-2.0.0
 	md5sums = SKIP
 
 pkgname = hcc
