@@ -2,7 +2,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
