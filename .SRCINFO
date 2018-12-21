@@ -1,0 +1,17 @@
+pkgbase = rocr-runtime
+	pkgdesc = ROCm HSA
+	pkgver = 2.0.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCR-Runtime
+	arch = x86_64
+	license = unknown
+	makedepends = git
+	makedepends = cmake
+	makedepends = gcc
+	makedepends = ninja
+	depends = roct-thunk-interface
+	source = git+https://github.com/RadeonOpenCompute/ROCR-Runtime.git#tag=roc-2.0.0
+	md5sums = SKIP
+
+pkgname = rocr-runtime
+
