@@ -1,7 +1,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=miopengemm
 pkgver=1.1.5.9547fb98
-pkgrel=1
+pkgrel=2
 pkgdesc="An OpenCL GEMM kernel generator"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/MIOpenGEMM"
@@ -15,7 +15,7 @@ build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/miopen" \
+        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm" \
         -G Ninja \
         "$srcdir/MIOpenGEMM"
   ninja
