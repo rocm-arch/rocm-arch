@@ -2,7 +2,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
 pkgver=2.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
@@ -43,4 +43,7 @@ package() {
   # additional link to make hcc demos happy
   mkdir -p "$pkgdir/opt/rocm/include"
   ln -s /opt/rocm/hcc/include "$pkgdir/opt/rocm/include/hcc"
+
+  # additional link to make clang-ocl work
+  ln -s /opt/rocm/hcc/bin "$pkgdir/opt/rocm/hcc/bin/x86_64"
 }
