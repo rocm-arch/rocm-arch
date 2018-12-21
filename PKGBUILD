@@ -1,7 +1,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocblas
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Next generation BLAS implementation for ROCm platform"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocBLAS"
@@ -37,5 +37,10 @@ build() {
 
 package() {
   ninja -C "$srcdir/build" install
+
+  mkdir -p $pkgdir/etc/ld.so.conf.d
+  cat <<-EOF > $pkgdir/etc/ld.so.conf.d/rocblas.conf
+    /opt/rocm/rocblas/lib/
+		EOF
 }
 

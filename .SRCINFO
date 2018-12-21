@@ -1,7 +1,7 @@
 pkgbase = rocblas
 	pkgdesc = Next generation BLAS implementation for ROCm platform
 	pkgver = 2.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/ROCmSoftwarePlatform/rocBLAS
 	arch = x86_64
 	license = NCSAOSL
