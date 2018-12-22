@@ -1,7 +1,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocr-runtime
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm HSA"
 arch=(x86_64)
 url="https://github.com/RadeonOpenCompute/ROCR-Runtime"
@@ -30,4 +30,7 @@ package() {
 		/opt/rocm/lib
     /opt/rocm/hsa/lib/
 		EOF
+
+  # Link a .so.1, because the version bump broke the library names
+  ln -s /opt/rocm/hsa/lib/libhsa-runtime64.so.2.0.0 "$pkgdir/opt/rocm/hsa/lib/libhsa-runtime64.so.1"
 }

@@ -1,7 +1,7 @@
 pkgbase = rocr-runtime
 	pkgdesc = ROCm HSA
 	pkgver = 2.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROCR-Runtime
 	arch = x86_64
 	license = unknown
