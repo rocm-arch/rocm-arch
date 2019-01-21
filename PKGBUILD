@@ -1,12 +1,12 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocblas
 pkgver=2.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Next generation BLAS implementation for ROCm platform"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocBLAS"
 license=('NCSAOSL')
-depends=(hcc)
+depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2)
 source=("git+https://github.com/ROCmSoftwarePlatform/rocBLAS.git#tag=v2.0.0")
 md5sums=('SKIP')
