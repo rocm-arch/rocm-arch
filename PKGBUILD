@@ -1,13 +1,13 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocminfo
 pkgver=1.0.0.1bb0cc7
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm info tools - rocm_agent_enumerator"
 arch=(x86_64)
 url="https://github.com/RadeonOpenCompute/rocminfo"
 license=('unknown')
 makedepends=(git cmake ninja)
-depends=(pciutils)
+depends=(pciutils rocm-cmake rocr-runtime roct-thunk-interface)
 source=("git+https://github.com/RadeonOpenCompute/rocminfo.git#commit=1bb0ccc731f772bb1a553e37b41d06eb0a684926")
 md5sums=("SKIP")
 
