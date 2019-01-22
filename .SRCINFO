@@ -1,13 +1,15 @@
 pkgbase = rocm-smi
 	pkgdesc = Utility to manage and monitor AMDGPU / ROCm systems.
 	pkgver = 2.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROC-smi/
 	arch = any
 	license = MIT
 	depends = python
 	source = rocm-smi-2.0.0.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/roc-2.0.0.tar.gz
+	source = temporary-fixpoweroverdrive.patch
 	sha256sums = 47b84798c95724708346ab505662a05a9a16e0fa0129b4371c073939d1c9fd35
+	sha256sums = ce8984c6449c24af0eefba3a3afed2666ccc7bd42cafcba17512d514169d97c8
 
 pkgname = rocm-smi
 

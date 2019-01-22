@@ -1,15 +1,22 @@
 # Maintainer: Rigo Reddig <rigo.reddig@gmail.com>
 pkgname=rocm-smi
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 _filename=roc-${pkgver}.tar.gz
 pkgdesc="Utility to manage and monitor AMDGPU / ROCm systems."
 arch=('any')
 url="https://github.com/RadeonOpenCompute/ROC-smi/"
 license=('MIT')
 depends=(python)
-source=("$pkgname-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/${_filename}")
-sha256sums=('47b84798c95724708346ab505662a05a9a16e0fa0129b4371c073939d1c9fd35')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/${_filename}"
+		"temporary-fixpoweroverdrive.patch")
+sha256sums=('47b84798c95724708346ab505662a05a9a16e0fa0129b4371c073939d1c9fd35'
+			'ce8984c6449c24af0eefba3a3afed2666ccc7bd42cafcba17512d514169d97c8')
+
+prepare() {
+	cd "ROC-smi-roc-${pkgver}"
+	patch -Np1 -i "${srcdir}/temporary-fixpoweroverdrive.patch"
+}
 
 package() {
 
