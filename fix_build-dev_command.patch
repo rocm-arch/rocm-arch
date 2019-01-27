@@ -1,0 +1,12 @@
+diff -ura ROCT-Thunk-Interface/CMakeLists.txt new/CMakeLists.txt
+--- ROCT-Thunk-Interface/CMakeLists.txt	2019-01-26 22:04:18.005881703 -0200
++++ new/CMakeLists.txt	2019-01-26 22:05:14.637674335 -0200
+@@ -128,7 +128,7 @@
+         -DSOURCE_DIR="${SOURCE_DIR}"
+         -DCMAKE_INSTALL_PREFIX="${CMAKE_INSTALL_PREFIX}"
+         -DCPACK_RPM_PACKAGE_REQUIRES="hsakmt-roct"
+-        -DCPACK_PACKAGING_INSTALL_PREFIX="${CPACK_PACKAGING_INSTALL_PREFIX}"
++        -DCPACK_PACKAGING_INSTALL_PREFIX="${CPACK_PACKAGING_INSTALL_PREFIX}" .
+     WORKING_DIRECTORY ${DEV_BUILD_DIR} )
+ 
+ ## Custom targets for the devel package 

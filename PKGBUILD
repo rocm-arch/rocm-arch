@@ -1,15 +1,20 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=roct-thunk-interface
 pkgver=2.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="ROCm HSA"
 arch=(x86_64)
 url="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
 license=('unknown')
 makedepends=(git cmake gcc ninja) 
 depends=(numactl)
-source=("git+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git#tag=roc-2.0.0")
-sha256sums=("SKIP")
+source=("git+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git#tag=roc-2.0.0" "fix_build-dev_command.patch")
+sha256sums=("SKIP" "bbbc02908fdde51b46eb87f1ee68d0d6172aa83f76f7eaed4bf4e2eb17633615")
+
+prepare() {
+    cd ROCT-Thunk-Interface
+    patch -Np1 -i "${srcdir}/fix_build-dev_command.patch"
+}
 
 build() {
   mkdir -p $srcdir/build
