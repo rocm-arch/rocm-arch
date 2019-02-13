@@ -1,8 +1,8 @@
 # Submitter: Olaf Leidinger <oleid@mescharet.de>
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
-pkgver=2.0.0
-pkgrel=3
+pkgver=2.1.0
+pkgrel=1
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
@@ -12,12 +12,12 @@ makedepends=(git cmake gcc ninja z3)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 options=(!staticlibs strip)
-source=("git+https://github.com/RadeonOpenCompute/hcc.git#tag=roc-2.0.0")
+source=("git+https://github.com/RadeonOpenCompute/hcc.git#tag=roc-2.1.0")
 md5sums=('SKIP')
 
 prepare() {
   cd "$srcdir/hcc"
-  git submodule update --init
+  git submodule update --init --progress
 }
 
 build() {
