@@ -1,12 +1,12 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocrand
-pkgver=1.8.0
+pkgver=1.8.2
 pkgrel=1
 pkgdesc="RAND library for HIP programming language"
 url="https://github.com/ROCmSoftwarePlatform/rocRAND"
 arch=(x86_64)
 makedepends=("hcc>=2.1.0" git cmake ninja)
-source=("git+https://github.com/ROCmSoftwarePlatform/rocRAND.git#tag=v1.8.0")
+source=("git+https://github.com/ROCmSoftwarePlatform/rocRAND.git#tag=v1.8.2")
 md5sums=("SKIP")
 
 build() {
@@ -19,6 +19,7 @@ build() {
   export CPPFLAGS=$(echo $CPPFLAGS | sed -e 's/-fstack-protector-strong//')
 
   cmake -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_TEST=OFF \
         -DCMAKE_CXX_COMPILER=/opt/rocm/hcc/bin/hcc \
         "$srcdir/rocRAND"
 

@@ -1,6 +1,6 @@
 pkgbase = rocrand
 	pkgdesc = RAND library for HIP programming language
-	pkgver = 1.8.0
+	pkgver = 1.8.2
 	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/rocRAND
 	arch = x86_64
@@ -8,7 +8,7 @@ pkgbase = rocrand
 	makedepends = git
 	makedepends = cmake
 	makedepends = ninja
-	source = git+https://github.com/ROCmSoftwarePlatform/rocRAND.git#tag=v1.8.0
+	source = git+https://github.com/ROCmSoftwarePlatform/rocRAND.git#tag=v1.8.2
 	md5sums = SKIP
 
 pkgname = rocrand
