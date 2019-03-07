@@ -1,14 +1,14 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=miopen
-pkgver=1.7.0
-pkgrel=2
+pkgver=1.7.1
+pkgrel=1
 pkgdesc="AMD's Machine Intelligence Library"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/MIOpen"
 license=('NCSAOSL')
-depends=(ocl-icd hip hcc rocblas "boost>=1.58")
+depends=(ocl-icd hip hcc rocblas "boost>=1.58" clang-ocl)
 makedepends=(git opencl-headers cmake gcc ninja ocl-icd hip hcc rocblas "boost>=1.58" miopengemm)
-source=("git+https://github.com/ROCmSoftwarePlatform/MIOpen.git#tag=1.7.0")
+source=("git+https://github.com/ROCmSoftwarePlatform/MIOpen.git#tag=1.7.1")
 md5sums=('SKIP')
 
 build() {

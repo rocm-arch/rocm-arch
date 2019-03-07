@@ -1,7 +1,7 @@
 pkgbase = miopen
 	pkgdesc = AMD's Machine Intelligence Library
-	pkgver = 1.7.0
-	pkgrel = 2
+	pkgver = 1.7.1
+	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/MIOpen
 	arch = x86_64
 	license = NCSAOSL
@@ -21,7 +21,8 @@ pkgbase = miopen
 	depends = hcc
 	depends = rocblas
 	depends = boost>=1.58
-	source = git+https://github.com/ROCmSoftwarePlatform/MIOpen.git#tag=1.7.0
+	depends = clang-ocl
+	source = git+https://github.com/ROCmSoftwarePlatform/MIOpen.git#tag=1.7.1
 	md5sums = SKIP
 
 pkgname = miopen
