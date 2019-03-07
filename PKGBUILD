@@ -2,7 +2,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
 pkgver=2.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
@@ -37,7 +37,7 @@ package() {
   mkdir -p "$pkgdir/usr/bin"
   for fn in hcc hcc-config
   do
-    ln -s /opt/rocm/bin/$fn "$pkgdir/usr/bin/$fn"
+    ln -s /opt/rocm/hcc/bin/$fn "$pkgdir/usr/bin/$fn"
   done
 
   # additional link to make hcc demos happy
