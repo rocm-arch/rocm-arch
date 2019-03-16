@@ -1,13 +1,13 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocrand
 pkgver=1.8.2
-pkgrel=1
+pkgrel=2
 pkgdesc="RAND library for HIP programming language"
 url="https://github.com/ROCmSoftwarePlatform/rocRAND"
 arch=(x86_64)
 makedepends=("hcc>=2.1.0" git cmake ninja)
-source=("git+https://github.com/ROCmSoftwarePlatform/rocRAND.git#tag=v1.8.2")
-md5sums=("SKIP")
+source=("https://github.com/ROCmSoftwarePlatform/rocRAND/archive/v$pkgver.tar.gz")
+sha256sums=("5941109621b3f24a2336e0dc79769a61c26d73194f0af0a3a13b1787013e4c1a")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -21,7 +21,7 @@ build() {
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_TEST=OFF \
         -DCMAKE_CXX_COMPILER=/opt/rocm/hcc/bin/hcc \
-        "$srcdir/rocRAND"
+        "$srcdir/rocRAND-$pkgver"
 
   make
 }
@@ -32,6 +32,7 @@ package() {
 
   mkdir -p $pkgdir/etc/ld.so.conf.d
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/rocrand.conf
-    /opt/rocm/rocRAND/lib/
+/opt/rocm/hiprand/lib/
+/opt/rocm/rocrand/lib/
 		EOF
 }
