@@ -1,0 +1,34 @@
+pkgbase = rocm-opencl-runtime
+	pkgdesc = ROCm OpenCL™ Compatible Runtime
+	pkgver = 2.2.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = gcc
+	makedepends = ocaml-findlib
+	makedepends = python2-z3
+	makedepends = gtest
+	depends = rocr-runtime>=2.2.0
+	provides = rocm-opencl-runtime
+	conflicts = rocm-opencl-runtime
+	conflicts = rocm-opencl-git
+	source = rocm-opencl-runtime-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/roc-2.2.0.tar.gz
+	source = rocm-opencl-driver-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/archive/roc-2.2.0.tar.gz
+	source = llvm-roc-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/llvm/archive/roc-2.2.0.tar.gz
+	source = clang-roc-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/clang/archive/roc-2.2.0.tar.gz
+	source = lld-roc-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-2.2.0.tar.gz
+	source = rocm-device-libs-2.2.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-2.2.0.tar.gz
+	source = OpenCL-ICD-Loader-44f384ae624675d6b0b92ce39a97cb7f4899d92a.zip::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/44f384ae624675d6b0b92ce39a97cb7f4899d92a.zip
+	sha256sums = 3bb99867ae962f5b47da03e23f39abc6e0ff5e3b9ef49646b139d14e1def11ae
+	sha256sums = cda84f7fcff46ac1e36399fd919512573b89632c692ae93cd9d846f8067aa48a
+	sha256sums = d46116a8adbacab6aa669704994d121d94264ed69851238bf51a26432e5dbc9a
+	sha256sums = 4900cabd4735419785e4919e6ec1c7fe1792a8934b0413be87d469809255d287
+	sha256sums = 6f39e600c6213c278f8cbf4df61b3b132915a9c68841b41ed8decd4013e03cc4
+	sha256sums = 65c165d33898a7782b60cfe45d560d657b82e350d35035d11b759ee6d7dec190
+	sha256sums = a8a5b2305f589f315403ca8390ab2ec57acbc99aae4fcabe7bb9632a6b11e89f
+
+pkgname = rocm-opencl-runtime
+
