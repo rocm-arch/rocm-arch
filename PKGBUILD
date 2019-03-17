@@ -3,7 +3,7 @@ _opencl_icd_loader_commit="44f384ae624675d6b0b92ce39a97cb7f4899d92a"
 
 pkgname=rocm-opencl-runtime
 pkgver=2.2.0
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm OpenCL™ Compatible Runtime"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime"
@@ -24,6 +24,7 @@ source=(
     "lld-roc-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-${pkgver}.tar.gz"
     "rocm-device-libs-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-${pkgver}.tar.gz"
     "OpenCL-ICD-Loader-${_opencl_icd_loader_commit}.zip::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/${_opencl_icd_loader_commit}.zip"
+    "fix_rocm_opencl_build_order.patch"
 )
 
 sha256sums=(
@@ -34,6 +35,7 @@ sha256sums=(
     "6f39e600c6213c278f8cbf4df61b3b132915a9c68841b41ed8decd4013e03cc4"
     "65c165d33898a7782b60cfe45d560d657b82e350d35035d11b759ee6d7dec190"
     "a8a5b2305f589f315403ca8390ab2ec57acbc99aae4fcabe7bb9632a6b11e89f"
+    "0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f"
 )
 
 prepare() {
