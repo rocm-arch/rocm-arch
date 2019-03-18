@@ -3,7 +3,7 @@ _opencl_icd_loader_commit="44f384ae624675d6b0b92ce39a97cb7f4899d92a"
 
 pkgname=rocm-opencl-runtime
 pkgver=2.2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="ROCm OpenCL™ Compatible Runtime"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime"
@@ -72,7 +72,7 @@ prepare() {
     # Fix build missing dependency
     # https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/issues/64#issuecomment-473502685
     cd $srcdir/opencl
-    patch --forward --strip=1 --input="${srcdir}/../fix_rocm_opencl_build_order.patch"
+    patch --forward --strip=1 --input="${srcdir}/fix_rocm_opencl_build_order.patch"
 }
 
 build() {
