@@ -1,7 +1,7 @@
 pkgbase = roct-thunk-interface
 	pkgdesc = ROCm HSA
 	pkgver = 2.2.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
 	arch = x86_64
 	license = unknown
@@ -10,6 +10,7 @@ pkgbase = roct-thunk-interface
 	makedepends = gcc
 	makedepends = ninja
 	depends = numactl
+	depends = pciutils
 	source = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-2.2.0.tar.gz
 	source = fix_build-dev_command.patch
 	sha256sums = 4e281edf47c98870481e6813107a94c38220ff32baeaab5a3f7b7efb428dab55
