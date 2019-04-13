@@ -1,6 +1,6 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocr-runtime
-pkgver=2.2.0
+pkgver=2.3.0
 pkgrel=1
 pkgdesc="ROCm HSA"
 arch=(x86_64)
@@ -9,7 +9,7 @@ license=('unknown')
 makedepends=(git cmake gcc ninja)
 depends=('roct-thunk-interface')
 source=("https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/roc-$pkgver.tar.gz")
-sha256sums=("e58af3fa9b13358fd9dc8483e83cd2df3bd21edf23d922f0fa1f74cbcf586acc")
+sha256sums=("6a0f2a270258b2145bb7cf94c5ffbeacd5777339012f9debc9943368809bc9eb")
 
 build() {
   mkdir -p "$srcdir/build"
