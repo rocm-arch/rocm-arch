@@ -1,6 +1,6 @@
 pkgbase = rocblas
 	pkgdesc = Next generation BLAS implementation for ROCm platform
-	pkgver = 2.2.0
+	pkgver = 2.3.0
 	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/rocBLAS
 	arch = x86_64
@@ -14,8 +14,8 @@ pkgbase = rocblas
 	makedepends = rocminfo
 	depends = hcc
 	depends = hip
-	source = https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/v2.2.0.tar.gz
-	sha256sums = b981257feb28faf70c1681ae6dd330b0ab1b687bc6da165f266be3d26f4718fe
+	source = https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/rocm-2.3.tar.gz
+	sha256sums = 43549f3116ed0de1952eac69ab2ac3521903129c34727f3bbc898792182e2a41
 
 pkgname = rocblas
 
