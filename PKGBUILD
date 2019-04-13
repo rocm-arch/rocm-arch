@@ -1,23 +1,27 @@
 # Submitter: Chris Kitching
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hip
-pkgver=2.2.0
+pkgver=2.3.0
 pkgrel=1
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 url="https://github.com/ROCm-Developer-Tools/HIP"
 arch=(x86_64)
-makedepends=("hcc>=2.2.0" git cmake ninja)
+makedepends=("hcc>=2.3.0" git cmake ninja python2)
 source=("https://github.com/ROCm-Developer-Tools/HIP/archive/roc-$pkgver.tar.gz")
-sha256sums=("6a4a0767a649fb2e95cb6c10e7b52796210f941babab4bf870ca5d4efc4d5820")
+sha256sums=("aff812cd8c0c5e65480f03169794acdf02a3161b01b3735c11516434a1322614")
 
 build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
 
+  # A python2 script is invoked during cmake configuration that generates some headers
+  sed -i "1s/python/python2/" "$srcdir/HIP-roc-$pkgver/hip_prof_gen.py"
+
   # TODO: fix libhip_hcc.so and libhip_hcc_static.a
   #       they contain references to $srcdir, I tried a bunch of things but nothing helps
 
   cmake -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/hip" \
         -G Ninja \
         "$srcdir/HIP-roc-$pkgver"
 
@@ -25,7 +29,7 @@ build() {
 }
 
 package() {
-  DESTDIR="$pkgdir" ninja -C "$srcdir/build" install
+  ninja -C "$srcdir/build" install
 
   mkdir -p $pkgdir/etc/ld.so.conf.d
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/hip.conf
