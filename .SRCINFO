@@ -1,4 +1,4 @@
-pkgbase = rock-dkms
+pkgbase = rock-dkms-git
 	pkgdesc = Linux AMD GPU kernel driver from ROC in DKMS format.
 	pkgver = 2.3.14
 	pkgrel = 2
@@ -11,5 +11,5 @@ pkgbase = rock-dkms
 	source = http://repo.radeon.com/rocm/apt/debian/pool/main/r/rock-dkms/rock-dkms_2.3-14_all.deb
 	sha512sums = 7094428a187f83ff55871b067c27d483e150cb79cafd3de6ac283fc2816b15de54f46524865e68e9aa550d7412e1a07bf390b9082c15c5340bc308d2a9ea4b70
 
-pkgname = rock-dkms
+pkgname = rock-dkms-git
 

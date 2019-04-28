@@ -2,7 +2,7 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 
-pkgname=rock-dkms
+pkgname=rock-dkms-git
 pkgver=2.3.14
 _pkgver=2.3-14
 pkgrel=2
