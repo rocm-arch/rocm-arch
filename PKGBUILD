@@ -1,6 +1,6 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocblas
-pkgver=2.3.0
+pkgver=2.4.0
 pkgrel=1
 pkgdesc="Next generation BLAS implementation for ROCm platform"
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocBLAS"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="rocm-2.3"
+srcver="rocm-2.4"
 source=("https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/$srcver.tar.gz")
-sha256sums=("43549f3116ed0de1952eac69ab2ac3521903129c34727f3bbc898792182e2a41")
+sha256sums=("883bf6f183af21770f8925ccb438f4b2190163d03602a26fa14e1f646db1c559")
 
 build() {
   mkdir -p "$srcdir/build"
