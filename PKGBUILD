@@ -1,19 +1,19 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocrand
-pkgver=2.3.0
+pkgver=2.4.0
 pkgrel=1
 pkgdesc="RAND library for HIP programming language"
 url="https://github.com/ROCmSoftwarePlatform/rocRAND"
 arch=(x86_64)
-makedepends=("hcc>=2.3.0" git cmake ninja)
+makedepends=("hcc>=2.4.0" git cmake ninja)
 source=("https://github.com/ROCmSoftwarePlatform/rocRAND/archive/$pkgver.tar.gz")
-sha256sums=("981224d84c5b4883393f01853d0f052cc10562d86cdb0918e04a1e522ad6cefa")
+sha256sums=("0cddb63bd4991eba2d789be65e7b809477c481930d42507a3538fc5c84a4d863")
 
 build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
 
-  # build broken build with stack protection
+  # build broken with stack protection
   export CXXFLAGS=$(echo $CXXFLAGS | sed -e 's/-fstack-protector-strong//')
   export CFLAGS=$(echo $CFLAGS | sed -e 's/-fstack-protector-strong//')
   export CPPFLAGS=$(echo $CPPFLAGS | sed -e 's/-fstack-protector-strong//')
