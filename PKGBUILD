@@ -1,20 +1,20 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocfft
-pkgver=0.9.1
+pkgver=0.9.2
 pkgrel=1
 pkgdesc="Next generation FFT implementation for ROCm"
 url="https://github.com/ROCmSoftwarePlatform/rocfft"
 arch=(x86_64)
 depends=(boost fftw)
-makedepends=("hcc>=2.3.0" git cmake ninja)
+makedepends=("hcc>=2.4.0" git cmake ninja)
 source=("https://github.com/ROCmSoftwarePlatform/rocfft/archive/v$pkgver.tar.gz")
-sha256sums=("fa4cb36409e34f85aa2de8d44b6990afe2c8b9fef7793c50f320f2e114fb0c09")
+sha256sums=("13a1a6b759b4747a8aa650e88ea3e6a56ab59e8b1a69e46e58ba0a8da61c4497")
 
 build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
 
-  # build broken build with stack protection
+  # build broken with stack protection
   export CXXFLAGS=$(echo $CXXFLAGS | sed -e 's/-fstack-protector-strong//')
   export CFLAGS=$(echo $CFLAGS | sed -e 's/-fstack-protector-strong//')
   export CPPFLAGS=$(echo $CPPFLAGS | sed -e 's/-fstack-protector-strong//')
