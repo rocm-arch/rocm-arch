@@ -1,8 +1,8 @@
 # Maintainer: Ulysses R Ribeiro <ulyssesrr@gmail.com>
-_opencl_icd_loader_commit="d0f452d8480416b3b44838b5790a27dc02e766f5"
+_opencl_icd_loader_commit="66ecca5dce2c4425a48bdb0cf0de606e4da43ab5"
 
 pkgname=rocm-opencl-runtime
-pkgver=2.3.0
+pkgver=2.4.0
 pkgrel=1
 pkgdesc="ROCm OpenCL™ Compatible Runtime"
 arch=('x86_64')
@@ -12,7 +12,7 @@ groups=()
 depends=("rocr-runtime>=${pkgver}")
 makedepends=(cmake ninja gcc ocaml-findlib python2-z3 gtest) 
 provides=("${pkgname}" "opencl-driver")
-conflicts=("${pkgname}" "rocm-opencl-git")
+conflicts=("rocm-opencl-git")
 replaces=()
 backup=()
 options=()
@@ -28,13 +28,13 @@ source=(
 )
 
 sha256sums=(
-    "379b7df9e5ab6b4b889ccb759ba2c4f70a83a6016a5b95734142814823331067"
-    "1af3066268c4816bc0b0dc32fe2e12d02b4202cac2f671f3c25fce23c176df1f"
-    "507de131234db47161afa0c88eb0a7a8b3368006adee8d26880f25aaf9dddb80"
-    "dba842a38254f3609a6537e9ccc20f4fac8b14bf433029b78a145d8343fd22d3"
-    "3ff165df4a869c4b1d9939722430b697d8e9f9c9fbfe856926e93b33bb4a930a"
-    "3ae6af172b203a942e97f0d5cad9b89c85fbe2dfe7414040f2aca2f6a6745822"
-    "c04823206f75ef515d8b74b7eb24871b0fac00deb7fc5b5e43d200953aad71c2"
+    "5dac0c7661de9914a70720b4082a293d6d22192ada836cc957310dbdeda32bc5"
+    "f55fb74338a0dd19d9af40cb225b5f212326178d854c5b0ed85193f2edceb4bc"
+    "4e8876444f15b18129dbcca286d3e8b1599f32d5ab4637fc481b6376a394817e"
+    "a9a9f51394573a33bd6713bfeb51720928d51172888d08f6d52fa3fa64d200f4"
+    "2c40b3aab20d7b31305354711700c595e42d45ff5afada5c7ceb5f8931fbbcb2"
+    "5e7a45a2b72ccda01da27f3615e88f18ababa79f26b80602b894995c319ce42c"
+    "788d27432ebcf9154b9585a1de52e707494486454991936ea837b6c1419fca43"
     "0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f"
 )
 
