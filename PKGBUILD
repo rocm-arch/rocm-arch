@@ -1,13 +1,13 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=clang-ocl
-pkgver=0.2.0.688fe5d
+pkgver=0.4.0
 pkgrel=1
 pkgdesc="OpenCL compilation with clang compiler."
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/clang-ocl"
 license=('unknown')
 makedepends=(git cmake ninja hcc)
-source=("git+https://github.com/RadeonOpenCompute/clang-ocl.git#commit=688fe5d98b3d6a06838f10d3a7db951c288c0f54")
+source=("git+https://github.com/RadeonOpenCompute/clang-ocl.git#tag=$pkgver")
 md5sums=('SKIP')
 
 build() {
