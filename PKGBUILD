@@ -17,7 +17,7 @@ replaces=()
 backup=()
 options=()
 source=("http://repo.radeon.com/rocm/apt/debian/pool/main/r/rocm-clang-ocl/${_debfile}")
-sha256sums=('c329f2dc85675ae60dc30c9d4749b7620029c3857a48c443c80ec98a19e687d5')
+sha256sums=('SKIP')
 
 package() {
 	cd "$srcdir"
