@@ -8,7 +8,7 @@ pkgbase = rocm-clang-ocl
 	provides = rocm-clang-ocl
 	conflicts = rocm-clang-ocl
 	source = http://repo.radeon.com/rocm/apt/debian/pool/main/r/rocm-clang-ocl/rocm-clang-ocl_0.4.0-7ce124f_amd64.deb
-	sha256sums = 76fa1a2a6ba0edb99a0ea98eadfefbd80af00b1414e6a99ad80623829ec5431c
+	sha256sums = SKIP
 
 pkgname = rocm-clang-ocl
 
