@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocprim
-pkgver=2.3.0
+pkgver=2.5.0
 pkgrel=1
 pkgdesc="ROCm Parallel Primitives"
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocPRIM"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc make hcc python2 rocminfo)
-srcver="2.3"
+srcver="2.5.0"
 source=("https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/$srcver.tar.gz")
-sha256sums=("9dbc0c7714df00479cf94181ae5f120040377b1057aa7de89304d557fc66c8ff")
+sha256sums=("64644789e268a1274cb5681c068492403f5fc2dd50ea6e2e0c28b9523a347063")
 
 build() {
   mkdir -p "$srcdir/build"
