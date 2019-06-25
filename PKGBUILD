@@ -1,7 +1,7 @@
 # Submitter: Olaf Leidinger <oleid@mescharet.de>
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hcc
-pkgver=2.4.0
+pkgver=2.5.0
 pkgrel=1
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
@@ -14,31 +14,31 @@ conflicts=("${pkgname%-git}")
 options=(!staticlibs strip)
 source=(
   "https://github.com/RadeonOpenCompute/hcc/archive/roc-$pkgver.tar.gz"
-  "https://github.com/RadeonOpenCompute/llvm/archive/c17eb49ccf5d95f2a1519755b291f2ab104780e2.tar.gz"
-  "https://github.com/RadeonOpenCompute/compiler-rt/archive/9e3381899d79c1b3aac95aca4338e2c3ed9331ba.tar.gz"
-  "https://github.com/RadeonOpenCompute/hcc-clang-upgrade/archive/7edf06e2e0e1aef72fdb3c5f8f52faa799cad805.tar.gz"
-  "https://github.com/RadeonOpenCompute/clang-tools-extra/archive/4e4e9806c0396857e47e8269001171ee84ad174e.tar.gz"
-  "https://github.com/RadeonOpenCompute/lld/archive/25e9d58ee6ac676da6c7b50682cd4268c9abcb74.tar.gz"
-  "https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/8457aa2f37c8d0e5e232ef6456fb09ef8a50b466.tar.gz"
+  "https://github.com/RadeonOpenCompute/llvm/archive/04d27535fcc4ca8250eaa86e01883c43901cd9ac.tar.gz"
+  "https://github.com/RadeonOpenCompute/compiler-rt/archive/0713964c27a5b1766cf53bc83e549f523b2df98e.tar.gz"
+  "https://github.com/RadeonOpenCompute/hcc-clang-upgrade/archive/7c03a2e9172656a0832bdb8e0a0c9cd2cbf634a1.tar.gz"
+  "https://github.com/RadeonOpenCompute/clang-tools-extra/archive/90ebe0b8bd524c374e7ae71b44458ad1b0eb7307.tar.gz"
+  "https://github.com/RadeonOpenCompute/lld/archive/7791abf961afe2591d67b6faee8204d9490631dc.tar.gz"
+  "https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/6bfe121184303a6ccd731f45e7ba70bf23e4b3d8.tar.gz"
 )
 sha256sums=(
-  "619c5e912684a12ea29e2dccb335d666ba48ee7f9f8816e5feccc69b0474160e"
-  "64f22d50363e93d45c6641e14ce58cf86cbe0ba60c9df6d30b7e3b714f77e70c"
-  "f61ec5848c0f895621247f73f4d0058be4477b431781546e0b3242339bc4f27f"
-  "c630ae7e517008f96de16412807bd26713002bfe131029989f3fef892d0a791b"
-  "7bcaa7df321ca84f44027b466fd1151bef20eb6fddcef91da4eecc7823f0ca8d"
-  "f227938edea1ce05e219629ad19b3adfe89e98ffac88b2bbb947ca01360c56d6"
-  "912493c7d1e53a87fac3d30a35bbc1c40dd6f0981079116749b9279586c02a3f"
+  "adbc9e358acf9c536c1ac9df87e303c8707d591491693768480a009952cb9413"
+  "4cec6a27d078b5af5f0bb82dbf6a426a56fc94697520a288f45d583dc8ef4b5a"
+  "ad51e4b0283aa955a5c829580921bf181f8ddee58a2a1398b5e942653c9c57a5"
+  "f5896e0479bf8fcfd3dab825950d89625f9c8b4499c5820fd96aa1e47c368b53"
+  "45fb7ec6c231f4c422a6a3a76ece5da2ef08d1d586ef1cfff6bee3c94aa32467"
+  "58d1cec35dc539f5920856fe46de8daa2ca7ff636c6f06df1796a1e7b4c103b9"
+  "0b933fe27ff1d401c78c3fc805c48268225286fe09ef6028d99967fe94ba382a"
 )
 
 prepare() {
   cd "$srcdir"
-  mv -T llvm-c17eb49ccf5d95f2a1519755b291f2ab104780e2 hcc-roc-$pkgver/compiler
-  mv -T compiler-rt-9e3381899d79c1b3aac95aca4338e2c3ed9331ba hcc-roc-$pkgver/compiler-rt
-  mv -T hcc-clang-upgrade-7edf06e2e0e1aef72fdb3c5f8f52faa799cad805 hcc-roc-$pkgver/clang
-  mv -T clang-tools-extra-4e4e9806c0396857e47e8269001171ee84ad174e hcc-roc-$pkgver/clang-tools-extra
-  mv -T lld-25e9d58ee6ac676da6c7b50682cd4268c9abcb74 hcc-roc-$pkgver/lld
-  mv -T ROCm-Device-Libs-8457aa2f37c8d0e5e232ef6456fb09ef8a50b466 hcc-roc-$pkgver/rocdl
+  mv -T llvm-04d27535fcc4ca8250eaa86e01883c43901cd9ac hcc-roc-$pkgver/compiler
+  mv -T compiler-rt-0713964c27a5b1766cf53bc83e549f523b2df98e hcc-roc-$pkgver/compiler-rt
+  mv -T hcc-clang-upgrade-7c03a2e9172656a0832bdb8e0a0c9cd2cbf634a1 hcc-roc-$pkgver/clang
+  mv -T clang-tools-extra-90ebe0b8bd524c374e7ae71b44458ad1b0eb7307 hcc-roc-$pkgver/clang-tools-extra
+  mv -T lld-7791abf961afe2591d67b6faee8204d9490631dc hcc-roc-$pkgver/lld
+  mv -T ROCm-Device-Libs-6bfe121184303a6ccd731f45e7ba70bf23e4b3d8 hcc-roc-$pkgver/rocdl
 }
 
 build() {
