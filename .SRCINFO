@@ -1,6 +1,6 @@
 pkgbase = rocr-runtime
 	pkgdesc = ROCm HSA
-	pkgver = 2.4.0
+	pkgver = 2.5.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/ROCR-Runtime
 	arch = x86_64
@@ -10,8 +10,8 @@ pkgbase = rocr-runtime
 	makedepends = gcc
 	makedepends = ninja
 	depends = roct-thunk-interface
-	source = https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/roc-2.4.0.tar.gz
-	sha256sums = 7505094304c2e23be250b360807fc1fa0de7767580b85fa5e1eaac7de01d00ca
+	source = https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/roc-2.5.0.tar.gz
+	sha256sums = 6678bdaf4f6d8ce6e4ed24131f4455c719c0a643c8479f3d69722caa8b4d7187
 
 pkgname = rocr-runtime
 
