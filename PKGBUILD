@@ -1,14 +1,14 @@
 # Submitter: Chris Kitching
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=hip
-pkgver=2.4.0
+pkgver=2.5.0
 pkgrel=1
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 url="https://github.com/ROCm-Developer-Tools/HIP"
 arch=(x86_64)
-makedepends=("hcc>=2.4.0" git cmake ninja python2)
+makedepends=("hcc>=2.5.0" git cmake ninja python2)
 source=("https://github.com/ROCm-Developer-Tools/HIP/archive/roc-$pkgver.tar.gz")
-sha256sums=("019bef8b36493175545d3298f3ec3b9456be5128154a0f52201e6bcfbc971d86")
+sha256sums=("604aaa200ea72e7d02ec0371ea4a7e29ca31d6a49a9075c6c6cf0aa8ef04c2bd")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -35,6 +35,11 @@ package() {
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/hip.conf
     /opt/rocm/hip/lib/
 		EOF
+
+  # Remove one source of references to $srcdir
+  sed -i "s+$pkgdir/opt+/opt+g" \
+    "$pkgdir/opt/rocm/hip/lib/cmake/hip/hip-targets-release.cmake" \
+    "$pkgdir/opt/rocm/hip/lib/cmake/hip/hip-targets.cmake"
 
   # Nobody wants your source code, AMD..
   rm -r "${pkgdir}/opt/rocm/hip/src"

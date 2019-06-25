@@ -1,16 +1,16 @@
 pkgbase = hip
 	pkgdesc = Heterogeneous Interface for Portability ROCm
-	pkgver = 2.4.0
+	pkgver = 2.5.0
 	pkgrel = 1
 	url = https://github.com/ROCm-Developer-Tools/HIP
 	arch = x86_64
-	makedepends = hcc>=2.4.0
+	makedepends = hcc>=2.5.0
 	makedepends = git
 	makedepends = cmake
 	makedepends = ninja
 	makedepends = python2
-	source = https://github.com/ROCm-Developer-Tools/HIP/archive/roc-2.4.0.tar.gz
-	sha256sums = 019bef8b36493175545d3298f3ec3b9456be5128154a0f52201e6bcfbc971d86
+	source = https://github.com/ROCm-Developer-Tools/HIP/archive/roc-2.5.0.tar.gz
+	sha256sums = 604aaa200ea72e7d02ec0371ea4a7e29ca31d6a49a9075c6c6cf0aa8ef04c2bd
 
 pkgname = hip
 
