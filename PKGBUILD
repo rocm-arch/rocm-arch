@@ -1,16 +1,16 @@
 # Maintainer: Ulysses R Ribeiro <ulyssesrr@gmail.com>
-_opencl_icd_loader_commit="66ecca5dce2c4425a48bdb0cf0de606e4da43ab5"
+_opencl_icd_loader_commit="7433f2acbf5bbc400f26494ff1dc895da6265bef"
 
 pkgname=rocm-opencl-runtime
-pkgver=2.4.0
+pkgver=2.5.0
 pkgrel=1
 pkgdesc="ROCm OpenCL™ Compatible Runtime"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime"
 license=('MIT')
 groups=()
-depends=("rocr-runtime>=${pkgver}")
-makedepends=(cmake ninja gcc ocaml-findlib python2-z3 gtest) 
+depends=("rocr-runtime>=${pkgver}" "opencl-icd-loader")
+makedepends=(mesa cmake ninja gcc ocaml-findlib python2-z3 gtest git) 
 provides=("${pkgname}" "opencl-driver")
 conflicts=("rocm-opencl-git")
 replaces=()
@@ -28,13 +28,13 @@ source=(
 )
 
 sha256sums=(
-    "5dac0c7661de9914a70720b4082a293d6d22192ada836cc957310dbdeda32bc5"
-    "f55fb74338a0dd19d9af40cb225b5f212326178d854c5b0ed85193f2edceb4bc"
-    "4e8876444f15b18129dbcca286d3e8b1599f32d5ab4637fc481b6376a394817e"
-    "a9a9f51394573a33bd6713bfeb51720928d51172888d08f6d52fa3fa64d200f4"
-    "2c40b3aab20d7b31305354711700c595e42d45ff5afada5c7ceb5f8931fbbcb2"
-    "5e7a45a2b72ccda01da27f3615e88f18ababa79f26b80602b894995c319ce42c"
-    "788d27432ebcf9154b9585a1de52e707494486454991936ea837b6c1419fca43"
+    "7e7a7e761892dec27cf3f922cdd376a4b018f93832ecf8df75304695a03aa51a"
+    "b590b217dbaf40bac89dff3e56f3dfb0c1a2205117e50e9cc007d01cf3b8e0f4"
+    "fbb005d13c01020878dbc5546b57cce10bcdbd9b605d3c5a27955819e6c57507"
+    "1611d533b670f2bd58ac1dce6cfb2a019ef6abdf119d657042e2a46c35dffe7e"
+    "a910c565d249965be4eb0f5a00698b77181573271e3ec3f277c73297af9ed160"
+    "d44b7161f9c3332c36c831119678d99fa9193056bcb79b2f85e1d8a22bece027"
+    "b21a114e624231d1dfd95038def122b35d0ecbf9bc1c704b8c5aec88c5bf4842"
     "0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f"
 )
 
@@ -115,5 +115,8 @@ package() {
 
     mkdir -p "$pkgdir/etc/ld.so.conf.d/"
     echo "/opt/rocm/opencl/lib" > "$pkgdir/etc/ld.so.conf.d/rocm-opencl.conf"
-    ln -s $srcdir/"/opt/rocm/opencl/lib/libOpenCL.so.1.2" "$pkgdir/opt/rocm/opencl/lib/libOpenCL.so" # not created automatically by ldconfig
+    
+    # Discard AMD's OpenCL ICD Loader
+    # https://wiki.archlinux.org/index.php/GPGPU#OpenCL_ICD_loader_(libOpenCL.so)
+    rm -f $pkgdir/opt/rocm/opencl/lib/x86_64/libOpenCL.so*
 }
