@@ -2,7 +2,7 @@
 _opencl_icd_loader_commit="7433f2acbf5bbc400f26494ff1dc895da6265bef"
 
 pkgname=rocm-opencl-runtime
-pkgver=2.5.0
+pkgver=2.6.0
 pkgrel=1
 pkgdesc="ROCm OpenCL™ Compatible Runtime"
 arch=('x86_64')
@@ -22,18 +22,19 @@ source=(
     "llvm-roc-ocl-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/llvm/archive/roc-ocl-${pkgver}.tar.gz"
     "clang-roc-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/clang/archive/roc-${pkgver}.tar.gz"
     "lld-roc-ocl-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-ocl-${pkgver}.tar.gz"
-    "rocm-device-libs-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-${pkgver}.tar.gz"
+    "rocm-device-libs-${pkgver}.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-ocl-${pkgver}.tar.gz"
     "OpenCL-ICD-Loader-${_opencl_icd_loader_commit}.zip::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/${_opencl_icd_loader_commit}.zip"
     "fix_rocm_opencl_build_order.patch"
 )
 
+#pkgver=2.6.0; sha256sum rocm-opencl-runtime-${pkgver}.tar.gz rocm-opencl-driver-${pkgver}.tar.gz llvm-roc-ocl-${pkgver}.tar.gz clang-roc-${pkgver}.tar.gz lld-roc-ocl-${pkgver}.tar.gz rocm-device-libs-${pkgver}.tar.gz OpenCL-ICD-Loader-*.zip fix_rocm_opencl_build_order.patch | cut -d ' ' -f 1
 sha256sums=(
-    "7e7a7e761892dec27cf3f922cdd376a4b018f93832ecf8df75304695a03aa51a"
-    "b590b217dbaf40bac89dff3e56f3dfb0c1a2205117e50e9cc007d01cf3b8e0f4"
-    "fbb005d13c01020878dbc5546b57cce10bcdbd9b605d3c5a27955819e6c57507"
-    "1611d533b670f2bd58ac1dce6cfb2a019ef6abdf119d657042e2a46c35dffe7e"
-    "a910c565d249965be4eb0f5a00698b77181573271e3ec3f277c73297af9ed160"
-    "d44b7161f9c3332c36c831119678d99fa9193056bcb79b2f85e1d8a22bece027"
+    "da037b1c27b389a053a29954f9fb8c4acdc41dc104d686bcc9b6ad78445e48ba"
+    "47f26ce3148dbcf93eb3a49736b3ce98616e3b3b36dafa64b7fa8ca5f50d0391"
+    "ecceff93d7cf9e9a4f3e13db6c4902bb83ecb3b305c3b95ab1fa320e7f1b4e9a"
+    "e613e157db7c869b2d2a8db871821cfa0809ba264b4036eca4c7d2aa65f37f27"
+    "f736320af427d3611a4a9b527fd438d5d4a9284d0dedd1de90aa40e568628462"
+    "d8b287cce02c1dd007dfbc4e4cea1dac619d2d249cbb2c66d3547c3b2d038e25"
     "b21a114e624231d1dfd95038def122b35d0ecbf9bc1c704b8c5aec88c5bf4842"
     "0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f"
 )
@@ -63,7 +64,7 @@ prepare() {
     
     #<project path="opencl/library/amdgcn" name="ROCm-Device-Libs"/>
     mkdir -p $srcdir/opencl/library/
-    ln -s $srcdir/ROCm-Device-Libs-roc-${pkgver} opencl/library/amdgcn
+    ln -s $srcdir/ROCm-Device-Libs-roc-ocl-${pkgver} opencl/library/amdgcn
 
     #<project path="opencl/api/opencl/khronos/icd" name="OpenCL-ICD-Loader"
     mkdir -p $srcdir/opencl/api/opencl/khronos/
