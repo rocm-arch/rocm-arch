@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocthrust
-pkgver=2.5.0
+pkgver=2.6.0
 pkgrel=1
 pkgdesc="Port of the Thrust parallel algorithm library atop HIP/ROCm."
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocThrust"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="2.5.0"
+srcver="2.6.0"
 source=("https://github.com/ROCmSoftwarePlatform/rocThrust/archive/$srcver.tar.gz")
-sha256sums=("b559d6c767dae7c13b3bdca0dca1689e308e79f391bb68437fb36598ea65f028")
+sha256sums=("1252f56cc91040d5be7a816a9e3623ba968c40ef61706173813fcf2af4832d7e")
 
 build() {
   mkdir -p "$srcdir/build"
