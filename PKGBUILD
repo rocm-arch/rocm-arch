@@ -1,6 +1,6 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=roct-thunk-interface
-pkgver=2.5.0
+pkgver=2.6.0
 pkgrel=1
 pkgdesc="ROCm HSA"
 arch=(x86_64)
@@ -10,7 +10,7 @@ makedepends=(git cmake gcc ninja)
 depends=(numactl pciutils)
 source=("https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-$pkgver.tar.gz" "fix_build-dev_command.patch")
 sha256sums=(
-  "1ec04105c9569040c7bdd1a7513c17a0c4d67d31526c4bf33394842ebd482167"
+  "649e996c36e52f8ac9bf002780442fcf93cc845e885ef90442ed3f790e36fd00"
   "f58bdd6df3065ad1e08c107e95140445fc01bd46dae27fb9d2091a2f3b5d3d2f"
 )
 
