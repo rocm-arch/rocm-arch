@@ -1,13 +1,13 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=clang-ocl
-pkgver=0.4.0
+pkgver=2.6.0
 pkgrel=1
 pkgdesc="OpenCL compilation with clang compiler."
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/clang-ocl"
 license=('unknown')
 makedepends=(git cmake ninja hcc)
-source=("git+https://github.com/RadeonOpenCompute/clang-ocl.git#tag=$pkgver")
+source=("git+https://github.com/RadeonOpenCompute/clang-ocl.git#tag=roc-$pkgver")
 md5sums=('SKIP')
 
 build() {
@@ -24,4 +24,3 @@ build() {
 package() {
   ninja -C "$srcdir/build" install
 }
-
