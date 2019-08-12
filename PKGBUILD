@@ -3,9 +3,9 @@
 # Maintainer: Olaf Leidinger <oleid@mescharet.de>
 
 pkgname=rock-dkms-git
-pkgver=2.3.14
-_pkgver=2.3-14
-pkgrel=2
+pkgver=2.6.22
+_pkgver=2.6-22
+pkgrel=1
 pkgdesc="Linux AMD GPU kernel driver from ROC in DKMS format."
 arch=('any')
 url=""
@@ -16,7 +16,7 @@ backup=('etc/modprobe.d/blacklist-radeon.conf')
 options=('!strip' '!emptydirs')
 
 source=("http://repo.radeon.com/rocm/apt/debian/pool/main/r/rock-dkms/rock-dkms_${_pkgver}_all.deb")
-sha512sums=('7094428a187f83ff55871b067c27d483e150cb79cafd3de6ac283fc2816b15de54f46524865e68e9aa550d7412e1a07bf390b9082c15c5340bc308d2a9ea4b70')
+sha512sums=('46172d4c0d22dd33199b92faf703c99278827ba16d14d1d5d32aa9aa774e3216466737ccf26672b4d9f5837edfe965d095b95a32dc6a98e817bb6901905b0723')
 
 package(){
 	tar xf data.tar.xz -C "${pkgdir}"
