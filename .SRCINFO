@@ -1,0 +1,15 @@
+pkgbase = rocm-cmake
+	pkgdesc = cmake modules for common build tasks needed for the ROCM software stack
+	pkgver = 2.10.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/rocm-cmake
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	makedepends = cmake
+	conflicts = rocm-cmake-git
+	source = https://github.com/RadeonOpenCompute/rocm-cmake/archive/roc-2.10.0.tar.gz
+	sha256sums = 4ff9db5cf1cee1f4af96d0240e1a3068b39111b559808e6437f3748f86673181
+
+pkgname = rocm-cmake
+
