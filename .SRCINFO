@@ -1,7 +1,7 @@
 pkgbase = rocm-opencl-runtime
 	pkgdesc = ROCm OpenCL™ Compatible Runtime
 	pkgver = 2.10.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime
 	arch = x86_64
 	license = MIT
@@ -14,21 +14,21 @@ pkgbase = rocm-opencl-runtime
 	provides = rocm-opencl-runtime
 	provides = opencl-driver
 	conflicts = rocm-opencl-git
-	source = rocm-opencl-runtime-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/roc-2.10.0.tar.gz
-	source = rocm-opencl-driver-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver/archive/roc-2.10.0.tar.gz
-	source = llvm-roc-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/llvm/archive/roc-ocl-2.10.0.tar.gz
-	source = clang-roc-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/clang/archive/roc-2.10.0.tar.gz
-	source = lld-roc-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-ocl-2.10.0.tar.gz
-	source = rocm-device-libs-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-ocl-2.10.0.tar.gz
-	source = OpenCL-ICD-Loader-978b4b3a29a3aebc86ce9315d5c5963e88722d03.zip::https://github.com/KhronosGroup/OpenCL-ICD-Loader/archive/978b4b3a29a3aebc86ce9315d5c5963e88722d03.zip
+	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-2.10.0
+	source = rocm-opencl-driver::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver#tag=roc-2.10.0
+	source = llvm-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/llvm/archive/roc-ocl-2.10.0.tar.gz
+	source = clang-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/clang/archive/roc-2.10.0.tar.gz
+	source = lld-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-ocl-2.10.0.tar.gz
+	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=roc-ocl-2.10.0
+	source = opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=978b4b3a29a3aebc86ce9315d5c5963e88722d03
 	source = fix_rocm_opencl_build_order.patch
-	sha256sums = 7b38b1be2217d7b0ac552e4cfb5fe38660fa59ef61f2a46946bac6fba6efdf7c
-	sha256sums = 00a50696732a4cd3b880cfb11a64d02c5dfd956a79796eacda166173c14eb97a
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = c46ec3568b754a7aced6139bcc254d39ddb89016b282c467ae1b5536d8021540
 	sha256sums = acdebf229a2120ad0ccdc48a6b0e863a6a4d89f46bb62e7296f2f16bbc4a04a7
 	sha256sums = 105cedd4a31a6d6ad51043c384129a7705f9a5f65414e60a07c9193411b756f0
-	sha256sums = ed56c5f742bd8b2fc7e1124434fa575f51573900444adc235ce6785f3eb56d9d
-	sha256sums = 6c79fddd59e92182d7bc9048415b51e60e49f952b11eeffd69cccb3081359f78
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = 0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f
 
 pkgname = rocm-opencl-runtime
