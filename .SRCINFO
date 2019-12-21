@@ -1,0 +1,18 @@
+pkgbase = hip-git
+	pkgdesc = Heterogeneous Interface for Portability ROCm
+	pkgver = r4244.18c10034
+	pkgrel = 1
+	url = https://github.com/ROCm-Developer-Tools/HIP
+	arch = x86_64
+	license = Custom
+	makedepends = libelf
+	makedepends = git
+	makedepends = cmake
+	makedepends = hcc
+	provides = hip
+	conflicts = hip
+	source = git+https://github.com/ROCm-Developer-Tools/HIP.git
+	sha256sums = SKIP
+
+pkgname = hip-git
+
