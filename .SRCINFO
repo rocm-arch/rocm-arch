@@ -1,0 +1,17 @@
+pkgbase = hcc-git
+	pkgdesc = C++ Compiler for Heterogeneous Compute
+	pkgver = r7685.e8488139
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/hcc
+	arch = x86_64
+	license = Custom
+	makedepends = git
+	makedepends = cmake
+	makedepends = rocr-runtime
+	provides = hcc
+	conflicts = hcc
+	source = git+https://github.com/RadeonOpenCompute/hcc.git
+	sha256sums = SKIP
+
+pkgname = hcc-git
+
