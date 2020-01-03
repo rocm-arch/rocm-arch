@@ -23,12 +23,17 @@ build() {
   mkdir -p "$srcdir/${_name}/build"
   cd "$srcdir/${_name}/build"
   cmake .. -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX="${pkgdir}/usr" \
+        -DCMAKE_INSTALL_PREFIX="${pkgdir}/opt/rocm" \
 
-  make
+  make all build-dev
 }
 
 package() {
   cd "${srcdir}/${_name}/build"
-  make DESDIR=${pkgdir} install
+  make DESDIR=${pkgdir} install install-dev
+
+  mkdir -p "$pkgdir/etc/ld.so.conf.d"
+  cat <<-EOF > $pkgdir/etc/ld.so.conf.d/roct-thunk-interface.conf
+		/opt/rocm/lib
+		EOF
 }
