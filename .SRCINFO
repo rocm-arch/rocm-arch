@@ -1,6 +1,6 @@
 pkgbase = hcc-git
 	pkgdesc = C++ Compiler for Heterogeneous Compute
-	pkgver = r7685.e8488139
+	pkgver = r7687.4fc4913a
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/hcc
 	arch = x86_64
@@ -11,6 +11,10 @@ pkgbase = hcc-git
 	provides = hcc
 	conflicts = hcc
 	source = git+https://github.com/RadeonOpenCompute/hcc.git
+	source = git+https://github.com/RadeonOpenCompute/llvm-project.git
+	source = git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = hcc-git
