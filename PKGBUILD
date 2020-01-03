@@ -1,34 +1,35 @@
-# Maintainer: Jakub Okoński <jakub@okonski.org>
+# Maintainer: acxz <akashpatel2008 at yahoo dot com>
+# Contributor: Jakub Okoński <jakub@okonski.org>
 pkgname=rocr-runtime
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
-pkgdesc="ROCm HSA"
-arch=(x86_64)
+pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 url="https://github.com/RadeonOpenCompute/ROCR-Runtime"
-license=('unknown')
-makedepends=(git cmake gcc ninja)
-depends=('roct-thunk-interface')
+arch=(x86_64)
+license=('NCSA')
+makedepends=(cmake gcc libelf roct-thunk-interface)
+depends=()
+_name=ROCR-Runtime-roc
 source=("https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/roc-$pkgver.tar.gz")
-sha256sums=("46636716ef9f222e90cd2f3d54acf9bf50c4088cd55178230628bd195833de88")
+sha256sums=("6d133e285535adef61464f7f0377fe97c480323ebfd242b34b5585b8bb41f99e")
 
 build() {
-  mkdir -p "$srcdir/build"
-  cd "$srcdir/build"
+  mkdir -p "$srcdir/${_name}-${pkgver}/src/build"
+  cd "$srcdir/${_name}-${pkgver}/src/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$pkgdir/opt/rocm \
-        -DCMAKE_PREFIX_PATH=/opt/rocm/libhsakmt \
+        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm" \
         -DHSAKMT_INC_PATH=/opt/rocm/include \
-        -DHSAKMT_LIB_PATH=/opt/rocm/lib64 \
-        -G Ninja \
-        "$srcdir/ROCR-Runtime-roc-$pkgver/src"
-  ninja
+        -DHSAKMT_LIB_PATH=/opt/rocm/lib \
+        ..
+  make
 }
 
 package() {
-  ninja -C "$srcdir/build" install
+  cd "${srcdir}/${_name}-${pkgver}/src/build"
+  make DESDIR=${pkgdir} install
   mkdir -p "$pkgdir/etc/ld.so.conf.d"
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/rocm-runtime.conf
-		/opt/rocm/lib
+    /opt/rocm/lib
     /opt/rocm/hsa/lib/
-		EOF
+	EOF
 }
