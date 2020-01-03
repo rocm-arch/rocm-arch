@@ -1,6 +1,6 @@
 pkgbase = hip-git
 	pkgdesc = Heterogeneous Interface for Portability ROCm
-	pkgver = r4244.18c10034
+	pkgver = r4264.0dadb233
 	pkgrel = 1
 	url = https://github.com/ROCm-Developer-Tools/HIP
 	arch = x86_64
@@ -8,6 +8,7 @@ pkgbase = hip-git
 	makedepends = libelf
 	makedepends = git
 	makedepends = cmake
+	makedepends = gcc
 	makedepends = hcc
 	provides = hip
 	conflicts = hip

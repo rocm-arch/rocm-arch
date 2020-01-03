@@ -1,12 +1,12 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=hip-git
-pkgver=r4244.18c10034
+pkgver=r4264.0dadb233
 pkgrel=1
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 url="https://github.com/ROCm-Developer-Tools/HIP"
 arch=(x86_64)
 license=('Custom')
-makedepends=(libelf git cmake hcc)
+makedepends=(libelf git cmake gcc hcc)
 provides=('hip')
 conflicts=('hip')
 _name=HIP
@@ -26,9 +26,9 @@ build() {
 
   cd "${srcdir}/${_name}/build"
 
-  cmake .. -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_LIBDIR=lib \
-    -DCMAKE_INSTALL_PREFIX=/usr
+  cmake -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm" \
+    ..
 
   make
 }
@@ -37,4 +37,10 @@ package() {
   cd "${srcdir}/${_name}/build"
 
   make DESTDIR=${pkgdir} install
+
+  mkdir -p $pkgdir/etc/ld.so.conf.d
+  cat <<-EOF > $pkgdir/etc/ld.so.conf.d/hip.conf
+    /opt/rocm/hip/lib/
+		EOF
+
 }
