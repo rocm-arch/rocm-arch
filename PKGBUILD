@@ -1,4 +1,3 @@
-# Maintainer: naetherm <>
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=rocr-runtime-git
 pkgver=r94.cd47351
@@ -6,9 +5,9 @@ pkgrel=1
 pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 url="https://github.com/RadeonOpenCompute/ROCR-Runtime"
 arch=(x86_64)
-license=('Custom')
-makedepends=(git cmake gcc ninja)
-depends=(roct-thunk-interface)
+license=('NCSA')
+makedepends=(git cmake gcc libelf roct-thunk-interface)
+depends=()
 provides=('rocr-runtime')
 conflicts=('rocr-runtime')
 _name=ROCR-Runtime
@@ -21,20 +20,19 @@ pkgver() {
 }
 
 build() {
-  mkdir -p "$srcdir/${_name}/build"
-  cd "$srcdir/${_name}/build"
+  mkdir -p "$srcdir/${_name}/src/build"
+  cd "$srcdir/${_name}/src/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$pkgdir/opt/rocm \
-        -DCMAKE_PREFIX_PATH=/opt/rocm/libhsakmt \
+        -DCMAKE_INSTALL_PREFIX="${pkgdir}/opt/rocm" \
         -DHSAKMT_INC_PATH=/opt/rocm/include \
         -DHSAKMT_LIB_PATH=/opt/rocm/lib \
-        -G Ninja \
-        "$srcdir/${_name}/src"
-  ninja
+        ..
+  make
 }
 
 package() {
-  ninja -C "$srcdir/${_name}/build" install
+  cd "${srcdir}/${_name}/src/build"
+  make DESDIR=${pkgdir} install
   mkdir -p "$pkgdir/etc/ld.so.conf.d"
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/rocm-runtime.conf
     /opt/rocm/lib
