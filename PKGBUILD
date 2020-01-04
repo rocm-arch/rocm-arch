@@ -1,38 +1,34 @@
-# Maintainer: Jakub Okoński <jakub@okonski.org>
+# Maintainer: acxz <akashpatel2008 at yahoo dot com>
+# Contributor: Jakub Okoński <jakub@okonski.org>
 pkgname=roct-thunk-interface
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
-pkgdesc="ROCm HSA"
-arch=(x86_64)
+pkgdesc="Radeon Open Compute Thunk Interface"
 url="https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface"
-license=('unknown')
-makedepends=(git cmake gcc ninja)
+arch=(x86_64)
+license=('MIT')
+makedepends=(cmake gcc)
 depends=(numactl pciutils)
-source=("https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-$pkgver.tar.gz" "fix_build-dev_command.patch")
-sha256sums=(
-  "649e996c36e52f8ac9bf002780442fcf93cc845e885ef90442ed3f790e36fd00"
-  "f58bdd6df3065ad1e08c107e95140445fc01bd46dae27fb9d2091a2f3b5d3d2f"
-)
-
-prepare() {
-    cd ROCT-Thunk-Interface-roc-$pkgver
-    patch -Np1 -i "$srcdir/fix_build-dev_command.patch"
-}
+_name=ROCT-Thunk-Interface-roc
+source=("https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-$pkgver.tar.gz")
+sha256sums=("d6d91397fcd926bd90fae8dfe81d69653273e8b68cd47f822576838f2ac96729")
 
 build() {
-  mkdir -p "$srcdir/build"
-  cd "$srcdir/build"
+  mkdir -p "$srcdir/${_name}-${pkgver}/build"
+  cd "$srcdir/${_name}-${pkgver}/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm" \
-        -G Ninja \
-        "$srcdir/ROCT-Thunk-Interface-roc-$pkgver"
-  ninja all build-dev
+        ..
+
+  make all build-dev
 }
 
 package() {
-  ninja -C "$srcdir/build" install install-dev
+  cd "${srcdir}/${_name}-${pkgver}/build"
+  make DESDIR=${pkgdir} install install-dev
+
   mkdir -p "$pkgdir/etc/ld.so.conf.d"
   cat <<-EOF > $pkgdir/etc/ld.so.conf.d/roct-thunk-interface.conf
-		/opt/rocm/lib64
+		/opt/rocm/lib
 		EOF
 }

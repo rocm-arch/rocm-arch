@@ -1,20 +1,16 @@
 pkgbase = roct-thunk-interface
-	pkgdesc = ROCm HSA
-	pkgver = 2.6.0
+	pkgdesc = Radeon Open Compute Thunk Interface
+	pkgver = 3.0.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
 	arch = x86_64
-	license = unknown
-	makedepends = git
+	license = MIT
 	makedepends = cmake
 	makedepends = gcc
-	makedepends = ninja
 	depends = numactl
 	depends = pciutils
-	source = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-2.6.0.tar.gz
-	source = fix_build-dev_command.patch
-	sha256sums = 649e996c36e52f8ac9bf002780442fcf93cc845e885ef90442ed3f790e36fd00
-	sha256sums = f58bdd6df3065ad1e08c107e95140445fc01bd46dae27fb9d2091a2f3b5d3d2f
+	source = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-3.0.0.tar.gz
+	sha256sums = d6d91397fcd926bd90fae8dfe81d69653273e8b68cd47f822576838f2ac96729
 
 pkgname = roct-thunk-interface
 
