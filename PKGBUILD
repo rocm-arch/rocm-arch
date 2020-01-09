@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=hipcub
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="Reusable software components for the rocm developers."
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/hipCUB"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="2.6.0"
+srcver="3.0.0"
 source=("https://github.com/ROCmSoftwarePlatform/hipCUB/archive/$srcver.tar.gz")
-sha256sums=("511011ac126b4213557b6faae64fbc2e5a4c6474aef5109cf57115344bf35546")
+sha256sums=("ee545d012e3af4c51f1a125bbe3b44f5eb4fd8a3c3a133edea19a8424e5b9d98")
 
 build() {
   mkdir -p "$srcdir/build"
