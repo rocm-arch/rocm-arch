@@ -1,6 +1,6 @@
 pkgbase = rocminfo
 	pkgdesc = ROCm info tools - rocm_agent_enumerator
-	pkgver = 2.6.0
+	pkgver = 3.0.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/rocminfo
 	arch = x86_64
@@ -9,10 +9,10 @@ pkgbase = rocminfo
 	makedepends = cmake
 	makedepends = ninja
 	depends = pciutils
-	depends = rocm-cmake-git
+	depends = rocm-cmake
 	depends = rocr-runtime
 	depends = roct-thunk-interface
-	source = git+https://github.com/RadeonOpenCompute/rocminfo.git#tag=roc-2.6.0
+	source = git+https://github.com/RadeonOpenCompute/rocminfo.git#tag=roc-3.0.0
 	md5sums = SKIP
 
 pkgname = rocminfo
