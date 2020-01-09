@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocThrust"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="2.7"
-source=("https://github.com/ROCmSoftwarePlatform/rocThrust/archive/rocm-$srcver.tar.gz")
-sha256sums=("19ac24023a1015df19b29f3a8afcd61113ed91b26a7d3fa33b00a1f742e51be1")
+srcver="3.0.0"
+source=("https://github.com/ROCmSoftwarePlatform/rocThrust/archive/$srcver.tar.gz")
+sha256sums=("42fc7953e1b230a387851918cfd2490ac3d520f43f068d45fc348015196cabd8")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -33,7 +33,7 @@ build() {
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/rocthrust" \
         -DBUILD_TEST=OFF \
         -G Ninja \
-        "$srcdir/rocThrust-rocm-$srcver"
+        "$srcdir/rocThrust-$srcver"
   ninja
 }
 
