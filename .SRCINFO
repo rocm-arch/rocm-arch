@@ -1,6 +1,6 @@
 pkgbase = rocprim
 	pkgdesc = ROCm Parallel Primitives
-	pkgver = 2.6.0
+	pkgver = 3.0.0
 	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/rocPRIM
 	arch = x86_64
@@ -14,8 +14,8 @@ pkgbase = rocprim
 	makedepends = rocminfo
 	depends = hcc
 	depends = hip
-	source = https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/2.6.0.tar.gz
-	sha256sums = d67299749d9a356f5cbf69bea8f4db9fb86c87ea63dcc92c2440598705744df7
+	source = https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/3.0.0.tar.gz
+	sha256sums = cf3b14b700795c238cf0a0ab4dedca092cdc83f797e4c6331fba33a9f6358526
 
 pkgname = rocprim
 
