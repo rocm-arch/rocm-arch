@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocsparse
-pkgver=2.5.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="Next generation SPARSE implementation for ROCm platform."
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocSPARSE"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="2.5"
+srcver="3.0"
 source=("https://github.com/ROCmSoftwarePlatform/rocSPARSE/archive/rocm-$srcver.tar.gz")
-sha256sums=("01f5eae7cdd9cb98f6ff765e053afd36dfab61a3217016420afbda8dc6ae8b35")
+sha256sums=("4a982f40733052b4c07b77f8e6fa494abd878be11041fe6b75ab702a58887ba6")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -31,6 +31,8 @@ build() {
   # TODO: fix librocsparse.so, it contains references to $srcdir
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/rocsparse" \
+        -Drocprim_DIR="/opt/rocm/rocprim/rocprim/lib/cmake/rocprim/" \
+        -DBUILD_CLIENTS_SAMPLES=OFF \
         -G Ninja \
         "$srcdir/rocSPARSE-rocm-$srcver"
   ninja
