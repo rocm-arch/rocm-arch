@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocthrust
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="Port of the Thrust parallel algorithm library atop HIP/ROCm."
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rocThrust"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="2.6.0"
-source=("https://github.com/ROCmSoftwarePlatform/rocThrust/archive/$srcver.tar.gz")
-sha256sums=("1252f56cc91040d5be7a816a9e3623ba968c40ef61706173813fcf2af4832d7e")
+srcver="2.7"
+source=("https://github.com/ROCmSoftwarePlatform/rocThrust/archive/rocm-$srcver.tar.gz")
+sha256sums=("19ac24023a1015df19b29f3a8afcd61113ed91b26a7d3fa33b00a1f742e51be1")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -31,8 +31,9 @@ build() {
   # TODO: fix librocthrust.so, it contains references to $srcdir
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/rocthrust" \
+        -DBUILD_TEST=OFF \
         -G Ninja \
-        "$srcdir/rocThrust-$srcver"
+        "$srcdir/rocThrust-rocm-$srcver"
   ninja
 }
 
