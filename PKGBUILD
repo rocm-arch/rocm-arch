@@ -1,44 +1,33 @@
 # Submitter: Olaf Leidinger <oleid@mescharet.de>
 # Maintainer: Jakub Okoński <jakub@okonski.org>
+# Maintainer: Rigo Reddig <rigo.reddig@gmail.com> ;)
+# Maintainer: Markus Näther <naetherm@cs.uni-freiburg.de>
 pkgname=hcc
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="HCC is an Open Source, Optimizing C++ Compiler for Heterogeneous Compute"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/hcc"
 license=('NCSAOSL')
-depends=(rocr-runtime z3)
+depends=('rocr-runtime>=3.0.0' z3)
 makedepends=(git cmake gcc ninja z3)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 options=(!staticlibs strip)
+_srcver=3.0.0
 source=(
-  "https://github.com/RadeonOpenCompute/hcc/archive/roc-hcc-$pkgver.tar.gz"
-  "https://github.com/RadeonOpenCompute/llvm/archive/a42c925d178d2a3cd6541769279b736c56b3f935.tar.gz"
-  "https://github.com/RadeonOpenCompute/compiler-rt/archive/28655ce202abf9edbbb309719b7b06be7a8f612d.tar.gz"
-  "https://github.com/RadeonOpenCompute/hcc-clang-upgrade/archive/fff0bd8ccc310cbfec5e3e1bf516b81412081a71.tar.gz"
-  "https://github.com/RadeonOpenCompute/clang-tools-extra/archive/0869af816d464dfcd9541c8ba0eca91c33411cc2.tar.gz"
-  "https://github.com/RadeonOpenCompute/lld/archive/40c741790502f596c316fcf0216433630a8759de.tar.gz"
-  "https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/6bfe121184303a6ccd731f45e7ba70bf23e4b3d8.tar.gz"
+  "hcc.tar.gz::https://github.com/RadeonOpenCompute/hcc/archive/roc-hcc-$_srcver.tar.gz"
+  "llvm.tar.gz::https://github.com/RadeonOpenCompute/llvm-project/archive/roc-hcc-$_srcver.tar.gz"
+  "ROCm-Device-Libs.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-hcc-$_srcver.tar.gz"
 )
-sha256sums=(
-  "94abf5307bbe20b995f5aa74a1d047e44053af7feacbd0506218889bcf79f938"
-  "fc6e2efc38eeb5d053b57f4f933cd66269db354b89ba7112f86a1430edac4bbe"
-  "d3ade9067237abaf12e749330162ec57605d134f4670e83f3be2df6d22a3a148"
-  "b45e25478b9c9208a040fb3b775f76835aaf88d4367192ab79aceed7b0459db3"
-  "175dbb8d0a59886a93c19a79e34e75932c34d7c9233364035b9b9491483df267"
-  "1987eeea137efe3f95e0e37e4c0df879681497803407143f23dbc71ad22203ea"
-  "0b933fe27ff1d401c78c3fc805c48268225286fe09ef6028d99967fe94ba382a"
-)
+sha256sums=('0eb296710278a2abb72e6875a45fed7c2772e744827f3e04a2ef34d8978a03b7'
+            '5b91197eeb724e1c6a042658aa314b60073ec6f6af9a0551409164d9d15287cd'
+            'ba8d40ed8b39f3285e00a27716905edff3792929168735bd4b19eb4f1f15aff8')
 
 prepare() {
   cd "$srcdir"
-  mv -T llvm-a42c925d178d2a3cd6541769279b736c56b3f935 hcc-roc-hcc-$pkgver/compiler
-  mv -T compiler-rt-28655ce202abf9edbbb309719b7b06be7a8f612d hcc-roc-hcc-$pkgver/compiler-rt
-  mv -T hcc-clang-upgrade-fff0bd8ccc310cbfec5e3e1bf516b81412081a71 hcc-roc-hcc-$pkgver/clang
-  mv -T clang-tools-extra-0869af816d464dfcd9541c8ba0eca91c33411cc2 hcc-roc-hcc-$pkgver/clang-tools-extra
-  mv -T lld-40c741790502f596c316fcf0216433630a8759de hcc-roc-hcc-$pkgver/lld
-  mv -T ROCm-Device-Libs-6bfe121184303a6ccd731f45e7ba70bf23e4b3d8 hcc-roc-hcc-$pkgver/rocdl
+  mv -T llvm-project-roc-hcc-$_srcver hcc-roc-hcc-$_srcver/llvm-project
+  mv -T ROCm-Device-Libs-roc-hcc-$_srcver hcc-roc-hcc-$_srcver/rocdl
 }
 
 build() {
@@ -46,8 +35,9 @@ build() {
   cd "$srcdir/build"
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/hcc" \
+        -DLLVM_INSTALL_UTILS=TRUE \
         -G Ninja \
-        "$srcdir/hcc-roc-hcc-$pkgver"
+        "$srcdir/hcc-roc-hcc-$_srcver"
   ninja
 }
 
