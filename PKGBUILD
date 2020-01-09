@@ -1,14 +1,16 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
+# Maintainer: Markus Näther <naetherm@cs.uni-freiburg.de>
 pkgname=rocfft
-pkgver=0.9.4
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="Next generation FFT implementation for ROCm"
 url="https://github.com/ROCmSoftwarePlatform/rocfft"
 arch=(x86_64)
 depends=(boost fftw)
-makedepends=("hcc>=2.6.0" git cmake ninja)
-source=("https://github.com/ROCmSoftwarePlatform/rocfft/archive/v$pkgver.tar.gz")
-sha256sums=("75fd804c051d274406f958142816f178c5a5d61f6bee1b03d5a827a6f4cb617d")
+_srcver="3.0"
+makedepends=("hcc>=3.0.0" git cmake ninja)
+source=("https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-$_srcver.tar.gz")
+sha256sums=("deadd7890df3c9350cbf7728708e620191e7cbc681d091004eee099186fb4e10")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -24,7 +26,7 @@ build() {
 
   cmake -DCMAKE_BUILD_TYPE=Release \
         -G Ninja \
-        "$srcdir/rocFFT-$pkgver"
+        "$srcdir/rocFFT-rocm-$_srcver"
 
   ninja
 }
