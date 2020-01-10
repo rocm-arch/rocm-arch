@@ -1,6 +1,6 @@
 # Maintainer: Rigo Reddig <rigo.reddig@gmail.com>
 pkgname=rocm-smi
-pkgver=2.9.0
+pkgver=3.0.0
 pkgrel=1
 _filename=roc-${pkgver}.tar.gz
 pkgdesc="Utility to manage and monitor AMDGPU / ROCm systems."
@@ -8,8 +8,19 @@ arch=('any')
 url="https://github.com/RadeonOpenCompute/ROC-smi/"
 license=('MIT')
 depends=(python)
-source=("$pkgname-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/${_filename}")
-sha256sums=('a7f97a5c23c54c08b0da421f7f6451241087d78ddb9722e79de5050c23f47dc3')
+source=(
+  "$pkgname-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROC-smi/archive/${_filename}"
+  "python2_fix.patch"
+)
+sha256sums=(
+  'b35cb654c3a794586ff60cf226884239e19cb91c0a5c2cb1d4e7b1be1cb845b2'
+  'SKIP'
+)
+
+prepare() {
+	cd "${srcdir}/ROC-smi-roc-$pkgver"
+	patch --forward --strip=1 --input="${srcdir}/python2_fix.patch"
+}
 
 package() {
 
