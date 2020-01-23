@@ -1,7 +1,7 @@
 pkgbase = rocm-opencl-runtime
 	pkgdesc = ROCm OpenCL™ Compatible Runtime
-	pkgver = 2.10.0
-	pkgrel = 2
+	pkgver = 3.0.0
+	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime
 	arch = x86_64
 	license = MIT
@@ -9,27 +9,29 @@ pkgbase = rocm-opencl-runtime
 	makedepends = cmake
 	makedepends = ninja
 	makedepends = git
-	depends = rocr-runtime>=2.10.0
+	depends = rocr-runtime>=3.0.0
 	depends = opencl-icd-loader
-	provides = rocm-opencl-runtime
+	provides = rocm-device-libs
 	provides = opencl-driver
 	conflicts = rocm-opencl-git
-	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-2.10.0
-	source = rocm-opencl-driver::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Driver#tag=roc-2.10.0
-	source = llvm-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/llvm/archive/roc-ocl-2.10.0.tar.gz
-	source = clang-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/clang/archive/roc-2.10.0.tar.gz
-	source = lld-ocl-2.10.0.tar.gz::https://github.com/RadeonOpenCompute/lld/archive/roc-ocl-2.10.0.tar.gz
-	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=roc-ocl-2.10.0
+	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-3.0.0
+	source = llvm-roc-ocl-3.0.0.tar.gz::https://github.com/RadeonOpenCompute/llvm-project/archive/roc-ocl-3.0.0.tar.gz
+	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=roc-ocl-3.0.0
+	source = rocm-comgr::git+https://github.com/RadeonOpenCompute/ROCm-CompilerSupport#tag=roc-3.0.0
+	source = rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=roc-3.0.0
 	source = opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=978b4b3a29a3aebc86ce9315d5c5963e88722d03
+	source = change-install-location.patch
 	source = fix_rocm_opencl_build_order.patch
 	sha256sums = SKIP
-	sha256sums = SKIP
-	sha256sums = c46ec3568b754a7aced6139bcc254d39ddb89016b282c467ae1b5536d8021540
-	sha256sums = acdebf229a2120ad0ccdc48a6b0e863a6a4d89f46bb62e7296f2f16bbc4a04a7
-	sha256sums = 105cedd4a31a6d6ad51043c384129a7705f9a5f65414e60a07c9193411b756f0
+	sha256sums = 7715db8fd6322bdda4a75a9220cb6c747ca7e93e94ff158d7689d10f984efa45
 	sha256sums = SKIP
 	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = f90a725a14dd972c86a6919e776e7a3a9dc1792031a9ba89d26a4068975034e6
 	sha256sums = 0f735299810e9e22cd57f5b96a7628a0f399d445a1f3bacefd8b890e84ca372f
+
+pkgname = rocm-device-libs
 
 pkgname = rocm-opencl-runtime
 
