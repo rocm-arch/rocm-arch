@@ -48,4 +48,3 @@ package() {
     /opt/rocm/rocblas/lib/
 		EOF
 }
-
