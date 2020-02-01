@@ -1,6 +1,6 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rccl
-pkgver=2.6.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="ROCm Communication Collectives Library"
 arch=('x86_64')
@@ -8,9 +8,9 @@ url="https://github.com/ROCmSoftwarePlatform/rccl"
 license=('NCSAOSL')
 depends=(hcc hip)
 makedepends=(git cmake gcc make hcc python2 rocminfo)
-srcver="2.6.0"
+srcver="3.0.0"
 source=("https://github.com/ROCmSoftwarePlatform/rccl/archive/$srcver.tar.gz")
-sha256sums=("2be14e53a96769cf37a7cb4f933d580736dbcdf0051fa4a327257e5c017fd445")
+sha256sums=("55b71a8a3040ab0b6c5750eefa10539ecd7310ed010775e5040ad459b3f48a25")
 
 build() {
   mkdir -p "$srcdir/build"
@@ -27,7 +27,7 @@ build() {
   # TODO: fix librccl.so, it contains references to $srcdir
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/rccl" \
-        -DBUILD_TEST=OFF \
+        -DBUILD_TESTS=OFF \
         -G "Unix Makefiles" \
         "$srcdir/rccl-$srcver"
   make 
