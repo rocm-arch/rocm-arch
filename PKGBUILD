@@ -1,24 +1,24 @@
-# Maintainer: Jakub Okoński <jakub@okonski.org>
+# Maintainer: Markus Näther <naether.markus@gmail.com>
 pkgname=rocblas
-pkgver=2.3.0
+pkgver=3.0.0
 pkgrel=1
 pkgdesc="Next generation BLAS implementation for ROCm platform"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocBLAS"
 license=('NCSAOSL')
 depends=(hcc hip)
-makedepends=(git cmake gcc ninja hcc python2 rocminfo)
-srcver="rocm-2.3"
-source=("https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/$srcver.tar.gz")
-sha256sums=("43549f3116ed0de1952eac69ab2ac3521903129c34727f3bbc898792182e2a41")
+makedepends=(git cmake gcc ninja "hcc>=${pkgver}" python2 "rocm-comgr>=${pkgver}" rocminfo)
+srcver="3.0"
+source=("https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/rocm-$srcver.tar.gz")
+sha256sums=("c475bdfb78e90254eb5a1905c4fab4e382ae6a73cc93718b8bec563bce7b8edb")
 
 build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
 
   # Tensile library needs python to be python2
-  export PATH="$srcdir:$PATH"
-  [[ -e "$srcdir/python" ]] || ln -s /usr/bin/python2 "$srcdir/python"
+  #export PATH="$srcdir:$PATH"
+  #[[ -e "$srcdir/python" ]] || ln -s /usr/bin/python2 "$srcdir/python"
 
   # fix broken build with stack protection
   export CXXFLAGS=$(echo $CXXFLAGS | sed -e 's/-fstack-protector-strong//')
@@ -31,8 +31,12 @@ build() {
   # TODO: fix librocblas.so, it contains references to $srcdir
   cmake -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm/rocblas" \
-        -G Ninja \
-        "$srcdir/rocBLAS-$srcver"
+        -HIP_DIR="/opt/rocm/hip/lib/cmake/hip" \
+        -hcc_DIR="/opt/rocm/hcc/lib/cmake/hcc" \
+        -Damd_comgr_DIR="/opt/rocm/lib/cmake/amd_comgr" \
+        -DBUILD_WITH_TENSILE=OFF \
+        -G "Ninja" \
+        "$srcdir/rocBLAS-rocm-$srcver"
   ninja
 }
 
