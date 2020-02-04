@@ -3,9 +3,9 @@
 pkgname=rocm-comgr
 pkgdesc='Radeon Open Compute - compiler support'
 pkgver=3.0.0
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
-url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
+url='https://github.com/RadeonOpenCompute/ROCm-CompilerSupport'
 license=('custom')
 makedepends=(cmake git llvm-roc)
 source=(
@@ -14,7 +14,6 @@ source=(
 	"rocm-comgr-2.6.0-find-lld-includes.patch"
 	"rocm-comgr-2.8.0-dependencies.patch"
 )
-
 sha256sums=('SKIP'
             'f04ff936e87a888264e9c0920c9356a85b18e9ec9d729fcf53f83755c171828c'
             '4571b16961f15249e8cc8b9a9ae7f0863600345aa5e95959192149eacdb01d2e'
@@ -35,7 +34,7 @@ prepare() {
 
 build() {
     if check_buildoption "ccache" "y"; then
-        CMAKE_FLAGS="$CMAKE_FLAGS -DROCM_CCACHE_BUILD=ON"
+        CMAKE_FLAGS="-DROCM_CCACHE_BUILD=ON"
     fi
 
     cmake $CMAKE_FLAGS \

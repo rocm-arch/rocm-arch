@@ -1,8 +1,8 @@
 pkgbase = rocm-comgr
 	pkgdesc = Radeon Open Compute - compiler support
 	pkgver = 3.0.0
-	pkgrel = 1
-	url = https://github.com/RadeonOpenCompute/ROCm-Device-Libs
+	pkgrel = 2
+	url = https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
 	arch = x86_64
 	license = custom
 	makedepends = cmake
