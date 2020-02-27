@@ -27,14 +27,17 @@ prepare() {
 build() {
     mkdir -p "$srcdir/$_pkgname/build"
     cd "$srcdir/$_pkgname/build"
+
     cmake -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX=/opt/hipSYCL/ROCm \
           -DWITH_CPU_BACKEND=ON \
           -DWITH_ROCM_BACKEND=ON \
           ..
+    make
 }
 
 package() {
     cd "$srcdir/$_pkgname/build"
+
     VERBOSE=1 make DESTDIR="$pkgdir" install
 }

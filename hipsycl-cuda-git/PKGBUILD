@@ -28,6 +28,7 @@ prepare() {
 build() {
   mkdir -p "$srcdir/$_pkgname/build"
   cd "$srcdir/$_pkgname/build"
+
   # We compile with nvcc since Arch Linux uses very new versions of CUDA
   # which may not yet be supported by clang.
   CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release \
@@ -36,9 +37,11 @@ build() {
                     -DWITH_CUDA_BACKEND=ON \
                     -DCMAKE_CXX_FLAGS="--cuda-path=/opt/cuda-9.2 -L/opt/cuda-9.2/lib64" \
                     ..
+  make
 }
 
 package() {
   cd "$srcdir/$_pkgname/build"
+
   VERBOSE=1 make DESTDIR="$pkgdir" install
 }
