@@ -1,8 +1,9 @@
 pkgbase = hipsycl-cuda-git
 	pkgdesc = SYCL implementation over CUDA/HIP for NVIDIA devices.
-	pkgver = 0.7.9
+	pkgver = latest
 	pkgrel = 1
 	url = https://github.com/illuhad/hipSYCL
+	install = hipsycl-cuda-git.install
 	arch = x86_64
 	license = BSD
 	makedepends = cmake
@@ -13,8 +14,8 @@ pkgbase = hipsycl-cuda-git
 	depends = openmp
 	provides = hipSYCL
 	provides = SYCL
-	source = hipSYCL::git+https://github.com/illuhad/hipSYCL.git
-	md5sums = SKIP
+	source = git+https://github.com/illuhad/hipSYCL.git
+	sha256sums = SKIP
 
 pkgname = hipsycl-cuda-git
 
