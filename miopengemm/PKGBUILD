@@ -1,28 +1,29 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=miopengemm
-pkgver=1.1.5.5c980d5
-pkgrel=4
+pkgver=1.1.6
+pkgrel=1
 pkgdesc="An OpenCL GEMM kernel generator"
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/MIOpenGEMM"
-license=('NCSAOSL')
-depends=(ocl-icd)
-makedepends=(git opencl-headers cmake gcc ninja ocl-icd rocm-cmake-git)
-srcver="9547fb9e8499a5a9f16da83b1e6b749de82dd9fb"
-source=("https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/$srcver.tar.gz")
-sha256sums=('7f56bfb9344c5335166900d38f3ddce90a275c34efeb7c65e1346d536ef30f4a')
+license=('custom:NCSAOSL')
+depends=('ocl-icd')
+makedepends=('opencl-headers' 'cmake' 'ocl-icd' 'rocm-cmake')
+source=("https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/$pkgver.tar.gz")
+sha256sums=('9ab04903794c6a59432928eaec92c687d51e2b4fd29630cf227cbc49d56dc69b')
 
 build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
+
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX="$pkgdir/opt/rocm" \
-        -G Ninja \
-        "$srcdir/MIOpenGEMM-$srcver"
-  ninja
+        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
+        "$srcdir/MIOpenGEMM-$pkgver"
+  make
 }
 
 package() {
-  ninja -C "$srcdir/build" install
+  cd "$srcdir/build"
+
+  make DESTDIR="$pkgdir" install
 }
 
