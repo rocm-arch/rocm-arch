@@ -2,8 +2,8 @@
 
 pkgname=rocm-comgr
 pkgdesc='Radeon Open Compute - compiler support'
-pkgver=3.0.0
-pkgrel=2
+pkgver=3.1.0
+pkgrel=1
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-CompilerSupport'
 license=('custom')
@@ -12,12 +12,11 @@ source=(
     "rocm-comgr::git+https://github.com/RadeonOpenCompute/ROCm-CompilerSupport#tag=roc-$pkgver"
     "rocm-comgr-2.6.0-find-clang.patch"
 	"rocm-comgr-2.6.0-find-lld-includes.patch"
-	"rocm-comgr-2.8.0-dependencies.patch"
+	# "rocm-comgr-2.8.0-dependencies.patch"
 )
 sha256sums=('SKIP'
             'f04ff936e87a888264e9c0920c9356a85b18e9ec9d729fcf53f83755c171828c'
-            '4571b16961f15249e8cc8b9a9ae7f0863600345aa5e95959192149eacdb01d2e'
-            'b7da689834b13b317d92af1197bca77ce2c73d15d5a4da09b721f9a63baab513')
+            '4571b16961f15249e8cc8b9a9ae7f0863600345aa5e95959192149eacdb01d2e')
 
 prepare() {
     cd "$srcdir/rocm-comgr/lib/comgr"
