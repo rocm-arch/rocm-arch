@@ -4,8 +4,8 @@ _opencl_icd_loader_commit='978b4b3a29a3aebc86ce9315d5c5963e88722d03'
 
 pkgbase=rocm-opencl-runtime
 pkgname=(rocm-device-libs rocm-opencl-runtime)
-pkgver=3.0.0
-pkgrel=3
+pkgver=3.1.0
+pkgrel=1
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute'
 makedepends=(mesa cmake git llvm-roc rocm-comgr)
@@ -13,9 +13,9 @@ provides=("$pkgname" 'opencl-driver')
 source=(
     "rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=roc-ocl-$pkgver"
     "rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-$pkgver"
-    "rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=roc-$pkgver"
-    "opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=${_opencl_icd_loader_commit}"
-    "rocm-opencl-runtime-2.8.0-change-AMDCompilerh.patch"
+    "rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=roc-3.0.0"
+    "opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=$_opencl_icd_loader_commit"
+    # "rocm-opencl-runtime-2.8.0-change-AMDCompilerh.patch"
     "rocm-opencl-runtime-2.8.0-change-opencl.patch"
     "rocm-opencl-runtime-2.8.0-amdocl64icd.patch"
     "rocm-opencl-runtime-3.0.0-change-install-location.patch"
@@ -25,7 +25,6 @@ sha256sums=('SKIP'
             'SKIP'
             'SKIP'
             'SKIP'
-            '07c437ff43942a90a658986f88d5df3d5159af3d5c506aa8d1d7281fbb74d7be'
             '3af5c9c3b8b88b78a2fd574f339e88a5cd62c365d94e9289c2a2cb4afef3d435'
             '2cfd11bda9a485d6de2231c56742ad553329cab9b6dcc009dbddbcde1436f485'
             '941a29f8704a2839c32bcf3cf374dde30bc8a839c1136d4faa65c60a7500cf98')
@@ -79,8 +78,8 @@ build() {
         -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         -DCMAKE_INSTALL_SYSCONFDIR=/etc \
         -DCMAKE_MODULE_PATH="$srcdir/rocm-cmake/share/rocm/cmake" \
+        -DCMAKE_PREFIX_PATH=/opt/rocm/lib/cmake \
         -DUSE_COMGR_LIBRARY=yes \
-        -Damd_comgr_DIR='/opt/rocm/lib/cmake/amd_comgr' \
         ..
     make
 }
