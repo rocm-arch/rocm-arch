@@ -1,0 +1,16 @@
+pkgbase = roct-thunk-interface
+	pkgdesc = Radeon Open Compute Thunk Interface
+	pkgver = 3.0.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = gcc
+	depends = numactl
+	depends = pciutils
+	source = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/archive/roc-3.0.0.tar.gz
+	sha256sums = d6d91397fcd926bd90fae8dfe81d69653273e8b68cd47f822576838f2ac96729
+
+pkgname = roct-thunk-interface
+
