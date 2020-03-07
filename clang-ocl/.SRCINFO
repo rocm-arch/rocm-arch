@@ -1,0 +1,16 @@
+pkgbase = clang-ocl
+	pkgdesc = OpenCL compilation with clang compiler.
+	pkgver = 2.6.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/clang-ocl
+	arch = x86_64
+	license = unknown
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = hcc
+	source = git+https://github.com/RadeonOpenCompute/clang-ocl.git#tag=roc-2.6.0
+	md5sums = SKIP
+
+pkgname = clang-ocl
+
