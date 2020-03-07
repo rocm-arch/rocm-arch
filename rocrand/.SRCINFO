@@ -1,0 +1,15 @@
+pkgbase = rocrand
+	pkgdesc = RAND library for HIP programming language
+	pkgver = 2.6.0
+	pkgrel = 1
+	url = https://github.com/ROCmSoftwarePlatform/rocRAND
+	arch = x86_64
+	makedepends = hcc>=2.6.0
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	source = https://github.com/ROCmSoftwarePlatform/rocRAND/archive/2.6.0.tar.gz
+	sha256sums = d9b525209e91253750ed635b4225dff3f4c75be18a7563851bb7a53c7085a23f
+
+pkgname = rocrand
+
