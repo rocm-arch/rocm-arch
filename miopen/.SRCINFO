@@ -1,0 +1,29 @@
+pkgbase = miopen
+	pkgdesc = AMD's Machine Intelligence Library
+	pkgver = 2.3.0.1.8.1
+	pkgrel = 2
+	url = https://github.com/ROCmSoftwarePlatform/MIOpen
+	arch = x86_64
+	license = NCSAOSL
+	makedepends = git
+	makedepends = opencl-headers
+	makedepends = cmake
+	makedepends = gcc
+	makedepends = ninja
+	makedepends = ocl-icd
+	makedepends = hip
+	makedepends = hcc
+	makedepends = rocblas
+	makedepends = boost>=1.58
+	makedepends = miopengemm
+	depends = ocl-icd
+	depends = hip
+	depends = hcc
+	depends = rocblas
+	depends = boost>=1.58
+	depends = clang-ocl
+	source = https://github.com/ROCmSoftwarePlatform/MIOpen/archive/1.8.1.tar.gz
+	sha256sums = 58941138cea6432d0a9218c1c9af1784587bff58501b8a38d7f634fc544321a3
+
+pkgname = miopen
+
