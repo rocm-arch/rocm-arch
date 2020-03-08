@@ -1,0 +1,14 @@
+pkgbase = hsa-runtime-git
+	pkgdesc = AMD Hetrogeneous System Architecture Runtime
+	pkgver = 1.0.3.1.gfa0ef7e
+	pkgrel = 1
+	url = https://github.com/HSAFoundation/HSA-Runtime-AMD
+	arch = x86_64
+	license = custom:AMD
+	provides = hsa-runtime
+	conflicts = hsa-runtime
+	source = hsa-runtime::git+https://github.com/HSAFoundation/HSA-Runtime-AMD
+	md5sums = SKIP
+
+pkgname = hsa-runtime-git
+
