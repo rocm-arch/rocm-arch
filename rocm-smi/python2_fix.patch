@@ -1,0 +1,9 @@
+diff --unified --recursive --text ROC-smi-roc-3.0.0/rocm_smi.py ROC-smi-roc-3.0.0/rocm_smi.py
+--- ROC-smi-roc-3.0.0/rocm_smi.py	2019-12-03 20:15:25.000000000 +0100
++++ ROC-smi-roc-3.0.0/rocm_smi.py	2020-01-10 08:08:23.885794471 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.7
+ """ ROCm-SMI (System Management Interface) Tool
+ 
+ This tool provides a user-friendly interface for manipulating
