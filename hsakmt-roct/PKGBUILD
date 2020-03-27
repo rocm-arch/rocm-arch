@@ -17,8 +17,6 @@ replaces=('roct-thunk-interface')
 source=("$pkgname.tar.gz::$url/archive/roc-$pkgver.tar.gz")
 sha256sums=('b08176b5f4af39d0160990f9f1dea5d27974f9282f544140b4a41d19446fe570')
 
-_rootdir=""
-
 build() {
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm "ROCT-Thunk-Interface-roc-$pkgver"
   make all build-dev
