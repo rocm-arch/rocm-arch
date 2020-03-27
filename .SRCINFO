@@ -1,6 +1,6 @@
 pkgbase = rocm-opencl-runtime
 	pkgver = 3.1.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute
 	arch = x86_64
 	makedepends = mesa
@@ -32,7 +32,7 @@ pkgname = rocm-device-libs
 pkgname = rocm-opencl-runtime
 	pkgdesc = Radeon Open Compute - OpenCL runtime
 	license = MIT
-	depends = roct-thunk-interface>=3.1.0
+	depends = hsakmt-roct>=3.1.0
 	depends = rocr-runtime>=3.1.0
 	depends = opencl-icd-loader
 
