@@ -1,0 +1,35 @@
+# Maintainer: Ranieri Althoff <ranisalt+aur at gmail dot com>
+
+pkgname=rocm-device-libs
+pkgver=3.1.0
+pkgrel=3
+pkgdesc='Radeon Open Compute - device libs'
+license=('custom')
+arch=('x86_64')
+url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
+makedepends=(cmake git llvm-roc rocm-cmake)
+source=("$url/archive/roc-ocl-$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+_dirname="ROCm-Device-Libs-roc-ocl-$pkgver"
+
+build() {
+  cd "$srcdir/$_dirname/utils"
+  cmake -DLLVM_DIR=/opt/rocm/lib/cmake/llvm .
+  make
+
+  cd "$srcdir"
+  cmake \
+    -DCMAKE_INSTALL_PREFIX=/opt/rocm \
+    -DLLVM_DIR=/opt/rocm/lib/cmake/llvm \
+    -DPREPARE_BUILTINS="$srcdir/$_dirname/utils/prepare-builtins/prepare-builtins" \
+    -DROCM_DIR=/opt/rocm/share/rocm/cmake \
+    "$_dirname"
+  make
+}
+
+package() {
+    DESTDIR="$pkgdir/" make install
+
+    install -Dm644 "$_dirname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
