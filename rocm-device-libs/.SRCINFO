@@ -4,13 +4,12 @@ pkgbase = rocm-device-libs
 	pkgrel = 3
 	url = https://github.com/RadeonOpenCompute/ROCm-Device-Libs
 	arch = x86_64
-	license = custom
+	license = custom:NCSAOSL
 	makedepends = cmake
-	makedepends = git
 	makedepends = llvm-roc
 	makedepends = rocm-cmake
 	source = https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/roc-ocl-3.1.0.tar.gz
-	sha256sums = SKIP
+	sha256sums = bce5da4adba4ea360cd4a8aff39d25d0d8a900bdd13aff0482b685bb495508f6
 
 pkgname = rocm-device-libs
 

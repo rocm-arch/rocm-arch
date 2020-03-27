@@ -4,12 +4,12 @@ pkgname=rocm-device-libs
 pkgver=3.1.0
 pkgrel=3
 pkgdesc='Radeon Open Compute - device libs'
-license=('custom')
+license=('custom:NCSAOSL')
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
-makedepends=(cmake git llvm-roc rocm-cmake)
+makedepends=(cmake llvm-roc rocm-cmake)
 source=("$url/archive/roc-ocl-$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('bce5da4adba4ea360cd4a8aff39d25d0d8a900bdd13aff0482b685bb495508f6')
 
 _dirname="ROCm-Device-Libs-roc-ocl-$pkgver"
 
