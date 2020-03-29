@@ -1,12 +1,12 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=roctracer
 pkgver=3.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="ROCm Tracer Callback/Activity Library for Performance tracing AMD GPU's"
 arch=('x86_64')
 url="https://github.com/ROCm-Developer-Tools/roctracer"
 license=('MIT')
-depends=('rocr-runtime' 'python' 'python-argparse' 'python-cppheaderparser')
+depends=('hsa-rocr' 'python' 'python-argparse' 'python-cppheaderparser')
 optdepends=('hip: tracing for higher level interface')
 makedepends=('cmake')
 options=(!staticlibs strip)
