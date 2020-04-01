@@ -1,5 +1,5 @@
-# Maintainer: Ilya Elenskiy <elenskiy.ilya@gmail.com>
-# Contributor: Ranieri Althoff <ranisalt+aur at gmail.com>
+# Maintainer: Ranieri Althoff <ranisalt+aur at gmail.com>
+# Contributor: Ilya Elenskiy <elenskiy.ilya@gmail.com>
 
 pkgname=hsa-amd-aqlprofile
 pkgver=1.0.0
