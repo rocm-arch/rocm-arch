@@ -1,7 +1,7 @@
 # Maintainer: Ilya Elenskiy <elenskiy.ilya@gmail.com>
 pkgname=hsa-amd-aqlprofile
 pkgver=1.0.0
-pkgrel=1
+pkgrel=2
 _debfile=hsa-amd-aqlprofile_1.0.0_amd64.deb 
 pkgdesc="AQLPROFILE library for AMD HSA runtime API extension support"
 arch=('x86_64')
@@ -14,7 +14,7 @@ replaces=()
 backup=()
 options=()
 source=("http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-amd-aqlprofile/${_debfile}")
-sha256sums=('6640da8e5e641648c45453e7229b485727fb94f8d6733829f8c441c7cb29cdc2')
+sha256sums=('928f0074a59eda2d10116e45c9670da961ea72617ead23cde4c3d640262620fe')
 
 package() {
   cd "$srcdir"
