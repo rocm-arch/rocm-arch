@@ -1,15 +1,15 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 # Contributor: Jakub Okoński <jakub@okonski.org>
 pkgname=rocr-runtime
-pkgver=3.1.0
+pkgver=3.3.0
 pkgrel=2
 pkgdesc="ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/ROCR-Runtime"
 license=('custom:NCSAOSL')
 makedepends=('cmake' 'libelf' 'hsakmt-roct')
-source=("https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/roc-$pkgver.tar.gz")
-sha256sums=('b162464ef87ce39518e59ef8406d6b897aa7a930795c586829614ed87aa1c2ce')
+source=("https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/rocm-$pkgver.tar.gz")
+sha256sums=('fa2d2d1f8a61d8a6952d377cf288d78c61776c3c2a666f163cafc3aa19ab0b61')
 
 build() {
   mkdir -p "$srcdir/build"
@@ -19,7 +19,7 @@ build() {
         -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         -DHSAKMT_INC_PATH=/opt/rocm/include \
         -DHSAKMT_LIB_PATH=/opt/rocm/lib \
-        "$srcdir/ROCR-Runtime-roc-$pkgver/src"
+        "$srcdir/ROCR-Runtime-rocm-$pkgver/src"
   make
 }
 
