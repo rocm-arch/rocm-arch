@@ -8,6 +8,7 @@ pkgver=3.1.0
 pkgrel=3
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute'
+depends=(hsakmt-roct rocr-runtime)
 makedepends=(mesa cmake git llvm-roc rocm-comgr)
 provides=("$pkgname" 'opencl-driver')
 source=(
