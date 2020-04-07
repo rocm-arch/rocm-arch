@@ -1,6 +1,6 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=roctracer
-pkgver=3.1.0
+pkgver=3.3.0
 pkgrel=3
 pkgdesc="ROCm Tracer Callback/Activity Library for Performance tracing AMD GPU's"
 arch=('x86_64')
@@ -11,7 +11,7 @@ optdepends=('hip: tracing for higher level interface')
 makedepends=('cmake')
 options=(!staticlibs strip)
 source=("roctracer-roc-$pkgver.tar.gz::https://github.com/ROCm-Developer-Tools/roctracer/archive/roc-$pkgver.tar.gz")
-sha256sums=('1339dac1d55f7bd2385894f9597fa0f1c8a50d9afe689951ea2dac78d22efdbb')
+sha256sums=('4a3b12e9d2a78565f4c6eaaa23c696c9fd8d57cb75d5e57e834def1624e68770')
 
 prepare() {
     local _fn
