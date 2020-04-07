@@ -1,6 +1,6 @@
 pkgbase = rocm-opencl-runtime
-	pkgver = 3.1.0
-	pkgrel = 3
+	pkgver = 3.3.0
+	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute
 	arch = x86_64
 	makedepends = mesa
@@ -10,20 +10,14 @@ pkgbase = rocm-opencl-runtime
 	makedepends = rocm-comgr
 	provides = rocm-device-libs
 	provides = opencl-driver
-	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=roc-ocl-3.1.0
-	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-3.1.0
-	source = rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=roc-3.0.0
+	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=rocm-ocl-3.3.0
+	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-3.3.0
+	source = rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=rocm-3.3.0
 	source = opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=978b4b3a29a3aebc86ce9315d5c5963e88722d03
-	source = rocm-opencl-runtime-2.8.0-change-opencl.patch
-	source = rocm-opencl-runtime-2.8.0-amdocl64icd.patch
-	source = rocm-opencl-runtime-3.0.0-change-install-location.patch
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
-	sha256sums = 3af5c9c3b8b88b78a2fd574f339e88a5cd62c365d94e9289c2a2cb4afef3d435
-	sha256sums = 2cfd11bda9a485d6de2231c56742ad553329cab9b6dcc009dbddbcde1436f485
-	sha256sums = 941a29f8704a2839c32bcf3cf374dde30bc8a839c1136d4faa65c60a7500cf98
 
 pkgname = rocm-device-libs
 	pkgdesc = Radeon Open Compute - device libs
@@ -32,7 +26,7 @@ pkgname = rocm-device-libs
 pkgname = rocm-opencl-runtime
 	pkgdesc = Radeon Open Compute - OpenCL runtime
 	license = MIT
-	depends = hsakmt-roct>=3.1.0
-	depends = hsa-rocr>=3.1.0
+	depends = hsakmt-roct>=3.3.0
+	depends = hsa-rocr>=3.3.0
 	depends = opencl-icd-loader
 
