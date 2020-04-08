@@ -98,10 +98,10 @@ package_rocm-opencl-runtime() {
 
     DESTDIR="$pkgdir/" make -C "$srcdir/rocm-opencl-runtime/build" install
 
-    mkdir -p "$pkgdir/etc/ld.so.conf.d"
-    echo '/opt/rocm/lib/x86_64' > "$pkgdir/etc/ld.so.conf.d/rocm-opencl.conf"
+    install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/rocm-opencl.conf" <<-EOF
+        /opt/rocm/lib/x86_64
+    EOF
 
-    mkdir -p "$pkgdir/etc/OpenCL/vendors"
     install -Dm644 "$srcdir/rocm-opencl-runtime/api/opencl/config/amdocl64.icd" "$pkgdir/etc/OpenCL/vendors/amdocl64.icd"
 
     install -Dm644 "$srcdir/rocm-opencl-runtime/License" "$pkgdir/usr/share/licenses/rocm-opencl-runtime/LICENSE"
