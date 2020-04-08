@@ -1,6 +1,6 @@
 pkgbase = rocm-opencl-runtime
 	pkgver = 3.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute
 	arch = x86_64
 	makedepends = mesa
