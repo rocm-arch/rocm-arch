@@ -1,32 +1,26 @@
 pkgbase = rocm-opencl-runtime
+	pkgdesc = Radeon Open Compute - OpenCL runtime
 	pkgver = 3.3.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute
 	arch = x86_64
+	license = MIT
 	makedepends = mesa
 	makedepends = cmake
 	makedepends = git
 	makedepends = llvm-roc
 	makedepends = rocm-comgr
-	provides = rocm-device-libs
+	depends = hsakmt-roct>=3.3.0
+	depends = hsa-rocr>=3.3.0
+	depends = opencl-icd-loader
+	provides = rocm-opencl-runtime
 	provides = opencl-driver
-	source = rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=rocm-ocl-3.3.0
 	source = rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-3.3.0
 	source = rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=rocm-3.3.0
 	source = opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=978b4b3a29a3aebc86ce9315d5c5963e88722d03
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
-	sha256sums = SKIP
-
-pkgname = rocm-device-libs
-	pkgdesc = Radeon Open Compute - device libs
-	license = unknown
 
 pkgname = rocm-opencl-runtime
-	pkgdesc = Radeon Open Compute - OpenCL runtime
-	license = MIT
-	depends = hsakmt-roct>=3.3.0
-	depends = hsa-rocr>=3.3.0
-	depends = opencl-icd-loader
 
