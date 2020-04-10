@@ -2,16 +2,17 @@
 
 _opencl_icd_loader_commit='978b4b3a29a3aebc86ce9315d5c5963e88722d03'
 
-pkgbase=rocm-opencl-runtime
-pkgname=(rocm-device-libs rocm-opencl-runtime)
+pkgname=rocm-opencl-runtime
 pkgver=3.3.0
-pkgrel=1
+pkgrel=2
+pkgdesc='Radeon Open Compute - OpenCL runtime'
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute'
+license=('MIT')
+depends=('hsakmt-roct' 'hsa-rocr' 'opencl-icd-loader')
 makedepends=(mesa cmake git llvm-roc rocm-comgr)
 provides=("$pkgname" 'opencl-driver')
 source=(
-    "rocm-device-libs::git+https://github.com/RadeonOpenCompute/ROCm-Device-Libs#tag=rocm-ocl-$pkgver"
     "rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-$pkgver"
     "rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=rocm-3.3.0"
     "opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=$_opencl_icd_loader_commit"
@@ -22,7 +23,6 @@ source=(
 )
 
 sha256sums=('SKIP'
-            'SKIP'
             'SKIP'
             'SKIP')
             # '3af5c9c3b8b88b78a2fd574f339e88a5cd62c365d94e9289c2a2cb4afef3d435'
@@ -48,54 +48,19 @@ prepare() {
 }
 
 build() {
-    CMAKE_FLAGS=(
-        -DCMAKE_BUILD_TYPE=Release
-        -DCMAKE_INSTALL_PREFIX='/opt/rocm'
-        -DLLVM_DIR=/opt/rocm/lib/cmake/llvm
-    )
-    if check_buildoption "ccache" "y"; then
-        CMAKE_FLAGS+=(-DROCM_CCACHE_BUILD=ON)
-    fi
-
-    msg2 'Building prepare builtins...'
-    cd "$srcdir/rocm-device-libs/utils"
-    cmake ${CMAKE_FLAGS[@]} ..
-    make
-
-    msg2 'Building device libs...'
-    cd "$srcdir/rocm-device-libs"
-    mkdir -p build && cd build
-    cmake ${CMAKE_FLAGS[@]} \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-        -DPREPARE_BUILTINS="$srcdir/rocm-device-libs/utils/utils/prepare-builtins/prepare-builtins" \
-        ..
-    make
-
-    msg2 'Building OpenCL runtime...'
     cd "$srcdir/rocm-opencl-runtime"
     mkdir -p build && cd build
-    cmake ${CMAKE_FLAGS[@]} \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-        -DCMAKE_INSTALL_SYSCONFDIR=/etc \
-        -DCMAKE_MODULE_PATH="$srcdir/rocm-cmake/share/rocm/cmake" \
-        -DCMAKE_PREFIX_PATH=/opt/rocm/lib/cmake \
-        -DUSE_COMGR_LIBRARY=yes \
-        ..
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm \
+          -DCMAKE_INSTALL_SYSCONFDIR=/etc \
+          -DCMAKE_MODULE_PATH="$srcdir/rocm-cmake/share/rocm/cmake" \
+          -DCMAKE_PREFIX_PATH=/opt/rocm/lib/cmake \
+          -DLLVM_DIR=/opt/rocm/lib/cmake/llvm \
+          -DUSE_COMGR_LIBRARY=yes \
+          ..
     make
 }
 
-package_rocm-device-libs() {
-    pkgdesc='Radeon Open Compute - device libs'
-    license=('unknown')
-
-    DESTDIR="$pkgdir/" make -C "$srcdir/rocm-device-libs/build" install
-}
-
-package_rocm-opencl-runtime() {
-    pkgdesc='Radeon Open Compute - OpenCL runtime'
-    depends=("hsakmt-roct>=${pkgver}" "hsa-rocr>=${pkgver}" 'opencl-icd-loader')
-    license=('MIT')
-
+package() {
     DESTDIR="$pkgdir/" make -C "$srcdir/rocm-opencl-runtime/build" install
 
     mkdir -p "$pkgdir/etc/ld.so.conf.d"
