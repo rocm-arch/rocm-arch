@@ -9,7 +9,7 @@ pkgdesc='Radeon Open Compute - OpenCL runtime'
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute'
 license=('MIT')
-depends=("hsakmt-roct>=${pkgver}" "hsa-rocr>=${pkgver}" 'opencl-icd-loader')
+depends=('hsakmt-roct' 'hsa-rocr' 'opencl-icd-loader')
 makedepends=(mesa cmake git llvm-roc rocm-comgr)
 provides=("$pkgname" 'opencl-driver')
 source=(
