@@ -1,7 +1,7 @@
 pkgbase = rocm-device-libs
 	pkgdesc = Radeon Open Compute - device libs
 	pkgver = 3.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROCm-Device-Libs
 	arch = any
 	license = custom:NCSAOSL
