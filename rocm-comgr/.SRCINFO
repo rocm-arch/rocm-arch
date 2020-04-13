@@ -6,6 +6,7 @@ pkgbase = rocm-comgr
 	arch = x86_64
 	license = custom:NCSAOSL
 	makedepends = cmake
+	makedepends = rocm-cmake
 	makedepends = rocm-device-libs
 	depends = llvm-roc
 	options = !lto
