@@ -3,7 +3,7 @@
 pkgname=rocm-comgr
 pkgdesc='Radeon Open Compute - compiler support'
 pkgver=3.3.0
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-CompilerSupport'
 license=('custom:NCSAOSL')
@@ -14,6 +14,7 @@ sha256sums=('01e2524e0f28ecd6f46c9720f279207de935d826b0172158792aa3ec86af9ca7')
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
 
 build() {
+  CXXFLAGS+=' -L/opt/rocm/lib'
   cmake -DCMAKE_C_COMPILER=/opt/rocm/bin/clang \
         -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         -DCMAKE_INSTALL_LIBDIR=lib \
