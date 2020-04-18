@@ -3,7 +3,7 @@
 pkgname=rocm-comgr
 pkgdesc='Radeon Open Compute - compiler support'
 pkgver=3.3.0
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-CompilerSupport'
 license=('custom:NCSAOSL')
@@ -21,6 +21,7 @@ build() {
         -DClang_DIR=/opt/rocm/lib/cmake/clang \
         -DLLD_INCLUDE_DIRS=/opt/rocm/include/lld \
         -DROCM_DIR=/opt/rocm/share/rocm/cmake \
+        -DCMAKE_EXE_LINKER_FLAGS="-Wl,-rpath-link,/opt/rocm/lib" \
         "$_dirname/lib/comgr"
   make
 }
