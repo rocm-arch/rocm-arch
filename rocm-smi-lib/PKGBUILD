@@ -1,7 +1,7 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=rocm-smi-lib
 pkgver=3.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm SMI LIB"
 arch=('x86_64')
 url="https://github.com/RadeonOpenCompute/rocm_smi_lib"
@@ -17,7 +17,7 @@ build() {
   cd "$srcdir/build"
 
   cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocm_smi_lib \
+        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         "$srcdir/rocm_smi_lib-rocm-$pkgver"
   make
 }
