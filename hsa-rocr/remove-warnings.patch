@@ -1,5 +1,5 @@
-*** core/util/lnx/os_linux.cpp.bak	2020-04-20 19:12:15.151530694 +0200
---- core/util/lnx/os_linux.cpp	2020-04-20 19:12:59.714068646 +0200
+*** ROCR-Runtime-rocm-3.3.0/src/core/util/lnx/os_linux.cpp.bak	2020-04-20 19:12:15.151530694 +0200
+--- ROCR-Runtime-rocm-3.3.0/src/core/util/lnx/os_linux.cpp	2020-04-20 19:12:59.714068646 +0200
 ***************
 *** 162,168 ****
   
