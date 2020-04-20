@@ -21,7 +21,7 @@ build() {
         -DClang_DIR=/opt/rocm/lib/cmake/clang \
         -DLLD_INCLUDE_DIRS=/opt/rocm/include/lld \
         -DROCM_DIR=/opt/rocm/share/rocm/cmake \
-        -DCMAKE_EXE_LINKER_FLAGS="-Wl,-rpath-link,/opt/rocm/lib" \
+        -DCMAKE_SHARED_LINKER_FLAGS_INIT='-L/opt/rocm/lib -Wl,-rpath-link,/opt/rocm/lib' \
         "$_dirname/lib/comgr"
   make
 }
