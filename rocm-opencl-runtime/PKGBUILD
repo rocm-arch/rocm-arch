@@ -44,6 +44,6 @@ package() {
     DESTDIR="$pkgdir" make install
     install -Dm644 "$_dirname/License" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
     install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/$pkgname.conf" <<-EOF
-		  /opt/rocm/lib/x86_64
+      /opt/rocm/lib/x86_64
 EOF
 }
