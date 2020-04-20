@@ -1,16 +1,15 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocalution
-_pkgver=3.1
-pkgver="$_pkgver.0"
-pkgrel=1
+pkgver=3.3.0
+pkgrel=2
 pkgdesc="Next generation library for iterative sparse solvers for ROCm platform."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocALUTION"
 license=('custom:NCSAOSL')
 depends=('hcc' 'hip' 'rocsparse' 'rocblas' 'rocprim' 'rocm-comgr')
 makedepends=('cmake' "hcc>=$pkgver" "hip>=$pkgver" "rocsparse>=$pkgver" "rocblas>=$pkgver" "rocprim>=$pkgver" "rocm-comgr>=$pkgver" 'python2' 'rocminfo')
-source=("https://github.com/ROCmSoftwarePlatform/rocALUTION/archive/rocm-$_pkgver.tar.gz")
-sha256sums=('45c96916f915fcacab3a94f111912e9511167977678603f3c7253053eeec6513')
+source=("https://github.com/ROCmSoftwarePlatform/rocALUTION/archive/rocm-$pkgver.tar.gz")
+sha256sums=('2745ad513ad90a7fb3d9182037ec499c3bbd19b6c928b5c24e777392b2c9bd2d')
 
 build() {
   mkdir -p "$srcdir/build"
@@ -38,7 +37,7 @@ build() {
         -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         -DBUILD_CLIENTS_SAMPLES=OFF \
         -DBUILD_CLIENTS_TESTS=OFF \
-        "$srcdir/rocALUTION-rocm-$_pkgver"
+        "$srcdir/rocALUTION-rocm-$pkgver"
   make
 }
 
