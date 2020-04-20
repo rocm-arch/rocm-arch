@@ -1,7 +1,7 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=hipsparse
 pkgver=3.3.0
-pkgrel=2
+pkgrel=1
 pkgdesc="ROCm SPARSE marshalling library."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
