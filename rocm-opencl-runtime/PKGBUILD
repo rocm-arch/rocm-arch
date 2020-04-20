@@ -16,14 +16,17 @@ source=(
     "rocm-opencl-runtime::git+https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime#tag=roc-$pkgver"
     "rocm-cmake::git+https://github.com/RadeonOpenCompute/rocm-cmake#tag=rocm-3.3.0"
     "opencl-icd-loader::git+https://github.com/KhronosGroup/OpenCL-ICD-Loader#commit=$_opencl_icd_loader_commit"
+    'install_vendor_file.patch'
 )
 
 sha256sums=('SKIP'
             'SKIP'
-            'SKIP')
+            'SKIP'
+            'b83de5ea8ae889664ce2725f90c5db8c1c9e98839d75c7743b355d16435dccee')
 
 prepare() {
     cd "$srcdir/rocm-opencl-runtime"
+    patch -Np1 -i "$srcdir/install_vendor_file.patch"
 
     mkdir -p api/opencl/khronos
     mv "$srcdir/opencl-icd-loader" api/opencl/khronos/icd
@@ -48,8 +51,6 @@ package() {
     install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/rocm-opencl.conf" <<-EOF
 		/opt/rocm/lib/x86_64
 	EOF
-
-    install -Dm644 "$srcdir/rocm-opencl-runtime/api/opencl/config/amdocl64.icd" "$pkgdir/etc/OpenCL/vendors/amdocl64.icd"
 
     install -Dm644 "$srcdir/rocm-opencl-runtime/License" "$pkgdir/usr/share/licenses/rocm-opencl-runtime/LICENSE"
 }
