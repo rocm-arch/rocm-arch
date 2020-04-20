@@ -14,7 +14,7 @@ pkgbase = hsa-rocr
 	source = https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/rocm-3.3.0.tar.gz
 	source = remove-warnings.patch
 	sha256sums = fa2d2d1f8a61d8a6952d377cf288d78c61776c3c2a666f163cafc3aa19ab0b61
-	sha256sums = 008cd076e6d30215b3e645586ae999aaaadfd7606d0b1ab313daa78d791440c6
+	sha256sums = 9aecc193aafe58c235b82b7d7c4444fd4175224233fde6a23c54014b3dcc0f6a
 
 pkgname = hsa-rocr
 

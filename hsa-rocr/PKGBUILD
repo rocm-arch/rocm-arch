@@ -16,14 +16,14 @@ provides=("rocr-runtime=$pkgver")
 replaces=('rocr-runtime')
 conflicts=('rocr-runtime')
 source=("$url/archive/rocm-$pkgver.tar.gz"
-    'remove-warnings.patch')
+        'remove-warnings.patch')
 sha256sums=('fa2d2d1f8a61d8a6952d377cf288d78c61776c3c2a666f163cafc3aa19ab0b61'
-    '008cd076e6d30215b3e645586ae999aaaadfd7606d0b1ab313daa78d791440c6')
+            '9aecc193aafe58c235b82b7d7c4444fd4175224233fde6a23c54014b3dcc0f6a')
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
 
 prepare() {
-    cd "$srcdir/$_dirname/src"
-    patch -p0 < "$srcdir/remove-warnings.patch"
+  cd "$srcdir/$_dirname"
+  patch -Np1 -i "$srcdir/remove-warnings.patch"
 }
 
 build() {
