@@ -1,7 +1,7 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=rocalution
 pkgver=3.3.0
-pkgrel=2
+pkgrel=1
 pkgdesc="Next generation library for iterative sparse solvers for ROCm platform."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocALUTION"
