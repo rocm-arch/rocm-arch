@@ -6,12 +6,13 @@
 
 pkgname=hsa-rocr
 pkgver=3.3.0
-pkgrel=4
+pkgrel=5
 pkgdesc='ROCm Platform Runtime: ROCr a HPC market enhanced HSA based runtime'
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCR-Runtime'
 license=('custom:NCSAOSL')
-makedepends=('cmake' 'libelf' "hsakmt-roct")
+depends=('hsakmt-roct')
+makedepends=('cmake' 'libelf')
 provides=("rocr-runtime=$pkgver")
 replaces=('rocr-runtime')
 conflicts=('rocr-runtime')
