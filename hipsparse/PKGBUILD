@@ -1,14 +1,15 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=hipsparse
 pkgver=3.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm SPARSE marshalling library."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
-license=('custom:NCSAOSL')
-depends=('hcc' 'hip')
-makedepends=('cmake' "hcc>=$pkgver" "hip>=$pkgver" 'python2' "rocprim>=$pkgver" "rocsparse>=$pkgver" "rocm-comgr>=$pkgver" 'rocminfo')
-source=("https://github.com/ROCmSoftwarePlatform/hipSPARSE/archive/rocm-$pkgver.tar.gz"
+license=('MIT')
+depends=('rocsparse' 'hip')
+optdepends=('cuda: cuSPARSE backend')
+makedepends=('cmake')
+source=("$url/archive/rocm-$pkgver.tar.gz"
         "hipsparse_hsa.patch")
 sha256sums=('c69336071f56c857e969f0fdfbc351f75cc44ed2e3b854b4688675a9cafe4e22'
             'd3a926958b84c660f273d6b3a644e8a775e9ed779a7d81baa8f4c4981cee076b')
@@ -28,11 +29,9 @@ build() {
   export CPPFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CPPFLAGS")"
 
   # compile with HCC
-  export CXX="/opt/rocm/hcc/bin/hcc"
-
   # TODO: fix librocsparse.so, it contains references to $srcdir
-  cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=opt/rocm/hipsparse \
+  CXX=/opt/rocm/hcc/bin/hcc \
+  cmake -DCMAKE_INSTALL_PREFIX=opt/rocm/hipsparse \
         -Dhcc_DIR=/opt/rocm/hcc/lib/cmake/hcc \
         -Dhip_DIR=/opt/rocm/hip/lib/cmake/hip \
         -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
@@ -51,8 +50,8 @@ package() {
 
   cp -r "$srcdir/build/opt" "$pkgdir/"
 
-  install -d "$pkgdir/etc/ld.so.conf.d"
-  cat << EOF > "$pkgdir/etc/ld.so.conf.d/hipsparse.conf"
+  install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/hipsparse.conf" << EOF 
 /opt/rocm/hipsparse/lib
 EOF
+  install -Dm644 "$srcdir/hipSPARSE-rocm-$pkgver/LICENSE.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
