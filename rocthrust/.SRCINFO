@@ -6,6 +6,7 @@ pkgbase = rocthrust
 	arch = x86_64
 	license = Apache-2.0
 	makedepends = cmake
+	makedepends = git
 	makedepends = hcc
 	depends = hip
 	depends = rocprim
