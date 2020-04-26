@@ -1,7 +1,7 @@
 # Maintainer: Markus Näther <naether.markus@gmail.com>
 pkgname=hipblas
 pkgver=3.3.0
-pkgrel=2
+pkgrel=1
 pkgdesc='Next generation BLAS implementation for ROCm platform'
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipBLAS"
