@@ -5,12 +5,12 @@ _opencl_icd_loader_commit='978b4b3a29a3aebc86ce9315d5c5963e88722d03'
 
 pkgname=rocm-opencl-runtime
 pkgver=3.3.0
-pkgrel=4
+pkgrel=5
 pkgdesc='Radeon Open Compute - OpenCL runtime'
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime'
 license=('MIT')
-depends=('hsakmt-roct' 'hsa-rocr' 'opencl-icd-loader' 'rocm-comgr')
+depends=('hsakmt-roct' 'hsa-rocr' 'opencl-icd-loader' 'comgr')
 makedepends=('mesa' 'cmake' 'git' 'llvm-roc' 'rocm-cmake')
 provides=("$pkgname" 'opencl-driver')
 source=("$url/archive/roc-$pkgver.tar.gz"
@@ -25,7 +25,7 @@ _opencl_dirname="$(basename "$_opencl_icd_loader_repo")-$(basename "${source[1]}
 prepare() {
     cd "$_dirname"
     patch -Np1 -i "$srcdir/install_vendor_file.patch"
-    
+
     mkdir -p api/opencl/khronos
     mv "$srcdir/$_opencl_dirname" api/opencl/khronos/icd
 }
