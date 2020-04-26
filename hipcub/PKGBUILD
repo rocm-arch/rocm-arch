@@ -18,6 +18,7 @@ build() {
 
   CXX=/opt/rocm/hcc/bin/hcc \
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/hipcub \
+        -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         "$srcdir/hipCUB-rocm-$pkgver"
 }
 
