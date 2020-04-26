@@ -6,8 +6,10 @@ pkgbase = rocprim
 	arch = x86_64
 	license = MIT
 	makedepends = cmake
+	makedepends = git
 	makedepends = hcc
 	depends = hip
+	depends = rocm-comgr
 	source = https://github.com/ROCmSoftwarePlatform/rocPRIM/archive/rocm-3.3.0.tar.gz
 	sha256sums = 506c014bd573ba1473230087ca30394ca6ef34f58e7248a858342b2173009000
 
