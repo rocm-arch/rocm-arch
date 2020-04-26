@@ -2,13 +2,13 @@
 pkgname=hipsparse
 pkgver=3.3.0
 pkgrel=2
-pkgdesc="ROCm SPARSE marshalling library."
+pkgdesc="rocSPARSE marshalling library."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
 license=('MIT')
 depends=('rocsparse' 'hip')
 optdepends=('cuda: cuSPARSE backend')
-makedepends=('cmake')
+makedepends=('cmake' 'hcc')
 source=("$url/archive/rocm-$pkgver.tar.gz"
         "hipsparse_hsa.patch")
 sha256sums=('c69336071f56c857e969f0fdfbc351f75cc44ed2e3b854b4688675a9cafe4e22'
@@ -20,15 +20,14 @@ prepare() {
 }
 
 build() {
-  mkdir -p "$srcdir/build"
-  cd "$srcdir/build"
+  mkdir -p build
+  cd build
 
   # fix broken build with stack protection
   export CFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CFLAGS")"
   export CXXFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CXXFLAGS")"
   export CPPFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CPPFLAGS")"
 
-  # compile with HCC
   # TODO: fix librocsparse.so, it contains references to $srcdir
   CXX=/opt/rocm/hcc/bin/hcc \
   cmake -DCMAKE_INSTALL_PREFIX=opt/rocm/hipsparse \

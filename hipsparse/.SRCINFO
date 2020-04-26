@@ -1,11 +1,12 @@
 pkgbase = hipsparse
-	pkgdesc = ROCm SPARSE marshalling library.
+	pkgdesc = rocSPARSE marshalling library.
 	pkgver = 3.3.0
 	pkgrel = 2
 	url = https://github.com/ROCmSoftwarePlatform/hipSPARSE
 	arch = x86_64
 	license = MIT
 	makedepends = cmake
+	makedepends = hcc
 	depends = rocsparse
 	depends = hip
 	optdepends = cuda: cuSPARSE backend
