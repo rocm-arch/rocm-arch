@@ -3,13 +3,13 @@
 pkgname=rocfft
 pkgver=3.3.0
 pkgrel=1
-pkgdesc="Next generation FFT implementation for ROCm"
+pkgdesc='Next generation FFT implementation for ROCm'
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocfft"
 license=('MIT')
-depends=('boost' 'fftw' 'hip')
+depends=('hip' 'rocm-comgr')
 makedepends=('hcc' 'cmake')
-source=("$url/archive/rocm-$pkgver.tar.gz")
+source=("https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-$pkgver.tar.gz")
 sha256sums=('bbbafcac891ff237c67a3a8fe6e842880ad3c8753b200ecb11f23173ac737e1c')
 
 build() {
@@ -21,9 +21,11 @@ build() {
   export CXXFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CXXFLAGS")"
   export CPPFLAGS="$(sed -e 's/-fstack-protector-strong//' <<< "$CPPFLAGS")"
 
-  # TODO: fix librocfft{,-device}.so, they contain references to $srcdir
   CXX=/opt/rocm/hcc/bin/hcc \
-  cmake "$srcdir/rocFFT-rocm-$pkgver"
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocfft \
+        -DBUILD_CLIENTS_RIDER=OFF \
+        -DBUILD_CLIENTS_TESTS=OFF \
+        "$srcdir/rocFFT-rocm-$pkgver"
   make
 }
 

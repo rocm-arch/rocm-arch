@@ -7,10 +7,9 @@ pkgbase = rocfft
 	license = MIT
 	makedepends = hcc
 	makedepends = cmake
-	depends = boost
-	depends = fftw
 	depends = hip
-	source = https://github.com/ROCmSoftwarePlatform/rocfft/archive/rocm-3.3.0.tar.gz
+	depends = rocm-comgr
+	source = https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-3.3.0.tar.gz
 	sha256sums = bbbafcac891ff237c67a3a8fe6e842880ad3c8753b200ecb11f23173ac737e1c
 
 pkgname = rocfft
