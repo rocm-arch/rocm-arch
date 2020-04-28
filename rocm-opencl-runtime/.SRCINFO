@@ -1,14 +1,13 @@
 pkgbase = rocm-opencl-runtime
 	pkgdesc = Radeon Open Compute - OpenCL runtime
 	pkgver = 3.3.0
-	pkgrel = 5
+	pkgrel = 6
 	url = https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime
 	arch = x86_64
 	license = MIT
 	makedepends = mesa
 	makedepends = cmake
 	makedepends = git
-	makedepends = llvm-roc
 	makedepends = rocm-cmake
 	depends = hsakmt-roct
 	depends = hsa-rocr
