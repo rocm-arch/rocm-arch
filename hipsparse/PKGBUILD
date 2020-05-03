@@ -1,7 +1,7 @@
 # Maintainer: Markus Näther <naetherm@informatik.uni-freiburg.de>
 pkgname=hipsparse
 pkgver=3.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="ROCm SPARSE marshalling library."
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
@@ -29,6 +29,9 @@ build() {
         -DBUILD_CLIENTS_SAMPLES=OFF \
         -DBUILD_CLIENTS_TESTS=OFF \
         -Drocsparse_DIR=/opt/rocm/rocsparse/lib/cmake/rocsparse \
+        -Dhip_DIR="/opt/rocm/hip/lib/cmake/hip" \
+        -Dhcc_DIR="/opt/rocm/hcc/lib/cmake/hcc" \
+        -Damd_comgr_DIR="/opt/rocm/lib/cmake/amd_comgr/" \
         "$srcdir/hipSPARSE-rocm-$pkgver"
 
   make
@@ -37,9 +40,7 @@ build() {
 package() {
   cd "$srcdir/build"
 
-  make install
-
-  cp -r "$srcdir/build/opt" "$pkgdir/"
+  DESTDIR="$pkgdir" make install
 
   install -d "$pkgdir/etc/ld.so.conf.d"
   cat << EOF > "$pkgdir/etc/ld.so.conf.d/hipsparse.conf"
