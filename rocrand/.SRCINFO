@@ -1,12 +1,14 @@
 pkgbase = rocrand
-	pkgdesc = RAND library for HIP programming language
+	pkgdesc = Pseudo-random and quasi-random number generator on ROCm
 	pkgver = 3.3.0
 	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/rocRAND
 	arch = x86_64
 	license = MIT
-	makedepends = hcc>=3.3.0
+	makedepends = hcc
 	makedepends = cmake
+	makedepends = git
+	depends = hip-hcc
 	source = https://github.com/ROCmSoftwarePlatform/rocRAND/archive/rocm-3.3.0.tar.gz
 	sha256sums = ba56556671313b784a1301634df6537f3148426b81bec93b3566e71d22b6f4cc
 
