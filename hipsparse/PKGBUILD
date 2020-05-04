@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipSPARSE"
 license=('custom:NCSAOSL')
 depends=('hcc' 'hip')
-makedepends=('cmake' "hcc>=$pkgver" "hip>=$pkgver" 'python' "rocprim>=$pkgver" "rocsparse>=$pkgver" "comgr>=$pkgver" 'rocminfo')
+makedepends=('cmake' "hcc>=$pkgver" "python" "rocprim>=$pkgver" "rocsparse>=$pkgver" "comgr>=$pkgver" 'rocminfo')
 source=("https://github.com/ROCmSoftwarePlatform/hipSPARSE/archive/rocm-$pkgver.tar.gz")
 sha256sums=('c69336071f56c857e969f0fdfbc351f75cc44ed2e3b854b4688675a9cafe4e22')
 
