@@ -1,16 +1,16 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=hip-hcc
 pkgver=3.3.0
-pkgrel=5
+pkgrel=6
 pkgdesc="Heterogeneous Interface for Portability ROCm"
 arch=('x86_64')
 url="https://github.com/ROCm-Developer-Tools/HIP"
 license=('MIT')
-depends=('hsa-rocr')
-makedepends=('libelf' 'cmake' 'python' 'hcc' 'comgr' 'git')
+depends=('hsa-rocr' 'hcc' 'rocminfo')
+makedepends=('libelf' 'cmake' 'python' 'comgr' 'git')
 provides=('hip')
 conflicts=('hip')
-source=("https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-$pkgver.tar.gz")
+source=("$url/archive/rocm-$pkgver.tar.gz")
 sha256sums=('8ae7cf4134975c7a36e0c72a5e041694935f38c2d7df58f4ad55e9a23b7b875c')
 
 prepare() {
@@ -25,16 +25,27 @@ build() {
   mkdir -p "$srcdir/build"
   cd "$srcdir/build"
 
-  cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm/hip \
+  # this install prefix is needed to build and run tests
+  cmake -DCMAKE_INSTALL_PREFIX=$srcdir/build/install \
         -DHIP_COMPILER=hcc \
         "$srcdir/HIP-rocm-$pkgver"
   make
 }
 
+check() {
+  cd "$srcdir/build"
+  make install
+  make build_tests
+  make test
+}
+
 package() {
   cd "$srcdir/build"
 
+  # correct install prefix is defined here
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/hip \
+        -DHIP_COMPILER=hcc \
+        "$srcdir/HIP-rocm-$pkgver"
   make DESTDIR="$pkgdir" install
 
   # add links (hipconfig is for rocblas with tensile)
