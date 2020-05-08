@@ -1,0 +1,16 @@
+pkgbase = rocminfo-bin
+	pkgdesc = Radeon Open Compute (ROCm) Runtime rocminfo tool
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/rocminfo
+	arch = x86_64
+	license = custom:NCSAOSL
+	depends = pciutils
+	depends = python
+	depends = hsa-rocr
+	provides = rocminfo
+	conflicts = rocminfo
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/r/rocminfo/rocminfo_1.30300.0_amd64.deb
+	sha256sums = e0ec286df8993c4e57451e438dc1a9bb96fefef834e326c2bd54b9d501d6f1c3
+
+pkgname = rocminfo-bin

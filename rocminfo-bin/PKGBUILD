@@ -1,0 +1,23 @@
+# Maintainer: Samuel Bernard <samuel.bernard@gmail.com>
+
+pkgname=rocminfo-bin
+pkgver=3.3.0
+pkgrel=1
+pkgdesc='Radeon Open Compute (ROCm) Runtime rocminfo tool'
+arch=('x86_64')
+url='https://github.com/RadeonOpenCompute/rocminfo'
+license=('custom:NCSAOSL')
+depends=('pciutils' 'python' 'hsa-rocr')
+provides=('rocminfo')
+conflicts=('rocminfo')
+_debfile='rocminfo_1.30300.0_amd64.deb'
+noextract=($_debfile2)
+source=("http://repo.radeon.com/rocm/apt/3.3/pool/main/r/rocminfo/$_debfile")
+sha256sums=('e0ec286df8993c4e57451e438dc1a9bb96fefef834e326c2bd54b9d501d6f1c3')
+options=('!strip')
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.gz
+  rename -- "-$pkgver" '' "$pkgdir/opt/rocm-$pkgver"
+  find "$pkgdir" -type d -exec chmod 755 '{}' '+'
+}
