@@ -1,0 +1,17 @@
+pkgbase = hip-hcc-bin
+	pkgdesc = HIP: Heterogenous-computing Interface for Portability [HCC]
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/HIP
+	arch = x86_64
+	license = EULA
+	depends = hcc
+	depends = hip-base
+	depends = comgr
+	depends = rocminfo
+	provides = hip
+	conflicts = hip-hcc
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hip-hcc/hip-hcc_3.3.20126.4629-rocm-rel-3.3-19-2dbba46b_amd64.deb
+	sha256sums = 8234e2d8d1f6159fb35f3a99e354beeb40d6eda2a603c4e091ab706ea8d4ec08
+
+pkgname = hip-hcc-bin
