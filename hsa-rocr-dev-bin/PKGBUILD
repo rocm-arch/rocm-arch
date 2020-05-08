@@ -1,0 +1,23 @@
+# Maintainer: Samuel Bernard <samuel.bernard@gmail.com>
+
+pkgname=hsa-rocr-dev-bin
+pkgver=3.3.0
+pkgrel=1
+pkgdesc='AMD Heterogeneous System Architecture HSA - Linux HSA Runtime for Boltz
+mann (ROCm) platforms'
+arch=('x86_64')
+url='https://github.com/RadeonOpenCompute/ROCR-Runtime'
+license=('custom:NCSAOSL')
+depends=('hsakmt-roct')
+provides=('rocr-runtime' 'hsa-rocr')
+conflicts=('hsa-rocr')
+_debfile='hsa-rocr-dev_1.1.30300.0-rocm-rel-3.3-19-23fc088b_amd64.deb'
+source=("http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hsa-rocr-dev/$_debfile")
+sha256sums=('862d1bdd3cafd2aac0c3734a7f05fd44d328c0d9217b969f905bbcd2d6980f65')
+options=('!strip')
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.gz
+  rename -- "-$pkgver" '' "$pkgdir/opt/rocm-$pkgver"
+  find "$pkgdir" -type d -exec chmod 755 '{}' '+'
+}

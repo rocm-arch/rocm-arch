@@ -1,0 +1,15 @@
+pkgbase = hsa-rocr-dev-bin
+	pkgdesc = AMD Heterogeneous System Architecture HSA - Linux HSA Runtime for Boltz mann (ROCm) platforms
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCR-Runtime
+	arch = x86_64
+	license = custom:NCSAOSL
+	depends = hsakmt-roct
+	provides = rocr-runtime
+	provides = hsa-rocr
+	conflicts = hsa-rocr
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hsa-rocr-dev/hsa-rocr-dev_1.1.30300.0-rocm-rel-3.3-19-23fc088b_amd64.deb
+	sha256sums = 862d1bdd3cafd2aac0c3734a7f05fd44d328c0d9217b969f905bbcd2d6980f65
+
+pkgname = hsa-rocr-dev-bin
