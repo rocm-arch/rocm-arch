@@ -1,0 +1,24 @@
+# Maintainer: Samuel Bernard <samuel.bernard@gmail.com>
+
+pkgname=libtinfo5-bin
+pkgver=6.1
+pkgrel=1
+pkgdesc='Shared low-level terminfo library for terminal handling'
+arch=('x86_64')
+url='https://invisible-island.net/ncurses'
+license=('GPL')
+depends=('glibc')
+provides=('libtinfo5')
+_debfile='libtinfo5_6.1-1ubuntu1.18.04_amd64.deb'
+source=("http://archive.ubuntu.com/ubuntu/pool/main/n/ncurses/$_debfile")
+sha256sums=('bb4d4d80720149692ea0d5bca1a5dac57737afe447810ce69dd4a95107121da5')
+options=('!strip')
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.xz
+  mv "$pkgdir/lib/x86_64-linux-gnu/"*.so.* "$pkgdir/usr/lib"
+  rmdir "$pkgdir/lib/x86_64-linux-gnu" "$pkgdir/lib"
+  mv "$pkgdir/usr/lib/x86_64-linux-gnu/"*.so.* "$pkgdir/usr/lib"
+  rmdir "$pkgdir/usr/lib/x86_64-linux-gnu"
+  find "$pkgdir" -type d -exec chmod 755 '{}' '+'
+}

@@ -1,0 +1,14 @@
+pkgbase = libtinfo5-bin
+	pkgdesc = Shared low-level terminfo library for terminal handling
+	pkgver = 6.1
+	pkgrel = 1
+	url = https://invisible-island.net/ncurses
+	arch = x86_64
+	license = GPL
+	depends = glibc
+	provides = libtinfo5
+	options = !strip
+	source = http://archive.ubuntu.com/ubuntu/pool/main/n/ncurses/libtinfo5_6.1-1ubuntu1.18.04_amd64.deb
+	sha256sums = bb4d4d80720149692ea0d5bca1a5dac57737afe447810ce69dd4a95107121da5
+
+pkgname = libtinfo5-bin
