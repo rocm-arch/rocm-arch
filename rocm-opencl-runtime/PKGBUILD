@@ -2,7 +2,7 @@
 
 pkgname=rocm-opencl-runtime
 pkgver=3.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Radeon Open Compute - OpenCL runtime'
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime'
@@ -10,9 +10,16 @@ license=('MIT')
 depends=('hsakmt-roct' 'hsa-rocr' 'rocclr' 'opencl-icd-loader')
 makedepends=('cmake' 'rocm-cmake')
 provides=("$pkgname" 'opencl-driver')
-source=("$pkgname-$pkgver.tar.gz::$url/archive/roc-$pkgver.tar.gz")
-sha256sums=('511b617d5192f2d4893603c1a02402b2ac9556e9806ff09dd2a91d398abf39a0')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/roc-$pkgver.tar.gz"
+        'remove-clinfo.patch')
+sha256sums=('511b617d5192f2d4893603c1a02402b2ac9556e9806ff09dd2a91d398abf39a0'
+            '16b47c9be60ca3bd430a02773e491a6380e01610a72bb74a9bc034a8c211ce29')
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
+
+prepare() {
+    cd "$_dirname"
+    patch -Np1 -i "$srcdir/remove-clinfo.patch"
+}
 
 build() {
     CFLAGS="$CFLAGS -isystem /opt/rocm/rocclr/include/include -isystem /opt/rocm/rocclr/include/compiler/lib -isystem /opt/rocm/rocclr/include/compiler/lib/include" \

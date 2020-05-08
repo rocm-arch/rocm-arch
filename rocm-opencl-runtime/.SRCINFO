@@ -1,7 +1,7 @@
 pkgbase = rocm-opencl-runtime
 	pkgdesc = Radeon Open Compute - OpenCL runtime
 	pkgver = 3.5.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime
 	arch = x86_64
 	license = MIT
@@ -14,7 +14,9 @@ pkgbase = rocm-opencl-runtime
 	provides = rocm-opencl-runtime
 	provides = opencl-driver
 	source = rocm-opencl-runtime-3.5.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/roc-3.5.0.tar.gz
+	source = remove-clinfo.patch
 	sha256sums = 511b617d5192f2d4893603c1a02402b2ac9556e9806ff09dd2a91d398abf39a0
+	sha256sums = 16b47c9be60ca3bd430a02773e491a6380e01610a72bb74a9bc034a8c211ce29
 
 pkgname = rocm-opencl-runtime
 
