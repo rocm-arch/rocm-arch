@@ -1,0 +1,15 @@
+pkgbase = hcc-bin
+	pkgdesc = HCC: An Open Source, Optimizing C++ Compiler for Heterogeneous Compute
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/hcc
+	arch = x86_64
+	license = EULA
+	depends = hsa-rocr
+	depends = libtinfo5
+	provides = hcc
+	conflicts = hcc
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hcc/hcc_3.1.20114_amd64.deb
+	sha256sums = 76b10fe9f11a7ba892db31d6313fb83a62fe2054f1c9cdab6fc1323c9c9cd639
+
+pkgname = hcc-bin
