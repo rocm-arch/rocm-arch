@@ -1,0 +1,25 @@
+# Maintainer: Samuel Bernard <samuel.bernard@gmail.com>
+
+pkgname=hsakmt-roct-bin
+pkgver=3.3.0
+pkgrel=1
+pkgdesc='HSAKMT library for AMD KFD support'
+arch=('x86_64')
+url='https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface'
+license=('custom:NCSAOSL')
+depends=('glibc' 'numactl' 'pciutils' 'zlib' 'systemd-libs')
+provides=('hsakmt-roct' 'roct-thunk-interface')
+conflicts=('hsakmt-roct')
+_debfile='hsakmt-roct_1.0.9-330-gd84bc09_amd64.deb'
+source=("http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hsakmt-roct/$_debfile")
+sha256sums=(35903d3f31807b4a540ae437907d8aa337e170efbf64af3653ca3ffb8cc84881)
+options=('!strip')
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.gz
+  rename -- "-$pkgver" '' "$pkgdir/opt/rocm-$pkgver"
+  find "$pkgdir" -type d -exec chmod 755 '{}' '+'
+  install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/$pkgname.conf" <<-EOF
+    /opt/rocm/lib
+EOF
+}

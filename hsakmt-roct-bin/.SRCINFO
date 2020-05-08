@@ -1,0 +1,19 @@
+pkgbase = hsakmt-roct-bin
+	pkgdesc = HSAKMT library for AMD KFD support
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface
+	arch = x86_64
+	license = custom:NCSAOSL
+	depends = glibc
+	depends = numactl
+	depends = pciutils
+	depends = zlib
+	depends = systemd-libs
+	provides = hsakmt-roct
+	provides = roct-thunk-interface
+	conflicts = hsakmt-roct
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hsakmt-roct/hsakmt-roct_1.0.9-330-gd84bc09_amd64.deb
+	sha256sums = 35903d3f31807b4a540ae437907d8aa337e170efbf64af3653ca3ffb8cc84881
+
+pkgname = hsakmt-roct-bin
