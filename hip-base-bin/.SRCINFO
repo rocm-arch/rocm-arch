@@ -1,0 +1,15 @@
+pkgbase = hip-base-bin
+	pkgdesc = HIP: Heterogenous-computing Interface for Portability [BASE]
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/HIP
+	arch = x86_64
+	license = EULA
+	depends = perl
+	provides = hip-base
+	conflicts = hip-hcc
+	conflicts = hip-nvcc
+	source = http://repo.radeon.com/rocm/apt/debian/pool/main/h/hip-base/hip-base_3.3.20126.4629-rocm-rel-3.3-19-2dbba46b_amd64.deb
+	sha256sums = SKIP
+
+pkgname = hip-base-bin

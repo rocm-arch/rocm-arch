@@ -1,0 +1,22 @@
+# Maintainer: Samuel Bernard <samuel.bernard@gmail.com>
+
+pkgname=hip-base-bin
+pkgver=3.3.0
+pkgrel=1
+pkgdesc='HIP: Heterogenous-computing Interface for Portability [BASE]'
+arch=('x86_64')
+url='https://github.com/RadeonOpenCompute/HIP'
+license=('EULA')
+depends=('perl')
+provides=('hip-base')
+conflicts=('hip-hcc' 'hip-nvcc')
+_debfile='hip-base_3.3.20126.4629-rocm-rel-3.3-19-2dbba46b_amd64.deb'
+source=("http://repo.radeon.com/rocm/apt/3.3/pool/main/h/hip-base/$_debfile")
+sha256sums=('3de86c1df5761e85c4009b42aeef3bb4318cba1caecf5f069200d1b19a06b155')
+options=('!strip')
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.gz
+  rename -- "-$pkgver" '' "$pkgdir/opt/rocm-$pkgver"
+  find "$pkgdir" -type d -exec chmod 755 '{}' '+'
+}
