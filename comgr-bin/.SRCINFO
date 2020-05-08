@@ -1,0 +1,14 @@
+pkgbase = comgr-bin
+	pkgdesc = Library to provide support functions
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
+	arch = x86_64
+	license = custom:NCSAOSL
+	depends = libtinfo5
+	provides = comgr
+	conflicts = comgr
+	source = http://repo.radeon.com/rocm/apt/3.3/pool/main/c/comgr/comgr_1.6.0.124-rocm-rel-3.3-19-7ac2e34_amd64.deb
+	sha256sums = 8d8f46493769594dcde98e57ce7d7ab4f7921fe84794a9debe531310d290fcdf
+
+pkgname = comgr-bin
