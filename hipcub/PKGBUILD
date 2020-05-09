@@ -2,7 +2,7 @@
 pkgname=hipcub
 pkgver=3.3.0
 pkgrel=2
-pkgdesc='header-only library on top of rocPRIM or CUB'
+pkgdesc='Header-only library on top of rocPRIM or CUB'
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/hipCUB"
 license=('custom')
