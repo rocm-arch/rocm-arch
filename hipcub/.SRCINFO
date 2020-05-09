@@ -1,5 +1,5 @@
 pkgbase = hipcub
-	pkgdesc = header-only library on top of rocPRIM or CUB
+	pkgdesc = Header-only library on top of rocPRIM or CUB
 	pkgver = 3.3.0
 	pkgrel = 2
 	url = https://github.com/ROCmSoftwarePlatform/hipCUB
