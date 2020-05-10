@@ -1,21 +1,21 @@
 pkgbase = rocblas
 	pkgdesc = Next generation BLAS implementation for ROCm platform
 	pkgver = 3.3.0
-	pkgrel = 3
-	url = https://github.com/ROCmSoftwarePlatform/rocBLAS
+	pkgrel = 4
+	url = https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html#rocblas
 	arch = x86_64
-	license = custom:NCSAOSL
+	license = MIT
 	makedepends = cmake
-	makedepends = hcc>=3.3.0
+	makedepends = hcc
 	makedepends = python
-	makedepends = boost
-	makedepends = comgr>=3.3.0
-	makedepends = rocminfo
-	makedepends = hsa-ext-rocr
-	depends = hcc
-	depends = hip
-	source = https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/rocm-3.3.0.tar.gz
+	makedepends = git
+	makedepends = perl-file-which
+	makedepends = llvm-amdgpu
+	depends = hip-hcc
+	source = rocblas-3.3.0::https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/rocm-3.3.0.tar.gz
+	source = hcc_workweek.patch
 	sha256sums = aaa8f0479202bdbe94d2ec5655a76055656f743b0d36816501cb84a533084034
+	sha256sums = 869dcac1964d5579c81429fa831b897353930cd67090d9ddefa381f3de1750ee
 
 pkgname = rocblas
 
