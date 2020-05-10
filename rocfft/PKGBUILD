@@ -5,11 +5,12 @@ pkgver=3.3.0
 pkgrel=1
 pkgdesc='Next generation FFT implementation for ROCm'
 arch=('x86_64')
-url="https://github.com/ROCmSoftwarePlatform/rocfft"
+url='https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html#rocfft'
 license=('MIT')
 depends=('hip-hcc')
 makedepends=('hcc' 'cmake')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-$pkgver.tar.gz")
+_git='https://github.com/ROCmSoftwarePlatform/rocFFT'
+source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz")
 sha256sums=('bbbafcac891ff237c67a3a8fe6e842880ad3c8753b200ecb11f23173ac737e1c')
 
 build() {
@@ -23,6 +24,7 @@ build() {
 
   CXX=/opt/rocm/hcc/bin/hcc \
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocfft \
+        -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         -DBUILD_CLIENTS_RIDER=OFF \
         -DBUILD_CLIENTS_TESTS=OFF \
         "$srcdir/rocFFT-rocm-$pkgver"
