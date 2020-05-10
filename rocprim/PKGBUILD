@@ -8,7 +8,7 @@ url="https://github.com/ROCmSoftwarePlatform/rocPRIM"
 license=('MIT')
 depends=('hip-hcc')
 makedepends=('cmake' 'hcc')
-source=("$url/archive/rocm-$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz")
 sha256sums=('506c014bd573ba1473230087ca30394ca6ef34f58e7248a858342b2173009000')
 
 build() {
@@ -27,8 +27,5 @@ package() {
 
   make DESTDIR="$pkgdir" install
 
-  install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/rocprim.conf" << EOF
-/opt/rocm/rocprim/lib
-EOF
   install -Dm644 "$srcdir/rocPRIM-rocm-$pkgver/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
