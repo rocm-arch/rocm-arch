@@ -2,13 +2,13 @@
 pkgname=rocthrust
 pkgver=3.3.0
 pkgrel=4
-pkgdesc="Port of the Thrust parallel algorithm library atop HIP/ROCm"
+pkgdesc='Port of the Thrust parallel algorithm library atop HIP/ROCm'
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocThrust"
-license=('Apache-2.0')
+license=('Apache')
 depends=('hip-hcc' 'rocprim')
 makedepends=('cmake' 'git' 'hcc')
-source=("$url/archive/rocm-$pkgver.tar.gz")
+source=("$pkgname-$pkgver::$url/archive/rocm-$pkgver.tar.gz")
 sha256sums=('5782c9b96233b2050168381b3c2259baeb410b859f68c25b2d14110fb1bb726f')
 
 build() {
@@ -26,11 +26,6 @@ package() {
   cd "$srcdir/build"
 
   make DESTDIR="$pkgdir" install
-
-  install -Dm644 /dev/stdin "$pkgdir/etc/ld.so.conf.d/rocthrust.conf" << EOF 
-/opt/rocm/rocthrust/lib
-EOF
-  install -Dm644 "$srcdir/rocThrust-rocm-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
   install -d "$pkgdir/opt/rocm/include"
   ln -s /opt/rocm/rocthrust/include/thrust "$pkgdir/opt/rocm/include"
