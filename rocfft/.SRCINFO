@@ -8,7 +8,7 @@ pkgbase = rocfft
 	makedepends = hcc
 	makedepends = cmake
 	depends = hip-hcc
-	source = https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-3.3.0.tar.gz
+	source = rocfft-3.3.0.tar.gz::https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-3.3.0.tar.gz
 	sha256sums = bbbafcac891ff237c67a3a8fe6e842880ad3c8753b200ecb11f23173ac737e1c
 
 pkgname = rocfft

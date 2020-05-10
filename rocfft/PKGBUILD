@@ -9,7 +9,7 @@ url="https://github.com/ROCmSoftwarePlatform/rocfft"
 license=('MIT')
 depends=('hip-hcc')
 makedepends=('hcc' 'cmake')
-source=("https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/ROCmSoftwarePlatform/rocFFT/archive/rocm-$pkgver.tar.gz")
 sha256sums=('bbbafcac891ff237c67a3a8fe6e842880ad3c8753b200ecb11f23173ac737e1c')
 
 build() {
