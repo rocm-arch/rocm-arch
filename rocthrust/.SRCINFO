@@ -10,7 +10,7 @@ pkgbase = rocthrust
 	makedepends = hcc
 	depends = hip-hcc
 	depends = rocprim
-	source = rocthrust-3.3.0::https://github.com/ROCmSoftwarePlatform/rocThrust/archive/rocm-3.3.0.tar.gz
+	source = rocthrust-3.3.0.tar.gz::https://github.com/ROCmSoftwarePlatform/rocThrust/archive/rocm-3.3.0.tar.gz
 	sha256sums = 5782c9b96233b2050168381b3c2259baeb410b859f68c25b2d14110fb1bb726f
 
 pkgname = rocthrust
