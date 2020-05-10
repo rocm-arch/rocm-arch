@@ -7,7 +7,7 @@ arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocPRIM"
 license=('MIT')
 depends=('hip-hcc')
-makedepends=('cmake' 'hcc')
+makedepends=('cmake' 'hcc' 'git')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz")
 sha256sums=('506c014bd573ba1473230087ca30394ca6ef34f58e7248a858342b2173009000')
 
@@ -17,6 +17,7 @@ build() {
 
   CXX=/opt/rocm/hcc/bin/hcc \
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocprim \
+        -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         -DBUILD_TEST=OFF \
         -DBUILD_BENCHMARK=OFF \
         "$srcdir/rocPRIM-rocm-$pkgver"
