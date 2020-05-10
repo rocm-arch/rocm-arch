@@ -9,7 +9,7 @@ license=('MIT')
 depends=('hip-hcc')
 makedepends=('cmake' 'hcc' 'python' 'git' 'perl-file-which' 'llvm-amdgpu')
 _git='https://github.com/ROCmSoftwarePlatform/rocBLAS'
-source=("$pkgname-$pkgver::$_git/archive/rocm-$pkgver.tar.gz"
+source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz"
         'hcc_workweek.patch')
 sha256sums=('aaa8f0479202bdbe94d2ec5655a76055656f743b0d36816501cb84a533084034'
             '869dcac1964d5579c81429fa831b897353930cd67090d9ddefa381f3de1750ee')
