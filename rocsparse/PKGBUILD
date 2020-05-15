@@ -16,7 +16,6 @@ build() {
   mkdir -p build
   cd build
 
-  #TODO: librocsparse.so contains references to $srcdir
   CXX=/opt/rocm/hcc/bin/hcc \
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocsparse \
         -Drocprim_DIR=/opt/rocm/rocprim/rocprim/lib/cmake/rocprim \
