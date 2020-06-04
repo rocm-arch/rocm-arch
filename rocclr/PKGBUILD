@@ -17,7 +17,7 @@ build() {
     mkdir -p build
     cd build
     cmake "$srcdir/ROCclr-roc-$pkgver" \
-        -DCMAKE_INSTALL_PREFIX='/opt/rocm/vdi' \
+        -DCMAKE_INSTALL_PREFIX='/opt/rocm/rocclr' \
         -DOPENCL_DIR="$srcdir/ROCm-OpenCL-Runtime-roc-$pkgver"
 
     make
@@ -25,4 +25,9 @@ build() {
 
 package() {
     make -C build DESTDIR="$pkgdir/" install
+
+    sed -i "s@$srcdir/build/libamdrocclr_static.a@/opt/rocm/rocclr/lib/libamdrocclr_static.a@" \
+        "$srcdir/build/amdrocclr_staticTargets.cmake"
+    install -Dm644 "$srcdir/build/amdrocclr_staticTargets.cmake" \
+        "$pkgdir/opt/rocm/rocclr/lib/amdrocclr_staticTargets.cmake"
 }
