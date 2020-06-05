@@ -10,14 +10,8 @@ license=('custom:NCSAOSL')
 depends=(z3 zlib)
 makedepends=(cmake rocm-cmake rocm-device-libs llvm-amdgpu)
 source=("${pkgname}-${pkgver}.tar.gz::$url/archive/rocm-$pkgver.tar.gz")
-        # 'comgr-find-lld-includes.patch')
 sha256sums=('25c963b46a82d76d55b2302e0e18aac8175362656a465549999ad13d07b689b9')
-            # '4571b16961f15249e8cc8b9a9ae7f0863600345aa5e95959192149eacdb01d2e')
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
-
-# prepare() {
-  # patch -uN ${srcdir}/${_dirname}/lib/comgr/CMakeLists.txt comgr-find-lld-includes.patch
-# }
 
 build() {
   cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm \
