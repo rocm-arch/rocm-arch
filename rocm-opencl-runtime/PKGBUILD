@@ -11,18 +11,8 @@ depends=('hsakmt-roct' 'hsa-rocr' 'rocclr' 'opencl-icd-loader')
 makedepends=('cmake' 'rocm-cmake')
 provides=("$pkgname" 'opencl-driver')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/roc-$pkgver.tar.gz")
-        # 'install_vendor_file.patch'
-        # 'remove-clinfo.patch'
 sha256sums=('511b617d5192f2d4893603c1a02402b2ac9556e9806ff09dd2a91d398abf39a0')
-            # '8e60e2820704999a5d1cf9d9474f68cf0196b307c2f69114f6b133eb9e9c5763'
-            # '07369c2fce0b9f0729c2ad62b6b8250faf9aa95bddf32132d587330b8db5b144'
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
-
-# prepare() {
-    # cd "$_dirname"
-    # patch -Np1 -i "$srcdir/install_vendor_file.patch"
-    # patch -Np1 -i "$srcdir/remove-clinfo.patch"
-# }
 
 build() {
     CFLAGS="$CFLAGS -isystem /opt/rocm/rocclr/include/include -isystem /opt/rocm/rocclr/include/compiler/lib -isystem /opt/rocm/rocclr/include/compiler/lib/include" \
