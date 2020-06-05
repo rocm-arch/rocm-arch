@@ -10,7 +10,7 @@ depends=('rocprim')
 makedepends=('cmake' 'git' 'hip-rocclr')
 _git='https://github.com/ROCmSoftwarePlatform/hipCUB'
 source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz")
-sha256sums=('0d97cada3b856e8c62affbb3664ac4fc2415a36ad3d9b9d7155b5f954e492392')
+sha256sums=('1eb2cb5f6e90ed1b7a9ac6dd86f09ec2ea27bceb5a92eeffa9c2123950c53b9d')
 
 build() {
   mkdir -p build
