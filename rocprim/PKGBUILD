@@ -15,8 +15,8 @@ build() {
   mkdir -p build
   cd build
 
-  CXX=/opt/rocm/hcc/bin/hcc \
-  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocprim \
+  CXX=/opt/rocm/hip/bin/hipcc \
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         -DBUILD_TEST=OFF \
         -DBUILD_BENCHMARK=OFF \
