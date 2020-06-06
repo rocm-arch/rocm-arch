@@ -17,7 +17,7 @@ build() {
   cd build
 
   CXX=/opt/rocm/hip/bin/hipcc \
-  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/rocsparse \
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm \
         -Drocprim_DIR=/opt/rocm/rocprim/rocprim/lib/cmake/rocprim \
         -DBUILD_CLIENTS_SAMPLES=OFF \
         "$srcdir/rocSPARSE-rocm-$pkgver"
