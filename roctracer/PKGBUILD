@@ -1,37 +1,37 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=roctracer
-pkgver=3.3.0
-pkgrel=3
+pkgver=3.5.0
+pkgrel=1
 pkgdesc="ROCm Tracer Callback/Activity Library for Performance tracing AMD GPU's"
 arch=('x86_64')
 url="https://github.com/ROCm-Developer-Tools/roctracer"
 license=('MIT')
-depends=('hsa-rocr' 'python' 'python-argparse' 'python-cppheaderparser')
-optdepends=('hip: tracing for higher level interface')
-makedepends=('cmake')
+depends=('hsa-rocr')
+makedepends=('cmake' 'git' 'python' 'python-argparse' 'python-cppheaderparser')
 options=(!staticlibs strip)
-source=("roctracer-roc-$pkgver.tar.gz::https://github.com/ROCm-Developer-Tools/roctracer/archive/roc-$pkgver.tar.gz")
-sha256sums=('4a3b12e9d2a78565f4c6eaaa23c696c9fd8d57cb75d5e57e834def1624e68770')
-
-prepare() {
-    local _fn
-    for _fn in $srcdir/roctracer-roc-$pkgver/{bin,script}/*.py; do
-        2to3 -w $_fn
-    done
-}
+source=("roctracer-rocm-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz"
+        'add_string_header.patch')
+sha256sums=('7af5326c9ca695642b4265232ec12864a61fd6b6056aa7c4ecd9e19c817f209e'
+            '78282e835e495d9499b5e4a759772b80443122390022f4560a500d11e9d6bf0d')
 
 build() {
-  mkdir -p "$srcdir/build"
-  cd "$srcdir/build"
+  mkdir -p build
+  cd build
 
-  cmake -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-        "$srcdir/roctracer-roc-$pkgver"
+  cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm \
+        "$srcdir/roctracer-rocm-$pkgver"
+  
+  cd "$srcdir/roctracer-rocm-$pkgver"
+  patch -Np1 -i "$srcdir/add_string_header.patch"
+ 
+  cd "$srcdir/build"
   make
 }
 
 package() {
-  cd "$srcdir/build"
+  cd build
 
   make DESTDIR="$pkgdir" install
+
+  install -Dm644 "$srcdir/roctracer-rocm-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
