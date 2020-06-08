@@ -1,7 +1,7 @@
 pkgbase = rock-dkms-firmware-bin
 	pkgdesc = Linux AMD GPU firmware from ROC in DKMS format.
 	pkgver = 3.5
-	pkgrel = 2
+	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver
 	arch = any
 	license = GPL

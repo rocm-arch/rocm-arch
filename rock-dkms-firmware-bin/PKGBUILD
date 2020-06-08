@@ -2,7 +2,7 @@
 pkgname=rock-dkms-firmware-bin
 pkgver=3.5
 _pkgver=$pkgver-30
-pkgrel=2
+pkgrel=1
 pkgdesc="Linux AMD GPU firmware from ROC in DKMS format."
 arch=('any')
 url="https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver"
