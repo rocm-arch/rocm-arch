@@ -2,7 +2,7 @@
 pkgname=rock-dkms-bin
 pkgver=3.5
 _pkgver=$pkgver-30
-pkgrel=2
+pkgrel=3
 pkgdesc="Linux AMD GPU kernel driver from ROC in DKMS format."
 arch=('any')
 url="https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver"
@@ -20,5 +20,9 @@ package() {
   cd "$srcdir"
 
   tar xf data.tar.xz -C "$pkgdir"
+
+  sed -i "28iDRM_VER=\$\(shell sed -n 's/^VERSION = \\\(.*\\\)/\\\1/p' \$(kdir)/Makefile)\nDRM_PATCH=\$(shell sed -n 's/^PATCHLEVEL = \\\(.*\\\)/\\\1/p' \$(kdir)/Makefile)\n" \
+    ${pkgdir}/usr/src/amdgpu-${_pkgver}/amd/dkms/Makefile
+
   install -Dm644 "$pkgdir/usr/share/doc/rock-dkms/copyright" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
