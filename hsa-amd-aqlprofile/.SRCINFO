@@ -1,13 +1,13 @@
 pkgbase = hsa-amd-aqlprofile
 	pkgdesc = AQLPROFILE library for AMD HSA runtime API extension support
-	pkgver = 3.3.0
+	pkgver = 3.5.0
 	pkgrel = 1
 	url = https://github.com/RadeonOpenCompute/HSA-AqlProfile-AMD-extension
 	arch = x86_64
 	license = EULA
 	depends = hsa-rocr
-	source = http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0_amd64.deb
-	sha256sums = bbf465283bfc7a055b95b277c108a8bc5604e1ac2a9af7c3fa084989654e239a
+	source = hsa-amd-aqlprofile-3.5.0::http://repo.radeon.com/rocm/apt/debian/pool/main/h/hsa-amd-aqlprofile/hsa-amd-aqlprofile_1.0.0_amd64.deb
+	sha256sums = a0d0920049a2b97da289e37572e48b479a31eb7b23be23420244ef5636b7d334
 
 pkgname = hsa-amd-aqlprofile
 
