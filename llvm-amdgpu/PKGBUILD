@@ -1,45 +1,48 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 
-pkgname=llvm-amdgpu
+pkgname=(llvm-amdgpu rocm-device-libs)
 pkgdesc='Radeon Open Compute - LLVM toolchain (llvm, clang, lld)'
 pkgver=3.5.0
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/llvm-project'
 license=('custom:Apache 2.0 with LLVM Exception')
 depends=(z3)
 makedepends=(cmake python)
-source=("${pkgname}-${pkgver}.tar.gz::$url/archive/rocm-$pkgver.tar.gz")
-sha256sums=('4878fa85473b24d88edcc89938441edc85d2e8a785e567b7bd7ce274ecc2fd9c')
+_device_libs='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
+source=("${pkgname}-${pkgver}.tar.gz::$url/archive/rocm-$pkgver.tar.gz"
+        "${pkgname}-device-libs-${pkgver}.tar.gz::$_device_libs/archive/rocm-$pkgver.tar.gz")
+sha256sums=('4878fa85473b24d88edcc89938441edc85d2e8a785e567b7bd7ce274ecc2fd9c'
+            'dce3a4ba672c4a2da4c2260ee4dc96ff6dd51877f5e7e1993cb107372a35a378')
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
 
 build() {
-    # building LLVM/Clang requires ~1.5G per unit
-    THREADS=$(( ($(getconf _PHYS_PAGES) * $(getconf PAGESIZE)) / 1610612736 ))
-    if [ "$THREADS" -lt 1 ]; then
-        THREADS=1
-    fi
-    NPROC=$(nproc)
-    if [ "$THREADS" -gt $(nproc) ]; then
-        THREADS="$NPROC"
-    fi
-
-    cmake -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' \
+    cmake -B build -Wno-dev \
+          -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' \
           -DLLVM_HOST_TRIPLE=$CHOST \
           -DLLVM_BUILD_UTILS=ON \
           -DLLVM_ENABLE_BINDINGS=OFF \
           -DLLVM_ENABLE_OCAMLDOC=OFF \
           -DLLVM_ENABLE_PROJECTS='llvm;clang;lld' \
+          -DLLVM_EXTERNAL_PROJECTS='device-libs' \
+          -DLLVM_EXTERNAL_DEVICE_LIBS_SOURCE_DIR="$srcdir/ROCm-Device-Libs-rocm-$pkgver" \
           -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' \
           -DOCAMLFIND=NO \
           "$_dirname/llvm"
-    MAKEFLAGS="$MAKEFLAGS -j$THREADS" make
+    make -C build
 }
 
 check() {
-    make check
+    make -C build check
 }
 
-package() {
-    DESTDIR="$pkgdir" make install
+package_llvm-amdgpu() {
+    DESTDIR="$pkgdir" make -C build install
+}
+
+package_rocm-device-libs() {
+    depends=(llvm-amdgpu)
+    #Compatibility with standalone rocm-device-libs
+    mkdir -p "$pkgdir/opt/rocm/lib/cmake"
+    ln -s /opt/rocm/llvm/lib/cmake/AMDDeviceLibs "$pkgdir/opt/rocm/lib/cmake/AMDDeviceLibs"
 }
