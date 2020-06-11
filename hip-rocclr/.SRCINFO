@@ -1,14 +1,12 @@
 pkgbase = hip-rocclr
 	pkgdesc = Heterogeneous Interface for Portability ROCm
 	pkgver = 3.5.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://rocmdocs.amd.com/en/latest/Installation_Guide/HIP.html
 	arch = x86_64
 	license = MIT
-	makedepends = libelf
 	makedepends = cmake
 	makedepends = python
-	makedepends = llvm-amdgpu
 	makedepends = git
 	depends = rocclr
 	provides = hip
