@@ -9,6 +9,7 @@ pkgbase = hip-rocclr
 	makedepends = python
 	makedepends = git
 	depends = rocclr
+	depends = libelf
 	provides = hip
 	conflicts = hip
 	source = hip-rocclr-3.5.0.tar.gz::https://github.com/ROCm-Developer-Tools/HIP/archive/rocm-3.5.0.tar.gz
