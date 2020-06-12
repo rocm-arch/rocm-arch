@@ -16,12 +16,8 @@ pkgbase = roctracer
 	options = strip
 	source = roctracer-rocm-3.5.0.tar.gz::https://github.com/ROCm-Developer-Tools/roctracer/archive/rocm-3.5.0.tar.gz
 	source = add_string_header.patch
-	source = build_all_targets.patch
-	source = clang_path.patch
 	sha256sums = 7af5326c9ca695642b4265232ec12864a61fd6b6056aa7c4ecd9e19c817f209e
 	sha256sums = 78282e835e495d9499b5e4a759772b80443122390022f4560a500d11e9d6bf0d
-	sha256sums = 94276a05f9236fb8918686e8c675653a4438e96fd0ff1f7165de2147c4428867
-	sha256sums = a0826e3098c25edbc45b581a830d71d9e94cfea6906058181d2e8cea1f4a813c
 
 pkgname = roctracer
 
