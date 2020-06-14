@@ -13,7 +13,9 @@ pkgbase = rock-dkms-bin
 	options = !emptydirs
 	backup = etc/modprobe.d/blacklist-radeon.conf
 	source = http://repo.radeon.com/rocm/apt/debian/pool/main/r/rock-dkms/rock-dkms_3.5-30_all.deb
+	source = rock_compatibility.patch::https://patch-diff.githubusercontent.com/raw/RadeonOpenCompute/ROCK-Kernel-Driver/pull/95.patch
 	sha256sums = f12a2cc3786bda711413f28be06d5ca0a0d44a441cf824455b0262da595a4ece
+	sha256sums = e2afe9cd25934ebe32d9fec06e534b173b999bb0caf102f9a2a204f8b5c08b86
 
 pkgname = rock-dkms-bin
 
