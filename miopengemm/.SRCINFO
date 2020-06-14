@@ -1,7 +1,7 @@
 pkgbase = miopengemm
 	pkgdesc = An OpenCL GEMM kernel generator
 	pkgver = 1.1.6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/ROCmSoftwarePlatform/MIOpenGEMM
 	arch = x86_64
 	license = custom:NCSAOSL
@@ -10,7 +10,7 @@ pkgbase = miopengemm
 	makedepends = ocl-icd
 	makedepends = rocm-cmake
 	depends = ocl-icd
-	source = https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/1.1.6.tar.gz
+	source = miopengemm-1.1.6::https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/1.1.6.tar.gz
 	sha256sums = 9ab04903794c6a59432928eaec92c687d51e2b4fd29630cf227cbc49d56dc69b
 
 pkgname = miopengemm
