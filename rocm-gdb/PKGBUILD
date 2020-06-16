@@ -10,7 +10,7 @@ depends=('rocm-dbgapi' 'python' 'guile2.0' 'ncurses' 'expat' 'xz' 'zlib' 'mpfr' 
 makedepends=('texinfo')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz")
 sha256sums=('cf36d956e84c7a5711b71f281a44b0a9708e13e941d8fca0247d01567e7ee7d1')
-_dirname=$(basename "$url")-$(basename "${source[0]}" ".tar.gz")
+_dirname="$(basename "$url")-$(basename "${source[0]}" ".tar.gz")"
 
 prepare() {
     cd "$_dirname"
@@ -23,32 +23,30 @@ build() {
     cd "$_dirname"
     mkdir -p build && cd build
     ../configure \
-    --prefix=/opt/rocm \
-    --program-prefix=roc \
-    --disable-shared \
-    --disable-nls \
-    --enable-source-highlight \
-    --enable-tui \
-    --enable-64-bit-bfd \
-    --enable-targets="$CHOST,amdgcn-amd-amdhsa" \
-    --with-system-readline \
-    --with-python=/usr/bin/python \
-    --with-guile=guile-2.0 \
-    --with-expat \
-    --with-system-zlib \
-    --with-babeltrace \
-    --with-lzma \
-    --disable-gdbtk \
-    --disable-ld \
-    --disable-gas \
-    --disable-gdbserver \
-    --disable-sim
+        --prefix=/opt/rocm \
+        --program-prefix=roc \
+        --disable-shared \
+        --disable-nls \
+        --enable-source-highlight \
+        --enable-tui \
+        --enable-64-bit-bfd \
+        --enable-targets="$CHOST,amdgcn-amd-amdhsa" \
+        --with-system-readline \
+        --with-python=/usr/bin/python \
+        --with-guile=guile-2.0 \
+        --with-expat \
+        --with-system-zlib \
+        --with-babeltrace \
+        --with-lzma \
+        --disable-gdbtk \
+        --disable-ld \
+        --disable-gas \
+        --disable-gdbserver \
+        --disable-sim
     
     make
 }
 
 package() {
     DESTDIR="$pkgdir" make -C "$_dirname/build" install
-    
-    #TODO: License file
 }
