@@ -14,9 +14,9 @@ pkgbase = rocm-opencl-runtime
 	provides = rocm-opencl-runtime
 	provides = opencl-driver
 	source = rocm-opencl-runtime-3.5.0.tar.gz::https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/roc-3.5.0.tar.gz
-	source = remove-clinfo.patch
+	source = remove-clinfo-cltrace-icd.patch
 	sha256sums = 511b617d5192f2d4893603c1a02402b2ac9556e9806ff09dd2a91d398abf39a0
-	sha256sums = 16b47c9be60ca3bd430a02773e491a6380e01610a72bb74a9bc034a8c211ce29
+	sha256sums = fbfd1920806db44243e2fb7339dfd0118c0cf16c29d53274029e939dfe81fba1
 
 pkgname = rocm-opencl-runtime
 
