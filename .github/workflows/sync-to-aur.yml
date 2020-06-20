@@ -12,9 +12,9 @@ jobs:
         run: |
           echo ${{ secrets.AUR_SSH_KEY }} | install -Dm400 /dev/stdin ~/.ssh/id_ed25519
 
-      - name: Install and configure git
+      - name: Install packages
         run: |
-          sudo apt-get install git
+          sudo apt-get install git rsync
 
       - uses: actions/checkout@v2
         with:
@@ -23,20 +23,25 @@ jobs:
       - name: Sync packages to AUR
         run: |
           set -x
+
+          name=$(git show -s --format='%an')
+          email=$(git show -s --format='%ae')
+          message=$(git show -s --format='%s')
+
           for i in $(git show --pretty="" --name-only | cut -d/ -f1 | sort -u)
           do
             [ ! -d $i ] && continue
             [ ${i:0:1} = . ] && continue
 
-            cd ${GITHUB_WORKSPACE}
-            git format-patch --stdout HEAD~1 -- $i > ~/$i.patch
-
             rm -rf ~/$i
             [ -n "${{ secrets.READ_ONLY }}" ] && git clone https://aur.archlinux.org/$i.git ~/$i || git clone ssh://aur@aur.archlinux.org/$i.git ~/$i
 
             cd ~/$i
-            git config user.name $(cat ~/$i.patch | sed -n '/^From:.*>$/{s/^From: \(.*\) <\(.*\)>$/\1/;p}')
-            git config user.email $(cat ~/$i.patch | sed -n '/^From:.*>$/{s/^From: \(.*\) <\(.*\)>$/\2/;p}')
-            git am -p2 ~/$i.patch;
+            rsync -avP --delete --exclude=.git ${GITHUB_WORKSPACE}/$i ~
+            git config user.name ${name}
+            git config user.email ${email}
+            git add .
+            git commit -m "${message}"
+
             [ -n "${{ secrets.READ_ONLY }}" ] && git show || git push origin master
           done
