@@ -28,10 +28,6 @@ build() {
   make -C build
 }
 
-check() {
-    make -C build check
-}
-
 package() {
   DESTDIR="$pkgdir" make -C build install
 
