@@ -1,0 +1,20 @@
+pkgbase = aomp-openmp
+	pkgdesc = OpenMP runtime for AOMP
+	pkgver = 11.6.1
+	pkgrel = 1
+	url = https://github.com/ROCm-Developer-Tools/amd-llvm-project
+	arch = x86_64
+	license = MIT
+	makedepends = hip-rocclr
+	makedepends = cmake
+	makedepends = python
+	depends = aomp-extras
+	depends = hsa-rocr
+	depends = rocm-device-libs
+	source = aomp-openmp-11.6.1.tar.gz::https://github.com/ROCm-Developer-Tools/amd-llvm-project/archive/aomp-11.6-1.tar.gz
+	source = aomp-openmp-11.6.1-device-libs.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-3.5.1.tar.gz
+	sha256sums = 82724f457c5397459123d76afd6a530f606db782e2715b7b3671064c955cbdff
+	sha256sums = f30b388725f4ea2bfb1233683cde6ef4420c3b4f2b618ba46e3fabbf8ee4eb66
+
+pkgname = aomp-openmp
+

@@ -1,0 +1,65 @@
+# Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
+
+pkgname=aomp-openmp
+pkgdesc='OpenMP runtime for AOMP'
+_pkgver=11.6-1
+pkgver=11.6.1
+pkgrel=1
+arch=('x86_64')
+url='https://github.com/ROCm-Developer-Tools/amd-llvm-project'
+license=('MIT')
+depends=(aomp-extras hsa-rocr rocm-device-libs)
+makedepends=(hip-rocclr cmake python)
+_rocm_ver='3.5.1'
+_device_libs='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
+source=("${pkgname}-${pkgver}.tar.gz::$url/archive/aomp-$_pkgver.tar.gz"
+        "${pkgname}-${pkgver}-device-libs.tar.gz::$_device_libs/archive/rocm-$_rocm_ver.tar.gz")
+sha256sums=('82724f457c5397459123d76afd6a530f606db782e2715b7b3671064c955cbdff'
+            'f30b388725f4ea2bfb1233683cde6ef4420c3b4f2b618ba46e3fabbf8ee4eb66')
+_dirname="$(basename "$url")-$(basename ${source[0]} .tar.gz)"
+_device_dir="$(basename "$_device_libs")-$(basename ${source[1]} .tar.gz)"
+
+build() {
+    CC=/opt/rocm/aomp/bin/clang \
+    CXX=/opt/rocm/aomp/bin/clang++ \
+    cmake -Wno-dev -B build \
+          -S "$_dirname/openmp" \
+          -DCMAKE_INSTALL_PREFIX='/opt/rocm/aomp' \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DLLVM_DIR='/opt/rocm/aomp' \
+          -DROCM_DIR='/opt/rocm' \
+          -DOPENMP_ENABLE_LIBOMPTARGET=1 \
+          -DLIBOMPTARGET_AMDGCN_GFXLIST='gfx700;gfx701;gfx801;gfx803;gfx900;gfx902;gfx906;gfx908' \
+          -DLIBOMP_COPY_EXPORTS=OFF \
+          -DAOMP_STANDALONE_BUILD=0 \
+          -DDEVICELIBS_ROOT="$srcdir/$_device_dir" \
+          -DCMAKE_SHARED_LINKER_FLAGS='-Wl,--disable-new-dtags' \
+          -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
+          -DCMAKE_INSTALL_RPATH='$ORIGIN:$ORIGIN/../lib:/opt/rocm/aomp/lib'
+  
+    make -C build
+
+    CC=/opt/rocm/aomp/bin/clang \
+    CXX=/opt/rocm/aomp/bin/clang++ \
+    cmake -Wno-dev -B build-debug \
+          -S "$_dirname/openmp" \
+          -DCMAKE_INSTALL_PREFIX='/opt/rocm/aomp' \
+          -DCMAKE_BUILD_TYPE=Debug \
+          -DLLVM_DIR='/opt/rocm/aomp' \
+          -DROCM_DIR='/opt/rocm' \
+          -DOPENMP_ENABLE_LIBOMPTARGET=1 \
+          -DLIBOMPTARGET_AMDGCN_GFXLIST='gfx700;gfx701;gfx801;gfx803;gfx900;gfx902;gfx906;gfx908' \
+          -DLIBOMP_COPY_EXPORTS=OFF \
+          -DAOMP_STANDALONE_BUILD=0 \
+          -DDEVICELIBS_ROOT="$srcdir/$_device_dir" \
+          -DCMAKE_SHARED_LINKER_FLAGS='-Wl,--disable-new-dtags' \
+          -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
+          -DCMAKE_INSTALL_RPATH='$ORIGIN:$ORIGIN/../lib:/opt/rocm/aomp/lib'
+
+    make -C build-debug
+}
+
+package() {
+    DESTDIR="$pkgdir" make -C build install
+    DESTDIR="$pkgdir" make -C build-debug install
+}
