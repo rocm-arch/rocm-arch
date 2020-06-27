@@ -1,0 +1,18 @@
+pkgbase = aomp-flang
+	pkgdesc = Fortran component for AOMP
+	pkgver = 11.6.1
+	pkgrel = 1
+	url = https://github.com/ROCm-Developer-Tools/flang
+	arch = x86_64
+	license = custom:Apache 2.0 with LLVM Exception
+	makedepends = cmake
+	makedepends = python
+	makedepends = gcc-fortran
+	depends = aomp-llvm
+	depends = aomp-openmp
+	depends = z3
+	source = aomp-flang-11.6.1.tar.gz::https://github.com/ROCm-Developer-Tools/flang/archive/aomp-11.6-1.tar.gz
+	sha256sums = f94e6f72428816fdcda0a99de1e8d3405388a7f30bab16f6a727cab56b2de489
+
+pkgname = aomp-flang
+
