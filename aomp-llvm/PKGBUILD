@@ -1,0 +1,45 @@
+# Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
+
+pkgname=aomp-llvm
+pkgdesc='LLVM toolchain (clang, lld) for AOMP'
+_pkgver=11.6-1
+pkgver=11.6.1
+pkgrel=1
+arch=('x86_64')
+url='https://github.com/ROCm-Developer-Tools/amd-llvm-project'
+license=('custom:Apache 2.0 with LLVM Exception')
+depends=(z3)
+makedepends=(cmake python)
+source=("${pkgname}-${pkgver}.tar.gz::$url/archive/aomp-$_pkgver.tar.gz")
+sha256sums=('82724f457c5397459123d76afd6a530f606db782e2715b7b3671064c955cbdff')
+_dirname="$(basename "$url")-$(basename ${source[0]} .tar.gz)"
+
+build() {
+    cmake -Wno-dev -B build \
+          -S "$_dirname/llvm" \
+          -DCMAKE_INSTALL_PREFIX='/opt/rocm/aomp' \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DLLVM_HOST_TRIPLE=$CHOST \
+          -DLLVM_BUILD_UTILS=ON \
+          -DLLVM_ENABLE_BINDINGS=OFF \
+          -DLLVM_ENABLE_OCAMLDOC=OFF \
+          -DLLVM_ENABLE_PROJECTS='clang;lld;compiler-rt' \
+          -DLLVM_ENABLE_ASSERTIONS=ON \
+          -DLLVM_VERSION_SUFFIX="_AOMP_Version_$_pkgver" \
+          -DBUG_REPORT_URL='https://github.com/ROCm-Developer-Tools/aomp' \
+          -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' \
+          -DCMAKE_SHARED_LINKER_FLAGS='-Wl,--disable-new-dtags' \
+          -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
+          -DCMAKE_INSTALL_RPATH='$ORIGIN:$ORIGIN/../lib:/opt/rocm/aomp/lib' \
+          -DLLVM_INCLUDE_BENCHMARKS=OFF \
+          -DLLVM_BUILD_TESTS=OFF \
+          -DLLVM_INCLUDE_TESTS=OFF \
+          -DCLANG_INCLUDE_TESTS=OFF \
+          -DOCAMLFIND=NO
+  
+  make -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" make -C build install
+}
