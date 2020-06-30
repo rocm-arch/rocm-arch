@@ -1,8 +1,8 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=rock-dkms-firmware-bin
 pkgver=3.5
-_pkgver=$pkgver-32
-pkgrel=2
+_pkgver=$pkgver-30
+pkgrel=3
 pkgdesc="Linux AMD GPU firmware from ROC in DKMS format."
 arch=('any')
 url="https://github.com/RadeonOpenCompute/ROCK-Kernel-Driver"
