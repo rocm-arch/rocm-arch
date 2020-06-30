@@ -1,7 +1,7 @@
 # Maintainer: acxz <akashpatel2008@yahoo.com>
 pkgname=rock-dkms-bin
 pkgver=3.5
-_pkgver=$pkgver-32
+_pkgver=$pkgver-30
 pkgrel=4
 pkgdesc="Linux AMD GPU kernel driver from ROC in DKMS format."
 arch=('any')
