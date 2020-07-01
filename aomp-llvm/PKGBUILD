@@ -2,8 +2,8 @@
 
 pkgname=aomp-llvm
 pkgdesc='LLVM toolchain (clang, lld) for AOMP'
-_pkgver=11.6-1
-pkgver=11.6.1
+_pkgver=11.6-2
+pkgver=11.6.2
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/ROCm-Developer-Tools/amd-llvm-project'
@@ -11,7 +11,7 @@ license=('custom:Apache 2.0 with LLVM Exception')
 depends=(z3)
 makedepends=(cmake python)
 source=("${pkgname}-${pkgver}.tar.gz::$url/archive/aomp-$_pkgver.tar.gz")
-sha256sums=('82724f457c5397459123d76afd6a530f606db782e2715b7b3671064c955cbdff')
+sha256sums=('83ef698625e4f05de5de6ca4d5a85982a465105a47d70e7b7fae4da969f84475')
 _dirname="$(basename "$url")-$(basename ${source[0]} .tar.gz)"
 
 build() {
