@@ -34,4 +34,5 @@ package() {
 /opt/rocm/rocrand/lib
 EOF
   install -Dm644 "$srcdir/rocRAND-rocm-$pkgver/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  ln -s "/opt/rocm/hiprand/include/hiprand.h" "$pkgdir/opt/rocm/include/hiprand/hiprand.h"
 }
