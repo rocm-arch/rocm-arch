@@ -35,6 +35,5 @@ package() {
 EOF
   install -Dm644 "$srcdir/rocRAND-rocm-$pkgver/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   # Some packages search for hiprand includes in /opt/rocm/include/hiprand
-  install -d "$pkgdir/opt/rocm/include/hiprand"
-  ln -s "/opt/rocm/hiprand/include/" "$pkgdir/opt/rocm/include/hiprand/"
+  ln -s "/opt/rocm/hiprand/include/" "$pkgdir/opt/rocm/include/hiprand"
 }
