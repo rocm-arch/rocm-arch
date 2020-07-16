@@ -22,10 +22,9 @@ package() {
 
   tar xf data.tar.xz -C "$pkgdir"
 
-  grep "dkms/Makefile b" rock_compatibility.patch -A 26 >> Makefile.patch
-
-  cd $pkgdir/usr/src/amdgpu-${_pkgver}/amd
-  patch --forward -p4 dkms/Makefile --input=${srcdir}/Makefile.patch
+  cd $pkgdir/usr/src/amdgpu-${_pkgver}
+  patch --forward -p4 -t --input=${srcdir}/rock_compatibility.patch > patching.log \
+     || echo "patch is meant to fail as not all files from the kernel is in the binary"
 
   install -Dm644 "$pkgdir/usr/share/doc/rock-dkms/copyright" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
