@@ -27,8 +27,10 @@ group, we refer to AMD's [installation guide](https://rocmdocs.amd.com/en/latest
 
 To uninstall, use the following command:
 ```
-yay -R rocm-dkms 
+yay -R rocm-dkms
 ```
+
+For more helpful tips see the ArchWiki entry on ROCm, [here](https://wiki.archlinux.org/index.php/GPGPU#ROCm).
 
 ## Contributing
 Any contribution is always welcome. You can use the [issue tracker](https://github.com/rocm-arch/rocm-arch/issues) to report problems with the AUR packages.
