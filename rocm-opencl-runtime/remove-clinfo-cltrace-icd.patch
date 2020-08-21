@@ -1,0 +1,60 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b2833f1..b4181a5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -10,13 +10,9 @@ project(opencl)
+ #example command:
+ #cmake -DROCclr_DIR=/rocclr -DUSE_COMGR_LIBRARY=yes -DLIBROCclr_STATIC_DIR=/build ..
+ 
+-set(OPENCL_ICD_LOADER_HEADERS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/khronos/headers/opencl2.2" CACHE PATH "")
+ set(BUILD_SHARED_LIBS "Build shared libs" ON)
+ 
+-add_subdirectory(khronos/icd)
+ add_subdirectory(amdocl)
+-add_subdirectory(tools/clinfo)
+-add_subdirectory(tools/cltrace)
+ 
+ # get date information based on UTC
+ # use the last two digits of year + week number + day in the week as OPENCL_VERSION_GITDATE
+@@ -35,31 +31,12 @@ execute_process(COMMAND git rev-parse --short HEAD
+     OUTPUT_VARIABLE OPENCL_VERSION_GITHASH
+     OUTPUT_STRIP_TRAILING_WHITESPACE)
+ 
+-set(OPENCL_VERSION_MAJOR "2")
+-set(OPENCL_VERSION_MINOR "0")
+-set(OPENCL_VERSION_PATCH ${OPENCL_VERSION_GITDATE})
+-
+-get_target_property(OPENCL_LIB_VERSION_MAJOR OpenCL SOVERSION)
+-get_target_property(OPENCL_LIB_VERSION_STRING OpenCL VERSION)
+-
+ ###--- Packaging ------------------------------------------------------------###
+ 
+ # MAIN package
+-install(PROGRAMS $<TARGET_FILE:clinfo>
+-        DESTINATION bin
+-        COMPONENT MAIN)
+-install(PROGRAMS $<TARGET_FILE:cltrace>
+-        DESTINATION lib
+-        COMPONENT MAIN)
+ install(PROGRAMS $<TARGET_FILE:amdocl64>
+         DESTINATION lib
+         COMPONENT MAIN)
+-install(PROGRAMS $<TARGET_FILE:OpenCL>
+-        DESTINATION lib
+-        COMPONENT MAIN)
+-install(PROGRAMS $<TARGET_SONAME_FILE:OpenCL>
+-        DESTINATION lib
+-        COMPONENT MAIN)
+ 
+ # DEV package
+ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/khronos/headers/opencl2.2/CL"
+@@ -70,9 +47,6 @@ install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/khronos/headers/opencl2.2/CL"
+         PATTERN cl_d3d11.h EXCLUDE
+         PATTERN cl_dx9_media_sharing.h EXCLUDE
+         PATTERN cl_egl.h EXCLUDE)
+-install(PROGRAMS $<TARGET_LINKER_FILE:OpenCL>
+-        DESTINATION lib
+-        COMPONENT DEV)
+ 
+ #############################
+ # Packaging steps
