@@ -15,7 +15,7 @@ _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
 
 build() {
     cmake -Wno-dev -S "$_dirname/llvm" \
-	  -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' \
+          -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' \
           -DCMAKE_BUILD_TYPE=Release \
           -DLLVM_HOST_TRIPLE=$CHOST \
           -DLLVM_BUILD_UTILS=ON \
