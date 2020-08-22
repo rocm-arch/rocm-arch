@@ -21,7 +21,7 @@ build() {
           -DLLVM_BUILD_UTILS=ON \
           -DLLVM_ENABLE_BINDINGS=OFF \
           -DLLVM_ENABLE_OCAMLDOC=OFF \
-          -DLLVM_ENABLE_PROJECTS='llvm;clang;lld' \
+          -DLLVM_ENABLE_PROJECTS='llvm;clang;compiler-rt;lld' \
           -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' \
           -DOCAMLFIND=NO
     make
