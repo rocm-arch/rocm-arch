@@ -4,8 +4,11 @@ These scripts implement a great portion of the stack, ranging from low-level int
 
 ## Installation
 The Arch Linux packages for ROCm are available on the [AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository).
-Since many packages will be installed, we recommend to use an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers) like [`yay`](https://aur.archlinux.org/packages/yay/).
-Binary versions are hosted by [`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu). Using them will greatly speed up your installation time.
+Since many packages will be installed, it is recommended to use an [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
+like [`yay`](https://aur.archlinux.org/packages/yay/).
+
+It is also recommended to use the [`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu) binary repository as it will
+greatly speed up your installation time.
 For directions see [Add arch4edu to your Archlinux](https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux).
 
 To install ROCm, use
