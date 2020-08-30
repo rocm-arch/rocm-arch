@@ -32,7 +32,7 @@ For more helpful tips see the ArchWiki entry on ROCm, [here](https://wiki.archli
 ## Contributing
 Your contribution is always welcome. Use the [issue tracker](https://github.com/rocm-arch/rocm-arch/issues) to report problems with the AUR packages.
 Optimally, you open a pull request that solves your problem.
-For most packages, you have to update `pkgver` and `sha256sums`. Before you commit your changes you will need generate `.SRCINFO` from the updated `PKGBUILD`:
+For most packages, you have to update `pkgver` and `sha256sums`. Before you commit your changes you will need to generate `.SRCINFO` from the updated `PKGBUILD`:
 ```bash
 makepkg --printsrcinfo > .SRCINFO
 ```
