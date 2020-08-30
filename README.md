@@ -15,7 +15,7 @@ To install ROCm, use
 ```bash
 yay -S rocm-dev rocm-utils rocm-libs
 ```
-which includes the low-level components and compilers (`rocm-dev`), utilities like `rocminfo` (`rocm-utils`) and GPU-accelerated math libraries (`rocm-libs').
+which includes the low-level components and compilers (`rocm-dev`), utilities like `rocminfo` (`rocm-utils`) and GPU-accelerated math libraries (`rocm-libs`).
 
 You can also install specific ROCm packages like so:
 ```bash
