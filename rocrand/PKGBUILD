@@ -1,7 +1,7 @@
 # Maintainer: Jakub Okoński <jakub@okonski.org>
 pkgname=rocrand
 pkgver=3.7.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Pseudo-random and quasi-random number generator on ROCm'
 arch=('x86_64')
 url='https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html#rocrand'
@@ -17,6 +17,7 @@ build() {
   CXX=/opt/rocm/hip/bin/hipcc \
   cmake -Wno-dev -S "$_dirname" \
         -DCMAKE_INSTALL_PREFIX=/opt/rocm \
+        -DAMDGPU_TARGETS='gfx803;gfx900;gfx906;gfx908' \
         -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr \
         -DBUILD_TEST=OFF
   make
