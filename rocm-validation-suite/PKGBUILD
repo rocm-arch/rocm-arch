@@ -41,4 +41,3 @@ package() {
     ln -s "/opt/rocm/rvs/bin/$_fn" "$pkgdir/usr/bin/$_fn"
   done
 }
-
