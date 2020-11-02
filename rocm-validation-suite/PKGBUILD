@@ -16,8 +16,8 @@ sha256sums=('17662028a4485b97e3ccaad5e94d20aaa2c3e9e3f741c7ebbf0f8b4cdebcc555'
             '16059a24ae9c01a7e77e1323a2437b9222998d3ac19d7c3367bcf821da60ecd9')
 
 prepare() {
- cd $srcdir
- patch ROCmValidationSuite-rocm-$pkgver/rcqt.so/src/action.cpp action.patch 
+  cd "$srcdir/ROCmValidationSuite-rocm-$pkgver"
+  patch --forward --strip=1 --input="${srcdir}/action.patch"
 }
 
 build() {
@@ -41,3 +41,5 @@ package() {
     ln -s "/opt/rocm/rvs/bin/$_fn" "$pkgdir/usr/bin/$_fn"
   done
 }
+sha256sums=('17662028a4485b97e3ccaad5e94d20aaa2c3e9e3f741c7ebbf0f8b4cdebcc555'
+            '8edac06b0658c77f91ce77bbfbe539c4f001b27ab205aabcad91cbecf19bd4d0')
