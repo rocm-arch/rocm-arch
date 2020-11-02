@@ -14,7 +14,9 @@ pkgbase = rocm-validation-suite
 	options = !staticlibs
 	options = strip
 	source = rocm-validation-suite-3.9.0.tar.gz::https://github.com/ROCm-Developer-Tools/ROCmValidationSuite/archive/rocm-3.9.0.tar.gz
+	source = action.patch
 	sha256sums = 17662028a4485b97e3ccaad5e94d20aaa2c3e9e3f741c7ebbf0f8b4cdebcc555
+	sha256sums = 16059a24ae9c01a7e77e1323a2437b9222998d3ac19d7c3367bcf821da60ecd9
 
 pkgname = rocm-validation-suite
 

@@ -1,0 +1,17 @@
+--- src/ROCmValidationSuite-rocm-3.9.0/rcqt.so/src/action.cpp	2020-09-24 10:09:40.000000000 +0200
++++ action.cpp	2020-11-02 15:32:36.464149284 +0100
+@@ -196,13 +196,7 @@
+   // Checking if version field exists
+   string version_name;
+   version_exists = has_property(VERSION, &version_name);
+-  #if RVS_OS_TYPE_NUM == 1
+-  string command_string = "dpkg --get-selections > ";
+-  #endif
+-  #if RVS_OS_TYPE_NUM == 2
+-  string command_string = "rpm -qa --qf \"%{NAME}\n\" > ";
+-  #endif
+-  command_string += PKG_CMD_FILE;
++  string command_string = "pacman -Q > ";
+ 
+   // We execute the dpkg-querry
+   if (system(command_string.c_str()) == -1) {
