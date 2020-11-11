@@ -1,0 +1,11 @@
+pkgbase = openmp-extras
+	pkgdesc = OpenMP Extras provides openmp and flang libraries.
+	pkgver = 3.9.0
+	pkgrel = 1
+	url = https://rocmdocs.amd.com/en/latest/Programming_Guides/aomp.html#openmp-support
+	arch = x86_64
+	depends = llvm-amdgpu
+	depends = rocm-device-libs
+
+pkgname = openmp-extras
+
