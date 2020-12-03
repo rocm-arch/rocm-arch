@@ -16,7 +16,7 @@ source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz"
         'disable-git-versioning.patch')
 sha256sums=('0082c402f890391023acdfd546760f41cb276dffc0ffeddc325999fd2331d4e8'
             'c6358b4dfac658c0a27a3425ace455d951cd26be827dd7751c28cb83dc84b67d'
-	    '7244c2917389788b5ef0265bbd41eef1f0db713debc28d02e3aad9d5a4c79821')
+	      '7244c2917389788b5ef0265bbd41eef1f0db713debc28d02e3aad9d5a4c79821')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 prepare() {
