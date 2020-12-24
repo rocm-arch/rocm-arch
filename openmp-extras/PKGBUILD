@@ -1,6 +1,6 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=openmp-extras
-pkgver=3.9.0
+pkgver=4.0.0
 pkgrel=1
 pkgdesc="OpenMP Extras provides openmp and flang libraries."
 arch=('x86_64')
