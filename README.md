@@ -16,6 +16,11 @@ To install ROCm, use
 yay -S rocm-dev rocm-utils rocm-libs
 ```
 which includes the low-level components and compilers (`rocm-dev`), utilities like `rocminfo` (`rocm-utils`) and GPU-accelerated math libraries (`rocm-libs`).
+> **WARNING** It is strongly recommended to remove all ROCm components when updating to a new release.
+> Otherwise, building the packages with `yay` may have unwanted side effects resulting in build errors.
+> If it's a small release with only a few updated packages, consider building them in a [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
+>
+> One way to mitigate these issues is to use the binary versions of the packages provided by arch4edu.
 
 You can also install specific ROCm packages like so:
 ```bash
