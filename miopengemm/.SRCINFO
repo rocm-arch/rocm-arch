@@ -1,7 +1,7 @@
 pkgbase = miopengemm
 	pkgdesc = An OpenCL GEMM kernel generator
 	pkgver = 4.2.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/ROCmSoftwarePlatform/MIOpenGEMM
 	arch = x86_64
 	license = MIT
