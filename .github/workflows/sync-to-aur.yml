@@ -1,0 +1,47 @@
+name: Sync package to AUR
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save ssh key
+        run: |
+          echo ${{ secrets.AUR_SSH_KEY }} | install -Dm400 /dev/stdin ~/.ssh/id_ed25519
+
+      - name: Install packages
+        run: |
+          sudo apt-get install git rsync
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Sync packages to AUR
+        run: |
+          set -x
+
+          name=$(git show -s --format='%an')
+          email=$(git show -s --format='%ae')
+          message=$(git show -s --format='%s')
+
+          for i in $(git show --pretty="" --name-only | cut -d/ -f1 | sort -u)
+          do
+            [ ! -d $i ] && continue
+            [ ${i:0:1} = . ] && continue
+
+            rm -rf ~/$i
+            [ -n "${{ secrets.READ_ONLY }}" ] && git clone https://aur.archlinux.org/$i.git ~/$i || git clone ssh://aur@aur.archlinux.org/$i.git ~/$i
+
+            cd ~/$i
+            rsync -avP --delete --exclude=.git ${GITHUB_WORKSPACE}/$i ~
+            git config user.name ${name}
+            git config user.email ${email}
+            git add .
+            git commit -m "${message}"
+
+            [ -n "${{ secrets.READ_ONLY }}" ] && git show || git push origin master
+          done
