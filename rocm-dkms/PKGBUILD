@@ -2,7 +2,7 @@
 pkgname=rocm-dkms
 pkgver=3.10.0
 pkgrel=1
-pkgdesc="ROCm - Open Soruce Platform for HPC and Ultrascale GPU Computing"
+pkgdesc="ROCm - Open Source Platform for HPC and Ultrascale GPU Computing"
 arch=('x86_64')
 url="https://rocm-documentation.readthedocs.io/en/latest/"
 license=()
