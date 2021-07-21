@@ -13,7 +13,7 @@
     if(NOT WIN32)
       find_dependency(AMDDeviceLibs)
     endif()
-!   set(AMDGPU_TARGETS "gfx803;gfx900;gfx906;gfx908" CACHE STRING "AMD GPU targets to compile for")
+!   set(AMDGPU_TARGETS "gfx900;gfx906;gfx908;gfx1010" CACHE STRING "AMD GPU targets to compile for")
     set(GPU_TARGETS "${AMDGPU_TARGETS}" CACHE STRING "GPU targets to compile for")
   endif()
   
