@@ -1,12 +1,54 @@
-# Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=openmp-extras
-pkgver=3.9.0
+pkgdesc='Radeon Open Compute - openmp-extras (OpenMP AMD GPU Offloading)'
+pkgver=4.3.1
 pkgrel=1
-pkgdesc="OpenMP Extras provides openmp and flang libraries."
 arch=('x86_64')
-url="https://rocmdocs.amd.com/en/latest/Programming_Guides/aomp.html#openmp-support"
-license=()
-depends=('llvm-amdgpu' 'rocm-device-libs')
-makedepends=()
-source=()
-sha256sums=()
+url='https://github.com/ROCm-Developer-Tools/aomp'
+license=('custom:Apache 2.0 with LLVM Exception')
+depends=(rocm-device-libs llvm-amdgpu)
+makedepends=(cmake python ninja gawk)
+llvm_url='https://github.com/RadeonOpenCompute/llvm-project'
+source=("llvm-amdgpu-${pkgver}.tar.gz::$llvm_url/archive/rocm-$pkgver.tar.gz"
+        "aomp-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz"
+        "aomp-device-libs-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-$pkgver.tar.gz"
+        "aomp-gcc8-only-for-cuda.patch"
+        "aomp-openmp-buildpath.patch"
+        )
+sha256sums=('b53c6b13be7d77dc93a7c62e4adbb414701e4e601e1af2d1e98da4ee07c9837f'
+            '2092fd210160986127c302c2d636bf5f58ba3a946d27a8474593fa7f87603950'
+            'a7291813168e500bfa8aaa5d1dccf5250764ddfe27535def01b51eb5021d4592'
+            '705a7103c3aeff514e5645c130786172961c54673dfdd772caece3b5e7536088'
+            'f7ed1704ffb095bbe8512b1c567a111936685d35f64123c786194e4239277251'
+            )
+options=(staticlibs)
+
+prepare() {
+
+    ln -f -s $srcdir/llvm-project-rocm-$pkgver $srcdir/llvm-project
+
+    cd $srcdir/aomp-rocm-$pkgver
+    patch -Np1 < $srcdir/aomp-gcc8-only-for-cuda.patch
+    patch -Np1 < $srcdir/aomp-openmp-buildpath.patch
+
+}
+
+build() {
+
+    export OUT_DIR=$pkgdir/opt/rocm
+    export AOMP=$OUT_DIR/llvm
+    export AOMP_STANDALONE_BUILD=0
+    export AOMP_REPOS=$srcdir
+    export ROCM_DIR=/opt/rocm
+    export DEVICELIBS_ROOT=$srcdir/ROCm-Device-Libs-rocm-$pkgver
+    export LLVM_PROJECT_ROOT=$srcdir/llvm-project
+
+    cd $srcdir/aomp-rocm-$pkgver/bin
+    ./build_openmp.sh
+}
+
+
+package() {
+
+    cd $srcdir/aomp-rocm-$pkgver/bin
+    ./build_openmp.sh install
+}

@@ -1,6 +1,6 @@
 pkgbase = openmp-extras
-	pkgdesc = OpenMP Extras provides openmp and flang libraries.
-	pkgver = 3.9.0
+	pkgdesc = OpenMP Extras provides OpenMP AMD GPU Offloading.
+	pkgver = 4.3.1
 	pkgrel = 1
 	url = https://rocmdocs.amd.com/en/latest/Programming_Guides/aomp.html#openmp-support
 	arch = x86_64
