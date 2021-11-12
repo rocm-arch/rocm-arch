@@ -13,9 +13,9 @@ For directions see [Add arch4edu to your Archlinux](https://github.com/arch4edu/
 
 To install ROCm, use
 ```bash
-yay -S rocm-dev rocm-utils rocm-libs
+yay -S rocm-hip-sdk rocm-opencl-sdk
 ```
-which includes the low-level components and compilers (`rocm-dev`), utilities like `rocminfo` (`rocm-utils`) and GPU-accelerated math libraries (`rocm-libs`).
+which includes the low-level components and compilers, utilities like `rocminfo` and GPU-accelerated math libraries. See the [documentation](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation_new.html#packages-in-rocm-programming-models) for an overview on the available meta packages.
 > **WARNING** It is strongly recommended to remove all ROCm components when updating to a new release.
 > Otherwise, building the packages with `yay` may have unwanted side effects resulting in build errors.
 > If it's a small release with only a few updated packages, consider building them in a [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
@@ -32,7 +32,7 @@ group, we refer to AMD's [installation guide](https://rocmdocs.amd.com/en/latest
 
 To uninstall, use the following command:
 ```bash
-yay -R rocm-dev rocm-utils rocm-libs
+yay -R rocm-hip-sdk rocm-opencl-sdk
 ```
 
 For more helpful tips see the ArchWiki entry on ROCm, [here](https://wiki.archlinux.org/index.php/GPGPU#ROCm).
