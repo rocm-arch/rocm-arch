@@ -13,7 +13,7 @@ dlibs_url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
 flang_url='https://github.com/ROCm-Developer-Tools/flang'
 source=("llvm-amdgpu-${pkgver}.tar.gz::$llvm_url/archive/rocm-$pkgver.tar.gz"
         "aomp-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz"
-        "aomp-device-libs-$pkgver.tar.gz::dlibs_url/archive/rocm-$pkgver.tar.gz"
+        "aomp-device-libs-$pkgver.tar.gz::$dlibs_url/archive/rocm-$pkgver.tar.gz"
         "flang-$pkgver.tar.gz::$flang_url/archive/rocm-$pkgver.tar.gz"
         "aomp-gcc8-only-for-cuda.patch"
         "aomp-openmp-buildpath.patch"
