@@ -1,6 +1,7 @@
-pkgname=openmp-extras
-pkgdesc='Radeon Open Compute - openmp-extras (OpenMP AMD GPU Offloading)'
-pkgver=4.3.1
+pkgbase=openmp-extras
+pkgname=(openmp-extras rocm-pgmath rocm-flang rocm-flang-runtime)
+pkgdesc='Radeon Open Compute - openmp-extras with flang (OpenMP AMD GPU Offloading)'
+pkgver=4.5.0
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/ROCm-Developer-Tools/aomp'
@@ -8,33 +9,45 @@ license=('custom:Apache 2.0 with LLVM Exception')
 depends=(rocm-device-libs llvm-amdgpu)
 makedepends=(cmake python ninja gawk)
 llvm_url='https://github.com/RadeonOpenCompute/llvm-project'
+dlibs_url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
+flang_url='https://github.com/ROCm-Developer-Tools/flang'
 source=("llvm-amdgpu-${pkgver}.tar.gz::$llvm_url/archive/rocm-$pkgver.tar.gz"
         "aomp-$pkgver.tar.gz::$url/archive/rocm-$pkgver.tar.gz"
-        "aomp-device-libs-$pkgver.tar.gz::https://github.com/RadeonOpenCompute/ROCm-Device-Libs/archive/rocm-$pkgver.tar.gz"
+        "aomp-device-libs-$pkgver.tar.gz::dlibs_url/archive/rocm-$pkgver.tar.gz"
+        "flang-$pkgver.tar.gz::$flang_url/archive/rocm-$pkgver.tar.gz"
         "aomp-gcc8-only-for-cuda.patch"
         "aomp-openmp-buildpath.patch"
+        "aomp-flang-decouple-out-dir-and-rocm-install.patch"
+        "aomp-flang-libomp-path.patch"
         )
-sha256sums=('b53c6b13be7d77dc93a7c62e4adbb414701e4e601e1af2d1e98da4ee07c9837f'
-            '2092fd210160986127c302c2d636bf5f58ba3a946d27a8474593fa7f87603950'
-            'a7291813168e500bfa8aaa5d1dccf5250764ddfe27535def01b51eb5021d4592'
+sha256sums=('e33d08c8ae42a3ba394dceb8938263cd14ba45e9603b18f3502c3344814ca296'
+            '27a5794b5885c61dc6f63cec36673b37deb029754d3b2fd3e1b21239efffa96a'
+            '78412fb10ceb215952b5cc722ed08fa82501b5848d599dc00744ae1bdc196f77'
+            '3d7277fd658e51e7e43272c4b319e733c18f5a6d11f739aaec0df758a720809e'
             '705a7103c3aeff514e5645c130786172961c54673dfdd772caece3b5e7536088'
             'f7ed1704ffb095bbe8512b1c567a111936685d35f64123c786194e4239277251'
+            'e82a4f065cc259095bf96778b913b97fe39d7c207e4e25ccf59d8fa264014262'
+            'ff3c3e56bfc11c0c9a6ab5c5392168da06aed3b4a21cdfcf7a149d12a69e2906'
             )
 options=(staticlibs)
 
 prepare() {
 
     ln -f -s $srcdir/llvm-project-rocm-$pkgver $srcdir/llvm-project
+    ln -f -s $srcdir/flang-rocm-$pkgver $srcdir/flang
 
     cd $srcdir/aomp-rocm-$pkgver
     patch -Np1 < $srcdir/aomp-gcc8-only-for-cuda.patch
     patch -Np1 < $srcdir/aomp-openmp-buildpath.patch
+    patch -Np1 < $srcdir/aomp-flang-decouple-out-dir-and-rocm-install.patch
+    patch -Np1 < $srcdir/aomp-flang-libomp-path.patch
 
 }
 
 build() {
 
-    export OUT_DIR=$pkgdir/opt/rocm
+    export OMPEXTRA_DIR=$srcdir/out/openmp-extras
+    export OUT_DIR=$OMPEXTRA_DIR
     export AOMP=$OUT_DIR/llvm
     export AOMP_STANDALONE_BUILD=0
     export AOMP_REPOS=$srcdir
@@ -44,11 +57,65 @@ build() {
 
     cd $srcdir/aomp-rocm-$pkgver/bin
     ./build_openmp.sh
+    ./build_openmp.sh install
+
+    export PGMATH_DIR=$srcdir/out/rocm-pgmath
+    mkdir -p $PGMATH_DIR
+    cp -r $OUT_DIR/llvm $PGMATH_DIR/
+    export OUT_DIR=$PGMATH_DIR
+    export AOMP=$OUT_DIR/llvm
+
+    ./build_pgmath.sh
+    ./build_pgmath.sh install
+
+    export FLANG_DIR=$srcdir/out/rocm-flang
+    mkdir -p $FLANG_DIR
+    cp -r $OUT_DIR/llvm $FLANG_DIR/
+    export OUT_DIR=$FLANG_DIR
+    export AOMP=$OUT_DIR/llvm
+
+    ./build_flang.sh
+    ./build_flang.sh install
+
+    export FLANGRT_DIR=$srcdir/out/rocm-flang-runtime
+    mkdir -p $FLANGRT_DIR
+    cp -r $OUT_DIR/llvm $FLANGRT_DIR/
+    export OUT_DIR=$FLANGRT_DIR
+    export AOMP=$OUT_DIR/llvm
+
+    ./build_flang_runtime.sh
+    ./build_flang_runtime.sh install
+
+    # remove duplicate files
+    cd $OMPEXTRA_DIR
+    find . \( -type l -o -type f \) -exec sh -c "rm -rf $PGMATH_DIR/{}; rm -rf $FLANG_DIR/{}; rm -rf $FLANGRT_DIR/{}" \;
+    cd $PGMATH_DIR
+    find . \( -type l -o -type f \) -exec sh -c "rm -rf $FLANG_DIR/{}; rm -rf $FLANGRT_DIR/{}" \;
+    cd $FLANG_DIR
+    find . \( -type l -o -type f \) -exec sh -c "rm -rf $FLANGRT_DIR/{}" \;
 }
 
 
-package() {
+package_openmp-extras() {
 
-    cd $srcdir/aomp-rocm-$pkgver/bin
-    ./build_openmp.sh install
+    mkdir -p $pkgdir/opt/rocm/
+    cp -r $srcdir/out/openmp-extras/* $pkgdir/opt/rocm/
+}
+
+package_rocm-pgmath() {
+
+    mkdir -p $pkgdir/opt/rocm/
+    cp -r $srcdir/out/rocm-pgmath/* $pkgdir/opt/rocm/
+}
+
+package_rocm-flang() {
+
+    mkdir -p $pkgdir/opt/rocm/
+    cp -r $srcdir/out/rocm-flang/* $pkgdir/opt/rocm/
+}
+
+package_rocm-flang-runtime() {
+
+    mkdir -p $pkgdir/opt/rocm/
+    cp -r $srcdir/out/rocm-flang-runtime/* $pkgdir/opt/rocm/
 }
