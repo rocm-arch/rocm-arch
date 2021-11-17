@@ -1,12 +1,11 @@
-pkgbase=openmp-extras
-pkgname=(openmp-extras rocm-pgmath rocm-flang rocm-flang-runtime)
+pkgname=openmp-extras
 pkgdesc='Radeon Open Compute - openmp-extras with flang (OpenMP AMD GPU Offloading)'
 pkgver=4.5.0
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/ROCm-Developer-Tools/aomp'
 license=('custom:Apache 2.0 with LLVM Exception')
-depends=(rocm-device-libs llvm-amdgpu)
+depends=(rocm-device-libs rocm-llvm)
 makedepends=(cmake python ninja gawk)
 llvm_url='https://github.com/RadeonOpenCompute/llvm-project'
 dlibs_url='https://github.com/RadeonOpenCompute/ROCm-Device-Libs'
@@ -59,63 +58,19 @@ build() {
     ./build_openmp.sh
     ./build_openmp.sh install
 
-    export PGMATH_DIR=$srcdir/out/rocm-pgmath
-    mkdir -p $PGMATH_DIR
-    cp -r $OUT_DIR/llvm $PGMATH_DIR/
-    export OUT_DIR=$PGMATH_DIR
-    export AOMP=$OUT_DIR/llvm
-
     ./build_pgmath.sh
     ./build_pgmath.sh install
-
-    export FLANG_DIR=$srcdir/out/rocm-flang
-    mkdir -p $FLANG_DIR
-    cp -r $OUT_DIR/llvm $FLANG_DIR/
-    export OUT_DIR=$FLANG_DIR
-    export AOMP=$OUT_DIR/llvm
 
     ./build_flang.sh
     ./build_flang.sh install
 
-    export FLANGRT_DIR=$srcdir/out/rocm-flang-runtime
-    mkdir -p $FLANGRT_DIR
-    cp -r $OUT_DIR/llvm $FLANGRT_DIR/
-    export OUT_DIR=$FLANGRT_DIR
-    export AOMP=$OUT_DIR/llvm
-
     ./build_flang_runtime.sh
     ./build_flang_runtime.sh install
-
-    # remove duplicate files
-    cd $OMPEXTRA_DIR
-    find . \( -type l -o -type f \) -exec sh -c "rm -rf $PGMATH_DIR/{}; rm -rf $FLANG_DIR/{}; rm -rf $FLANGRT_DIR/{}" \;
-    cd $PGMATH_DIR
-    find . \( -type l -o -type f \) -exec sh -c "rm -rf $FLANG_DIR/{}; rm -rf $FLANGRT_DIR/{}" \;
-    cd $FLANG_DIR
-    find . \( -type l -o -type f \) -exec sh -c "rm -rf $FLANGRT_DIR/{}" \;
 }
 
 
-package_openmp-extras() {
+package() {
 
     mkdir -p $pkgdir/opt/rocm/
     cp -r $srcdir/out/openmp-extras/* $pkgdir/opt/rocm/
-}
-
-package_rocm-pgmath() {
-
-    mkdir -p $pkgdir/opt/rocm/
-    cp -r $srcdir/out/rocm-pgmath/* $pkgdir/opt/rocm/
-}
-
-package_rocm-flang() {
-
-    mkdir -p $pkgdir/opt/rocm/
-    cp -r $srcdir/out/rocm-flang/* $pkgdir/opt/rocm/
-}
-
-package_rocm-flang-runtime() {
-
-    mkdir -p $pkgdir/opt/rocm/
-    cp -r $srcdir/out/rocm-flang-runtime/* $pkgdir/opt/rocm/
 }
