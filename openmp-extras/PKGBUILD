@@ -18,6 +18,7 @@ source=("llvm-amdgpu-${pkgver}.tar.gz::$llvm_url/archive/rocm-$pkgver.tar.gz"
         "flang-$pkgver.tar.gz::$flang_url/archive/rocm-$pkgver.tar.gz"
         "aomp-gcc8-only-for-cuda.patch"
         "aomp-openmp-buildpath.patch"
+        "aomp-openmp-llvm.patch"
         "aomp-flang-decouple-out-dir-and-rocm-install.patch"
         "aomp-flang-libomp-path.patch"
         "aomp-flang-remove-sha.patch"
@@ -30,6 +31,7 @@ sha256sums=('e33d08c8ae42a3ba394dceb8938263cd14ba45e9603b18f3502c3344814ca296'
             '3d7277fd658e51e7e43272c4b319e733c18f5a6d11f739aaec0df758a720809e'
             '705a7103c3aeff514e5645c130786172961c54673dfdd772caece3b5e7536088'
             'f7ed1704ffb095bbe8512b1c567a111936685d35f64123c786194e4239277251'
+            'f673b6d5d2b7bd1a37cfc6e1015c75bc484504301de35a599c8a4034596d0740'
             'e82a4f065cc259095bf96778b913b97fe39d7c207e4e25ccf59d8fa264014262'
             'ff3c3e56bfc11c0c9a6ab5c5392168da06aed3b4a21cdfcf7a149d12a69e2906'
             '565af54e3079c130c87ebe036d91db21631e01ff0435f80bc54dbb55e8b02229'
@@ -46,6 +48,7 @@ prepare() {
     cd $srcdir/aomp-rocm-$pkgver
     patch -Np1 < $srcdir/aomp-gcc8-only-for-cuda.patch
     patch -Np1 < $srcdir/aomp-openmp-buildpath.patch
+    patch -Np1 < $srcdir/aomp-openmp-llvm.patch
     patch -Np1 < $srcdir/aomp-flang-decouple-out-dir-and-rocm-install.patch
     patch -Np1 < $srcdir/aomp-flang-libomp-path.patch
 
