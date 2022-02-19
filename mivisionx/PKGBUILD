@@ -1,16 +1,23 @@
 # Maintainer: acxz <akashpatel2008 at yahoo dot com>
 pkgname=mivisionx
-pkgver=5.0.0
+pkgver=5.0.1
 pkgrel=1
 pkgdesc="Set of comprehensive computer vision and machine intelligence
 libraries, utilities, and applications bundled into a single toolkit"
 arch=('x86_64')
 url="https://gpuopen-professionalcompute-libraries.github.io/MIVisionX/"
 license=('MIT')
-depends=('rocm-core' 'rocm-cmake' 'miopengemm' 'miopen' 'protobuf' 'opencv' 'ffmpeg')
+depends=('rocm-core' 'rocm-cmake' 'miopengemm' 'miopen-hip' 'protobuf' 'opencv' 'ffmpeg')
 makedepends=('cmake')
-source=("$pkgname-$pkgver.tar.gz::https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-$pkgver.tar.gz")
-sha256sums=('935113feb71eced2b5f21fffc2a90a188b4ef2fe009c50f0445504cb27fbc58c')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/archive/rocm-$pkgver.tar.gz"
+        "ffmpeg.patch::https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX/pull/775.patch")
+sha256sums=('8c1d9f2688786890ec5a0bdee349503ea7a0f61afecf8e58696835a326f2d136'
+            'SKIP')
+
+prepare() {
+  cd "$srcdir/MIVisionX-rocm-$pkgver"
+  patch --forward --strip=1 --input="${srcdir}/ffmpeg.patch"
+}
 
 build() {
   mkdir -p "$srcdir/build"
@@ -30,7 +37,8 @@ package() {
   # add links
   install -d "$pkgdir/usr/bin"
   local _fn
-  for _fn in mivisionx; do
+  for _file in bin/*; do
+    _fn="$(basename -- $_file)"
     ln -s "/opt/rocm/mivisionx/bin/$_fn" "$pkgdir/usr/bin/$_fn"
   done
 }
