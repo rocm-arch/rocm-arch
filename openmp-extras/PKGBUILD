@@ -1,6 +1,6 @@
 pkgname=openmp-extras
 pkgdesc='Radeon Open Compute - openmp-extras with flang (OpenMP AMD GPU Offloading)'
-pkgver=4.5.2
+pkgver=5.0.1
 pkgrel=1
 arch=('x86_64')
 url='https://github.com/ROCm-Developer-Tools/aomp'
@@ -16,22 +16,27 @@ source=("llvm-amdgpu-${pkgver}.tar.gz::$llvm_url/archive/rocm-$pkgver.tar.gz"
         "aomp-extras-$pkgver.tar.gz::$extras_url/archive/rocm-$pkgver.tar.gz"
         "aomp-device-libs-$pkgver.tar.gz::$dlibs_url/archive/rocm-$pkgver.tar.gz"
         "flang-$pkgver.tar.gz::$flang_url/archive/rocm-$pkgver.tar.gz"
+        "llvm-project-hostrpc-fprintf-decl.patch"
         "aomp-gcc8-only-for-cuda.patch"
         "aomp-openmp-buildpath.patch"
         "aomp-openmp-llvm.patch"
+        "aomp-flang-alarm-signature.patch"
         "aomp-flang-decouple-out-dir-and-rocm-install.patch"
         "aomp-flang-libomp-path.patch"
         "aomp-flang-remove-sha.patch"
         "aomp-extras-compiler-in-rocm-dir.patch"
         )
-sha256sums=('36a4f7dd961cf373b743fc679bdf622089d2a905de2cfd6fd6c9e7ff8d8ad61f'
-            'ce90b9560205f58f50e72615cd937f02041f4eb2ff66ab445ce3b9faf4f4fa4c'
-            '2b7ae80dda7ffee63210855bc2746c8a13063777c9b855a562eedca4e7ab6254'
-            '50e9e87ecd6b561cad0d471295d29f7220e195528e567fcabe2ec73838979f61'
-            '54bc3e668577fc30ef77f0c95436e9f9327f256ac8c43eee35eb90000883c6d3'
+sha256sums=(
+            '77e252720de65a1dd43a92d3589b350b5a90b60990cb4afa7ac95b2ba759c8f4'
+            '2654e3b00549cc79ef6986d9d245eecfd57c9f811e94d53645bb3312c0e6b870'
+            '49341fad5a622df9e690bbdd439e45fdabb35dc756fffc661ca8bcebdf5eb96f'
+            'dbffea2bdf3789b2c02f14e10143cf3a6daeda6a6814bdc51b77811f728f3c91'
+            'e371486e4d38677a08a6d35776877f844761cfecc4b012db4d29db13e67da117'
+            'c846bac17580e939492b843bee092c2e1b2b414a683bdb6be2973ae044642424'
             '705a7103c3aeff514e5645c130786172961c54673dfdd772caece3b5e7536088'
             'f7ed1704ffb095bbe8512b1c567a111936685d35f64123c786194e4239277251'
-            'f673b6d5d2b7bd1a37cfc6e1015c75bc484504301de35a599c8a4034596d0740'
+            '6efb9538e016e1e6e2fb6ce52408bb6317c213ebdd46a60925447d0b43f42ee6'
+            '7c796d44952da8f089dc3ee013970dba7be43c60eb90131f86ce7d15c67b4b9b'
             'e82a4f065cc259095bf96778b913b97fe39d7c207e4e25ccf59d8fa264014262'
             'ff3c3e56bfc11c0c9a6ab5c5392168da06aed3b4a21cdfcf7a149d12a69e2906'
             '565af54e3079c130c87ebe036d91db21631e01ff0435f80bc54dbb55e8b02229'
@@ -45,6 +50,9 @@ prepare() {
     ln -f -s $srcdir/flang-rocm-$pkgver $srcdir/flang
     ln -f -s $srcdir/aomp-extras-rocm-$pkgver $srcdir/aomp-extras
 
+    cd $srcdir/llvm-project-rocm-$pkgver
+    patch -Np1 < $srcdir/llvm-project-hostrpc-fprintf-decl.patch
+
     cd $srcdir/aomp-rocm-$pkgver
     patch -Np1 < $srcdir/aomp-gcc8-only-for-cuda.patch
     patch -Np1 < $srcdir/aomp-openmp-buildpath.patch
@@ -53,7 +61,8 @@ prepare() {
     patch -Np1 < $srcdir/aomp-flang-libomp-path.patch
 
     cd $srcdir/flang
-    patch -Np1 < $srcdir/aomp-flang-remove-sha.patch
+    patch -Np1 < $srcdir/aomp-flang-alarm-signature.patch
+#    patch -Np1 < $srcdir/aomp-flang-remove-sha.patch
 
     cd $srcdir/aomp-extras
     patch -Np1 < $srcdir/aomp-extras-compiler-in-rocm-dir.patch
