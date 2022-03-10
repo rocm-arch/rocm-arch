@@ -1,29 +1,69 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 # Contributor: acxz <akashpatel2008 at yahoo dot com>
+# Contributor: JP-Ellis <josh@jpellis.me>
+
 pkgname=migraphx
-pkgver=4.5.2
+pkgver=5.0.2
 pkgrel=1
 pkgdesc="AMD's graph optimization engine"
 arch=('x86_64')
 url="https://rocmsoftwareplatform.github.io/AMDMIGraphX/doc/html/"
 license=('MIT')
 depends=('hip' 'miopen' 'protobuf' 'msgpack-cxx' 'blaze')
-makedepends=('cmake' 'rocm-cmake' 'nlohmann-json' 'half' 'pybind11')
+makedepends=('cmake' 'rocm-cmake' 'nlohmann-json' 'pybind11')
 _git='https://github.com/ROCmSoftwarePlatform/AMDMIGraphX'
-source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz")
-sha256sums=('ecfd9a8e7967076f056d5b6a90b22f8919b82226443769b181193f16ebf58b83')
+source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz"
+  "half-1.12.0.tar.gz::https://github.com/ROCmSoftwarePlatform/half/archive/refs/tags/1.12.0.tar.gz")
+sha256sums=('3ef48ac03b909d1a1aa1f91f365ce64af2ce66635b6efb5ad0b207dc51ff2fd6'
+            '0a08660b68abb176ebc2a0cdf8de46e3182a7f46c66443bb80dbfaaec98cf969')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
+# While other libraries in the ROCmSoftwarePlatform appear to work with Half v2,
+# this library does not. As it is just a header, it has been added to the
+# PKGBUILD source.
+
+# While this step does not appear necessary; I have left it commented in case we need to reintroduce it.
+# prepare() {
+#   cd "$_dirname"
+
+#   # -fcf-protection is not supported by HIP, see
+#   # https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/docs/markdown/clang_options.md
+#   # -fPIC fixes linking errors with boost.
+#   export CXX=/opt/rocm/llvm/bin/clang++
+#   export CXXFLAGS="${CXXFLAGS} -fcf-protection=none -fPIC -Wno-reserved-identifier"
+
+#   # We can use the system libraries
+#   for dep in "google/protobuf" "nlohmann/json" "blaze" "pybind/pybind11" "msgpack/msgpack-c" ; do
+#     sed -i "s|^$dep|#$dep|" requirements.txt
+#   done
+
+#   chmod +x install_deps.cmake
+#   ./install_deps.cmake --prefix "$srcdir/deps"
+# }
+
 build() {
-  cmake -Wno-dev -B build \
-        -S "$_dirname" \
-        -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-        "$srcdir/AMDMIGraphX-rocm-$pkgver"
+  cd "$_dirname"
+
+  export CXX=/opt/rocm/llvm/bin/clang++
+  export CXXFLAGS="${CXXFLAGS} -fcf-protection=none -fPIC -Wno-reserved-identifier"
+
+  sed -i 's|set(PYTHON_SEARCH_VERSIONS 2.7 3.5 3.6 3.7 3.8 3.9)|set(PYTHON_SEARCH_VERSIONS 2.7 3.5 3.6 3.7 3.8 3.9 3.10)|' \
+    cmake/PythonModules.cmake
+
+  sed -i 's|#include <unordered_map>|#include <string>\n\0|' cmake/Embed.cmake
+
+  cmake -B build -Wno-dev \
+        -DMIGRAPHX_ENABLE_PYTHON=OFF \
+        -DHALF_INCLUDE_DIR="$srcdir/half-1.12.0/include" \
+        -DCMAKE_INSTALL_PREFIX=/opt/rocm
+
   make -C build
 }
 
 package() {
+  cd "$_dirname"
+
   DESTDIR="$pkgdir" make -C build install
 
-  install -Dm644 "$_dirname/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
