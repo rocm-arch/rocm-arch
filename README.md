@@ -10,6 +10,7 @@ like [`yay`](https://aur.archlinux.org/packages/yay/).
 It is also recommended to use the [`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu) binary repository as it will
 greatly speed up your installation time.
 For directions see [Add arch4edu to your Archlinux](https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux).
+> **WARNING** Currently, `arch4edu` is out of sync see [this discussion](https://github.com/rocm-arch/rocm-arch/issues/642#issuecomment-1002910838).
 
 To install ROCm, use
 ```bash
@@ -22,10 +23,21 @@ which includes the low-level components and compilers, utilities like `rocminfo`
 >
 > One way to mitigate these issues is to use the binary versions of the packages provided by arch4edu.
 
-You can also install specific ROCm packages like so:
+To speed up compilation of application libraries like `rocblas` or `rocfft` export `AMDGPU_TARGETS`
+and set it to the architecture name of your GPU. To find out this name, install `rocminfo`,
 ```bash
 yay -S rocminfo
 ```
+and call
+```bash
+rocminfo | grep gfx
+```
+for VEGA 56/64 the output is
+```bash
+  Name:                    gfx900
+        Name:                    amdgcn-amd-amdhsa--gfx900:xnack-
+```
+Hence, you have to set `AMDGPU_TARGETS` to `gfx900`.
 
 For additional installation configuration, such as adding a user to the `video`
 group, we refer to AMD's [installation guide](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html).
