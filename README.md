@@ -24,7 +24,7 @@ paru -S rocm-hip-sdk rocm-opencl-sdk
 ```
 which includes the low-level components and compilers, utilities like `rocminfo`
 and GPU-accelerated math libraries. See the
-[documentation](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation_new.html#meta-packages-in-rocm-programming-models)
+[documentation](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.0.2/page/Meta-packages_in_ROCm_Programming_Models.html)
 for an overview on the available meta packages.
 > **WARNING** It is strongly recommended to remove all ROCm components when updating to a new release.
 > Otherwise, building the packages with `paru` may have unwanted side effects resulting in build errors.
@@ -50,7 +50,7 @@ Hence, you have to set `AMDGPU_TARGETS` to `gfx900`.
 
 For additional installation configuration, such as adding a user to the `video`
 group, we refer to AMD's
-[installation guide](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation_new.html#setting-permissions-for-groups).
+[installation guide](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.0.2/page/Prerequisite_Actions.html#d3919e648).
 
 To uninstall, use the following command:
 ```bash
