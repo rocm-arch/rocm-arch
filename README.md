@@ -3,7 +3,7 @@ This repository hosts a collection of [Arch Linux](https://www.archlinux.org/)
 [PKGBUILDs](https://wiki.archlinux.org/index.php/PKGBUILD) for the
 [AMD ROCm Platform](https://www.amd.com/en/graphics/servers-solutions-rocm).
 These scripts implement a great portion of the stack, ranging from low-level
-interfaces, over compilers to high-level application librariers.
+interfaces, over compilers to high-level application libraries.
 
 ## Installation
 The Arch Linux packages for ROCm are available on the
@@ -32,6 +32,16 @@ for an overview on the available meta packages.
 >
 > One way to mitigate these issues is to use the binary versions of the packages provided by arch4edu.
 
+## Recommendations for building from source
+
+ROCm stack comprises around 50 packages including a fork of LLVM.
+Therefore, building all packages from source can take a long time and can use a lot of RAM.
+If you are experiencing the latter when building `rocm-llvm` set the number of threads for its compilation via the environment variable `NINJAFLAGS`,
+```bash
+export NINJAFLAGS="-jXX"
+```
+where `XX` is the number of threads you would like to use.
+
 To speed up compilation of application libraries like `rocblas` or `rocfft` export `AMDGPU_TARGETS`
 and set it to the architecture name of your GPU. To find out this name, install `rocminfo`,
 ```bash
@@ -46,7 +56,10 @@ for VEGA 56/64 the output is
   Name:                    gfx900
         Name:                    amdgcn-amd-amdhsa--gfx900:xnack-
 ```
-Hence, you have to set `AMDGPU_TARGETS` to `gfx900`.
+Hence, you have to set `AMDGPU_TARGETS` to `gfx900`,
+```bash
+export AMDGPU_TARGETS="gfx900"
+```
 
 For additional installation configuration, such as adding a user to the `video`
 group, we refer to AMD's
