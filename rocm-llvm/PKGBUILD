@@ -9,7 +9,7 @@ arch=('x86_64')
 url='https://github.com/RadeonOpenCompute/llvm-project'
 license=('custom:Apache 2.0 with LLVM Exception')
 depends=(z3)
-makedepends=(cmake python ninja)
+makedepends=(cmake)
 provides=("llvm-amdgpu")
 replaces=('llvm-amdgpu')
 conflicts=('llvm-amdgpu')
@@ -18,12 +18,8 @@ sha256sums=('db5d45c4a7842a908527c1b7b8d4a40c688225a41d23cfa382eab23edfffdd10')
 options=(staticlibs !lto)
 _dirname="$(basename "$url")-$(basename "${source[0]}" .tar.gz)"
 
-# NINJAFLAGS is an env var used to pass commandline options to ninja
-# NOTE: It's your responbility to validate the value of $NINJAFLAGS. If unsure, don't set it.
-# NINJAFLAGS="-j20"
-
 build() {
-    cmake -GNinja -S "$_dirname/llvm" \
+    cmake -S "$_dirname/llvm" \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX='/opt/rocm/llvm' \
         -DLLVM_HOST_TRIPLE=$CHOST \
@@ -36,11 +32,11 @@ build() {
         -DLLVM_ENABLE_PROJECTS='llvm;clang;compiler-rt;lld' \
         -DLLVM_TARGETS_TO_BUILD='AMDGPU;X86' \
         -DLLVM_BINUTILS_INCDIR=/usr/include
-    ninja $NINJAFLAGS
+    make
 }
 
 package() {
-    DESTDIR="$pkgdir" ninja $NINJAFLAGS install
+    make DESTDIR="$pkgdir" install
 
     # https://bugs.archlinux.org/task/28479
     install -d "$pkgdir/opt/rocm/llvm/lib/bfd-plugins"
