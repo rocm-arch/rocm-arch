@@ -1,6 +1,6 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 pkgname=rocm-hip-runtime
-pkgver=5.0.2
+pkgver=5.1.0
 pkgrel=1
 pkgdesc="Packages to run HIP applications on the AMD platform"
 arch=('x86_64')
@@ -10,8 +10,8 @@ depends=('rocm-core' 'rocm-language-runtime' 'rocminfo' 'hip-runtime-amd' 'rocm-
 makedepends=()
 optdepends=('hipify-clang: Translate CUDA code into HIP. Requires CUDA.')
 source=()
-sha256sums=()
-_magic_bit=72
+
+_magic_bit=36
 
 package() {
 	mkdir -p "${pkgdir}/opt/rocm/.info"
