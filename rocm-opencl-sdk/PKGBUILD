@@ -1,6 +1,6 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 pkgname=rocm-opencl-sdk
-pkgver=5.0.2
+pkgver=5.1.0
 pkgrel=1
 pkgdesc="Develop applications in OpenCL for the AMD platform"
 arch=('x86_64')
@@ -9,7 +9,7 @@ license=()
 depends=('rocm-core' 'rocm-language-runtime' 'rocm-opencl-runtime' 'rocm-llvm')
 makedepends=()
 source=()
-sha256sums=()
+
 _magic_bit=72
 
 package() {
