@@ -1,6 +1,6 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 pkgname=rocm-language-runtime
-pkgver=5.0.2
+pkgver=5.1.0
 pkgrel=1
 pkgdesc="ROCr - ROCm runtime"
 arch=('x86_64')
@@ -9,8 +9,8 @@ license=()
 depends=('rocm-core' 'hsakmt-roct' 'hsa-rocr' 'rocm-device-libs' 'comgr')
 makedepends=()
 source=()
-sha256sums=()
-_magic_bit=72
+
+_magic_bit=36
 
 package() {
 	mkdir -p "${pkgdir}/opt/rocm/.info"
