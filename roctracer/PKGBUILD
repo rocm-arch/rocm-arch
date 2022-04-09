@@ -2,12 +2,12 @@
 # Contributor: acxz <akashpatel2008 at yahoo dot com>
 pkgname=roctracer
 pkgver=5.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="ROCm Tracer Callback/Activity Library for Performance tracing AMD GPU's"
 arch=('x86_64')
 url='https://rocmdocs.amd.com/en/latest/ROCm_Tools/ROCm-Tools.html#amd-rocm-roctracer'
 license=('MIT')
-depends=('hip' 'rocprofiler')
+depends=('hip' 'rocprofiler' 'hsa-rocr')
 makedepends=('cmake' 'git' 'python-argparse' 'python-cppheaderparser' 'python-ply')
 options=(!staticlibs strip)
 _git='https://github.com/ROCm-Developer-Tools/roctracer'
