@@ -1,4 +1,6 @@
-# Maintainer: JP-Ellis <josh@jpellis.me>
+# Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
+# Contributor: acxz <akashpatel at yahoo dot com>
+# Contributor: JP-Ellis <josh@jpellis.me>
 
 pkgname=rocm-llvm-mlir
 pkgdesc="Radeon Open Compute - LLVM Multi-Level IR Compiler Framework"
