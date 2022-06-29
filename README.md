@@ -61,9 +61,18 @@ Hence, you have to set `AMDGPU_TARGETS` to `gfx900`,
 export AMDGPU_TARGETS="gfx900"
 ```
 
+Some commonly used compiler flags are unsupported by `clang` (and thus `hipcc`) from `rocm-llvm`,
+including stack protection,
+```bash
+-fstack-protector-all
+-fstack-protector-strong
+-fstack-protector
+```
+See the [official documentation](https://docs.amd.com/bundle/ROCm-Compiler-Reference-Guide-v5.2/page/Appendix_A.html) for a full list.
+
 For additional installation configuration, such as adding a user to the `video`
 group, we refer to AMD's
-[installation guide](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.0.2/page/Prerequisite_Actions.html#d3919e648).
+[installation guide](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.2/page/Prerequisite_Actions.html).
 
 To uninstall, use the following command:
 ```bash
