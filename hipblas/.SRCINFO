@@ -1,6 +1,6 @@
 pkgbase = hipblas
 	pkgdesc = ROCm BLAS marshalling library
-	pkgver = 4.5.2
+	pkgver = 5.1.3
 	pkgrel = 1
 	url = https://rocmdocs.amd.com/en/latest/ROCm_Libraries/ROCm_Libraries.html#hipblas
 	arch = x86_64
@@ -10,7 +10,7 @@ pkgbase = hipblas
 	depends = hip
 	depends = rocblas
 	depends = rocsolver
-	source = hipblas-4.5.2.tar.gz::https://github.com/ROCmSoftwarePlatform/hipBLAS/archive/rocm-4.5.2.tar.gz
-	sha256sums = 82dd82a41bbadbb2a91a2a44a5d8e0d2e4f36d3078286ed4db3549b1fb6d6978
+	source = hipblas-5.1.3.tar.gz::https://github.com/ROCmSoftwarePlatform/hipBLAS/archive/rocm-5.1.3.tar.gz
+	sha256sums = f0fdaa851971b41b48ec2e7d640746fbd6f9f433da2020c5fd95c91a7473d9e1
 
 pkgname = hipblas
