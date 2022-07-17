@@ -25,7 +25,7 @@ prepare() {
 
 build() {
   # -fcf-protection is not supported by HIP, see
-  # https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-4.5.x/docs/markdown/clang_options.md
+  # https://docs.amd.com/bundle/ROCm-Compiler-Reference-Guide-v5.2/page/Appendix_A.html
   # -fPIC fixes linking.
   export CXXFLAGS="${CXXFLAGS} -fcf-protection=none -fPIC"
 
