@@ -16,7 +16,6 @@ It is also recommended to use the
 [`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu)
 binary repository as it will greatly speed up your installation time.
 For directions see [Add arch4edu to your Archlinux](https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux).
-> **WARNING** Currently, `arch4edu` is out of sync see [this discussion](https://github.com/rocm-arch/rocm-arch/issues/642#issuecomment-1002910838).
 
 To install ROCm, use
 ```bash
