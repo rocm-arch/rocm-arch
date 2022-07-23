@@ -1,6 +1,6 @@
 pkgbase = miopengemm
 	pkgdesc = An OpenCL GEMM kernel generator
-	pkgver = 5.2.0
+	pkgver = 5.2.1
 	pkgrel = 1
 	url = https://github.com/ROCmSoftwarePlatform/MIOpenGEMM
 	arch = x86_64
@@ -10,9 +10,9 @@ pkgbase = miopengemm
 	makedepends = rocm-cmake
 	makedepends = texlive-latexextra
 	depends = ocl-icd
-	source = miopengemm-5.2.0.tar.gz::https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/rocm-5.2.0.tar.gz
+	source = miopengemm-5.2.1.tar.gz::https://github.com/ROCmSoftwarePlatform/MIOpenGEMM/archive/rocm-5.2.1.tar.gz
 	source = fix-gcc11-build.patch::https://patch-diff.githubusercontent.com/raw/ROCmSoftwarePlatform/MIOpenGEMM/pull/46.patch
-	sha256sums = 10458fb07b56a7fbe165595d588b7bf5f1300c57bda2f3133c3687c7bae39ea8
+	sha256sums = 9cea190ee0a6645b6d3ce3e136a8e7d07cf4044e98014ccc82b5e5f8b468b1c1
 	sha256sums = SKIP
 
 pkgname = miopengemm
