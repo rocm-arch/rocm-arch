@@ -11,14 +11,17 @@ depends=('hip' 'rocsparse' 'rocblas' 'rocprim' 'rocrand' 'openmp')
 makedepends=('cmake' 'rocm-cmake' 'git')
 _git='https://github.com/ROCmSoftwarePlatform/rocALUTION'
 source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz"
-        "rocblas-rocsparse-include-path.patch::$_git/commit/8264818ab790c48f12df45e6dc90d504be72d690.patch")
+        "rocblas-rocsparse-include-path.patch::$_git/commit/8264818ab790c48f12df45e6dc90d504be72d690.patch"
+        "gfx1031.patch")
 sha256sums=('f246bd5b5d1b5821c29b566610a1c1d5c5cc361e0e5c373b8b04168b05e9b26f'
+            'SKIP'
             'SKIP')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 prepare() {
     cd "$_dirname"
     patch -Np1 -i "$srcdir/rocblas-rocsparse-include-path.patch"
+    patch -Np1 -i "$srcdir/gfx1031.patch"
 }
 
 build() {

@@ -12,8 +12,10 @@ makedepends=('cmake' 'git' 'python' 'python-pip' 'python-virtualenv' 'python-pya
              'perl-file-which' 'msgpack-c' 'rocm-cmake' 'gcc-fortran')
 _rocblas='https://github.com/ROCmSoftwarePlatform/rocBLAS'
 source=("$pkgname-$pkgver.tar.gz::$_rocblas/archive/rocm-$pkgver.tar.gz"
-        "include-path.patch::https://github.com/ROCmSoftwarePlatform/rocBLAS/commit/992429ff1d04195b10f9a3350668e180b34dbdb5.patch")
+        "include-path.patch::https://github.com/ROCmSoftwarePlatform/rocBLAS/commit/992429ff1d04195b10f9a3350668e180b34dbdb5.patch"
+        "gfx1031.patch::https://github.com/littlewu2508/rocBLAS/commit/6c360dca36e8d6e691527b238d9a22f656ff3ade.patch")
 sha256sums=('6be804ba8d9e491a85063c220cd0ddbf3d13e3b481eee31041c35a938723f4c6'
+            'SKIP'
             'SKIP')
 options=(!lto)
 _dirname="$(basename "$_rocblas")-$(basename "${source[0]}" ".tar.gz")"
@@ -25,6 +27,7 @@ prepare() {
     # See https://github.com/ROCmSoftwarePlatform/rocBLAS/commit/992429ff1d04195b10f9a3350668e180b34dbdb5
     cd "$_dirname"
     patch -Np1 -i "$srcdir/include-path.patch"
+    patch -Np1 -i "$srcdir/gfx1031.patch"
 }
 
 build() {
@@ -33,6 +36,8 @@ build() {
                     -Damd_comgr_DIR=/opt/rocm/lib/cmake/amd_comgr
                     -DBUILD_WITH_TENSILE=ON
                     -DTensile_LIBRARY_FORMAT=yaml
+                    -Dtensile_fork="DorianRudolph"
+                    -Dtensile_tag="1eba330320cf798e8a37e3de332ad4480110a430"
                     -DTensile_CPU_THREADS="$_tensile_threads"
                     -DTensile_CODE_OBJECT_VERSION=V3
                     -DCMAKE_TOOLCHAIN_FILE=toolchain-linux.cmake
