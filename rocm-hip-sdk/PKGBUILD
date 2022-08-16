@@ -1,5 +1,6 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 # Contributor: JP-Ellis <josh@jpellis.me>
+# Contributor: wuxxin <wuxxin@gmail.com>
 
 pkgname=rocm-hip-sdk
 _pkgver_major=5
