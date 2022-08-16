@@ -13,16 +13,16 @@ arch=('x86_64')
 url="https://rocm-documentation.readthedocs.io/en/latest/"
 license=()
 depends=(
+  'rocm-core'
+  'rocm-hip-runtime'
   'hipblas'
   'hipfft'
-  'hipsolver'
   'hipsparse'
+  'hipsolver'
   'rccl'
   'rocalution'
   'rocblas'
   'rocfft'
-  'rocm-core'
-  'rocm-hip-runtime'
   'rocrand'
   'rocsolver'
   'rocsparse'
