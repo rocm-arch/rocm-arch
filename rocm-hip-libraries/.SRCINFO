@@ -1,12 +1,12 @@
 pkgbase = rocm-hip-libraries
 	pkgdesc = Develop applications using HIP and libraries for AMD platforms
 	pkgver = 5.2.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://rocm-documentation.readthedocs.io/en/latest/
 	arch = x86_64
 	depends = hipblas
 	depends = hipfft
-	depends = hipfort
+	depends = hipsolver
 	depends = hipsparse
 	depends = rccl
 	depends = rocalution
