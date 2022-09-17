@@ -78,6 +78,13 @@ To uninstall, use the following command:
 paru -R rocm-hip-sdk rocm-opencl-sdk
 ```
 
+### OpenCL runtime for Polaris
+To enable OpenCL support on Polaris GPUs (gfx800s) set
+```
+ROC_ENABLE_PRE_VEGA=1
+```
+as an environment variable.
+
 For more helpful tips see the ArchWiki entry on ROCm,
 [here](https://wiki.archlinux.org/index.php/GPGPU#ROCm).
 
