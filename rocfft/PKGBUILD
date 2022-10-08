@@ -18,7 +18,7 @@ _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 build() {
   local cmake_args=(-DCMAKE_INSTALL_PREFIX=/opt/rocm
-                    -DCMAKE_CXX_COMPILER=hipcc)
+                    -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc)
   if [[ -n "$AMDGPU_TARGETS" ]]; then
       cmake_args+=(-DAMDGPU_TARGETS="$AMDGPU_TARGETS")
   fi
