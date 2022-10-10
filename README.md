@@ -31,35 +31,28 @@ for an overview on the available meta packages.
 >
 > One way to mitigate these issues is to use the binary versions of the packages provided by arch4edu.
 
-## Recommendations for building from source
+## Building from source
 
 ROCm stack comprises around 50 packages including a fork of LLVM.
 Therefore, building all packages from source can take a long time and can use a lot of RAM.
-If you are experiencing the latter when building `rocm-llvm` set the number of threads for its compilation via the environment variable `NINJAFLAGS`,
-```bash
-export NINJAFLAGS="-jXX"
-```
-where `XX` is the number of threads you would like to use.
 
-To speed up compilation of application libraries like `rocblas` or `rocfft` export `AMDGPU_TARGETS`
-and set it to the architecture name of your GPU. To find out this name, install `rocminfo`,
+### Common issues
+
+Please consult this list first before opening an issue
+
+#### Package X does not build on OS Y
+We only support Arch Linux. If a package does not build, first consider building in a
+[clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
+The AUR wrapper `paru` has recently added support for building in clean chroot. Call
 ```bash
-paru -S rocminfo
+paru --chroot
 ```
-and call
-```bash
-rocminfo | grep gfx
+and follow the instructions. Afterward, you can build packages in a clean chroot by calling
 ```
-for VEGA 56/64 the output is
-```bash
-  Name:                    gfx900
-        Name:                    amdgcn-amd-amdhsa--gfx900:xnack-
-```
-Hence, you have to set `AMDGPU_TARGETS` to `gfx900`,
-```bash
-export AMDGPU_TARGETS="gfx900"
+paru --chroot -S <PACKAGE NAME>
 ```
 
+#### `hipcc` errors with stack protector enabled
 Some commonly used compiler flags are unsupported by `clang` (and thus `hipcc`) from `rocm-llvm`,
 including stack protection,
 ```bash
