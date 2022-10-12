@@ -5,7 +5,6 @@ pkgbase = rocthrust
 	url = https://docs.amd.com/bundle/rocTHRUST_API_Guide/page/index.html
 	arch = x86_64
 	license = Apache
-	makedepends = cmake
 	makedepends = rocm-cmake
 	makedepends = git
 	depends = hip
