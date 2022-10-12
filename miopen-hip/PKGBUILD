@@ -33,6 +33,10 @@ prepare() {
   sed -i 's|^boost|#\0|' {,min-}requirements.txt
   sed -i 's|^ROCmSoftwarePlatform/llvm-project-mlir|#\0|' {,min-}requirements.txt
   ./install_deps.cmake --minimum --prefix "$srcdir/deps"
+
+  # fix rocblas inclusion
+  sed -i 's/<rocblas.h>/<rocblas\/rocblas.h>/g' src/include/miopen/handle.hpp
+  sed -i 's/<rocblas.h>/<rocblas\/rocblas.h>/g' src/gemm_v2.cpp
 }
 
 build() {
