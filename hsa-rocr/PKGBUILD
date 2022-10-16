@@ -20,6 +20,10 @@ sha256sums=('b51dbedbe73390e0be748b92158839c82d7fa0e514fede60aa7696dc498facf0')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" .tar.gz)"
 
 build() {
+  export CXX=/opt/rocm/llvm/bin/clang++
+  export CC=/opt/rocm/llvm/bin/clang
+  export Clang_DIR=/opt/rocm/llvm/lib/cmake/clang
+  export LLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm
   cmake \
     -Wno-dev \
     -B build \
