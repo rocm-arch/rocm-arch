@@ -38,7 +38,7 @@ Therefore, building all packages from source can take a long time and can use a 
 
 ### Common issues
 
-Please consult this list first before opening an issue
+Please consult this list first before opening an issue.
 
 #### Package X does not build on OS Y
 We only support Arch Linux. If a package does not build, first consider building in a
@@ -50,6 +50,12 @@ paru --chroot
 and follow the instructions. Afterward, you can build packages in a clean chroot by calling
 ```
 paru --chroot -S <PACKAGE NAME>
+```
+With ROCm 5.3 `rocm-llvm` is based on `llvm-15`. If your build error is related to `clang`
+and you *really* do not want to build in a clean chroot (highly recommended!) try setting
+certain variables to `clang` in `/opt/rocm/`:
+```
+env CXX=/opt/rocm/llvm/bin/clang++ CC=/opt/rocm/llvm/bin/clang Clang_DIR=/opt/rocm/llvm/lib/cmake/clang LLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm makepkg
 ```
 
 #### `hipcc` errors with stack protector enabled
