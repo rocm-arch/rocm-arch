@@ -66,7 +66,7 @@ including stack protection,
 -fstack-protector-strong
 -fstack-protector
 ```
-See the [official documentation](https://docs.amd.com/bundle/ROCm-Compiler-Reference-Guide-v5.2/page/Appendix_A.html) for a full list.
+See the [official documentation](https://docs.amd.com/bundle/ROCm-Compiler-Reference-Guide-v5.3/page/Appendix_A.html) for a full list.
 
 For additional installation configuration, such as adding a user to the `video`
 group, we refer to AMD's
