@@ -5,7 +5,7 @@
 pkgname=rocm-llvm-mlir
 pkgdesc="Radeon Open Compute - LLVM Multi-Level IR Compiler Framework"
 pkgver=5.3.0
-pkgrel=2
+pkgrel=3
 arch=('x86_64')
 url="https://github.com/ROCmSoftwarePlatform/rocMLIR"
 license=('custom:Apache 2.0 with LLVM Exception')
