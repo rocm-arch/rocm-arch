@@ -25,7 +25,9 @@ build() {
     -B build \
     -S "$_dirname/src" \
     -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-    -DCMAKE_CXX_FLAGS='-DNDEBUG'
+    -DCMAKE_CXX_FLAGS='-DNDEBUG' \
+    -DClang_DIR=/opt/rocm/llvm/lib/cmake/clang \
+    -DLLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm
   cmake --build build
 }
 
