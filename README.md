@@ -40,6 +40,10 @@ Therefore, building all packages from source can take a long time and can use a 
 
 Please consult this list first before opening an issue.
 
+#### Package X does not work
+Please first check if your GPU is supported by ROCm.
+A complete list is found in the [official documentation](https://community.amd.com/t5/knowledge-base/amd-rocm-hardware-and-software-support-document/ta-p/489937)
+
 #### Package X does not build on OS Y
 We only support Arch Linux. If a package does not build, first consider building in a
 [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
