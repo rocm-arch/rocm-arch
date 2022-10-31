@@ -23,6 +23,7 @@ build() {
     -B build \
     -S "$_dirname" \
     -DCMAKE_CXX_COMPILER=/opt/rocm/bin/hipcc \
+    -DCMAKE_CXX_FLAGS="--hip-link -Qunused-arguments" \
     -DCMAKE_INSTALL_PREFIX=/opt/rocm \
     -Drocprim_DIR=/opt/rocm/rocprim/rocprim/lib/cmake/rocprim \
     -DBUILD_CLIENTS_SAMPLES=OFF
