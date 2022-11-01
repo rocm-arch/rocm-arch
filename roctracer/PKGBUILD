@@ -16,12 +16,14 @@ options=('!lto')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 build() {
+  export Clang_DIR=/opt/rocm/llvm/lib/cmake/clang
   cmake \
     -B build \
     -Wno-dev \
     -S "$_dirname" \
     -DCMAKE_INSTALL_PREFIX=/opt/rocm \
-    -DHIP_ROOT_DIR=/opt/rocm/hip
+    -DHIP_ROOT_DIR=/opt/rocm/hip \
+    -DCMAKE_HIP_FLAGS="--hip-link -Qunused-arguments"
   cmake --build build
 }
 
