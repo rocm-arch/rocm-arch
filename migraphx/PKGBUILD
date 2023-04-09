@@ -1,7 +1,7 @@
 # Maintainer: Torsten Keßler <t dot kessler at posteo dot de>
 # Contributor: acxz <akashpatel2008 at yahoo dot com>
 pkgname=migraphx
-pkgver=5.4.3
+pkgver=5.4.4
 pkgrel=1
 pkgdesc="AMD's graph optimization engine."
 arch=('x86_64')
@@ -13,9 +13,9 @@ _git='https://github.com/ROCmSoftwarePlatform/AMDMIGraphX'
 source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz"
         "include-array.patch::https://patch-diff.githubusercontent.com/raw/ROCmSoftwarePlatform/AMDMIGraphX/pull/1435.patch"
         "msgpack.patch::https://patch-diff.githubusercontent.com/raw/ROCmSoftwarePlatform/AMDMIGraphX/pull/1603.patch")
-sha256sums=('f83e7bbe5d6d0951fb2cf0abf7e8b3530e9a5e45f7cec6d760da055d6905d568'
-            'SKIP'
-            'SKIP')
+sha256sums=('4a6b779cd088fdab93a01da6cb8697224a1e26f19e0e956120e7ad170bc44c3d'
+            '2c31bbc1f155cee11187bb009df0863657b1c403114ea86e3cbddeb4fd51bbb9'
+            'e9b40b68379efb56fb96cb16c1c91d0baf6dd235b581e195b8e3b25b324fbe97')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 prepare() {
