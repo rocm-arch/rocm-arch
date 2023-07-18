@@ -2,39 +2,23 @@
 This repository hosts a collection of [Arch Linux](https://www.archlinux.org/)
 [PKGBUILDs](https://wiki.archlinux.org/index.php/PKGBUILD) for the
 [AMD ROCm Platform](https://www.amd.com/en/graphics/servers-solutions-rocm).
-These scripts implement a great portion of the stack, ranging from low-level
-interfaces, over compilers to high-level application libraries.
+A great portion of the stack is part of the official `[extra]` repository,
+including all packages needed for Machine Learning.
 
 ## Installation
-The Arch Linux packages for ROCm are available on the
-[AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository).
-Since many packages will be installed, it is recommended to use an
-[AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers)
-like [`paru`](https://aur.archlinux.org/packages/paru/).
-
-It is also recommended to use the
-[`arch4edu`](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#arch4edu)
-binary repository as it will greatly speed up your installation time.
-For directions see [Add arch4edu to your Archlinux](https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux).
-
 To install ROCm, use
 ```bash
-paru -S rocm-hip-sdk rocm-opencl-sdk
+pacman -S rocm-hip-sdk rocm-opencl-sdk
 ```
 which includes the low-level components and compilers, utilities like `rocminfo`
 and GPU-accelerated math libraries. See the
-[documentation](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.0.2/page/Meta-packages_in_ROCm_Programming_Models.html)
+[documentation](https://rocm.docs.amd.com/en/latest/deploy/linux/os-native/package_manager_integration.html#components-of-rocm-programming-models)
 for an overview on the available meta packages.
-> **WARNING** It is strongly recommended to remove all ROCm components when updating to a new release.
-> Otherwise, building the packages with `paru` may have unwanted side effects resulting in build errors.
-> If it's a small release with only a few updated packages, consider building them in a [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
->
-> One way to mitigate these issues is to use the binary versions of the packages provided by arch4edu.
 
 ## Building from source
 
-ROCm stack comprises around 50 packages including a fork of LLVM.
-Therefore, building all packages from source can take a long time and can use a lot of RAM.
+All important ROCm packages are in the official Arch Linux repositories.
+Here, we disucss how to build the few remaining packages in the AUR.
 
 ### Common issues
 
@@ -47,19 +31,13 @@ A complete list is found in the [official documentation](https://community.amd.c
 #### Package X does not build on OS Y
 We only support Arch Linux. If a package does not build, first consider building in a
 [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
-The AUR wrapper `paru` has recently added support for building in clean chroot. Call
+The AUR wrapper `paru` supports building in clean chroot. Call
 ```bash
 paru --chroot
 ```
 and follow the instructions. Afterward, you can build packages in a clean chroot by calling
 ```
 paru --chroot -S <PACKAGE NAME>
-```
-With ROCm 5.3 `rocm-llvm` is based on `llvm-15`. If your build error is related to `clang`
-and you *really* do not want to build in a clean chroot (highly recommended!) try setting
-certain variables to `clang` in `/opt/rocm/`:
-```
-env CXX=/opt/rocm/llvm/bin/clang++ CC=/opt/rocm/llvm/bin/clang Clang_DIR=/opt/rocm/llvm/lib/cmake/clang LLVM_DIR=/opt/rocm/llvm/lib/cmake/llvm makepkg
 ```
 
 #### `hipcc` errors with stack protector enabled
@@ -70,16 +48,7 @@ including stack protection,
 -fstack-protector-strong
 -fstack-protector
 ```
-See the [official documentation](https://docs.amd.com/bundle/ROCm-Compiler-Reference-Guide-v5.3/page/Appendix_A.html) for a full list.
-
-For additional installation configuration, such as adding a user to the `video`
-group, we refer to AMD's
-[installation guide](https://docs.amd.com/bundle/ROCm-Installation-Guide-v5.2/page/Prerequisite_Actions.html).
-
-To uninstall, use the following command:
-```bash
-paru -R rocm-hip-sdk rocm-opencl-sdk
-```
+See the [official documentation](https://rocm.docs.amd.com/en/latest/reference/rocmcc/rocmcc.html#support-status-of-other-clang-options) for a full list.
 
 ### OpenCL runtime for Polaris
 To enable OpenCL support on Polaris GPUs (gfx800s) set
@@ -99,14 +68,4 @@ getting something to work, feel free to post there.
 
 Use the [issue tracker](https://github.com/rocm-arch/rocm-arch/issues) to report
 problems with the AUR packages.
-
-## Contributing
-Your contribution is always welcome. Before making a pull request, please open
-an issue at the [issue tracker](https://github.com/rocm-arch/rocm-arch/issues)
-to report the problem with build/error logs.
-For most packages, you have to update `pkgver` and `sha256sums`. Before you commit your changes you will need to generate `.SRCINFO` from the updated `PKGBUILD`:
-```bash
-makepkg --printsrcinfo > .SRCINFO
-```
-and add it to your commit.
-As we want to bring ROCm into `community` we would greatly appreciate if you test that the package builds in a [clean chroot](https://wiki.archlinux.org/index.php/DeveloperWiki:Building_in_a_clean_chroot).
+Use the official [bugtracker](https://bugs.archlinux.org/) for the offical binary packages.
