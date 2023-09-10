@@ -2,7 +2,7 @@
 # Contributor: codyfish <fe27 at gmx dot net>
 # Contributor: sofiageo <george at sofianos dot dev>
 pkgname=rocm-validation-suite
-pkgver=5.3.0
+pkgver=5.6.1
 pkgrel=1
 pkgdesc="Tool for detecting and troubleshooting common problems affecting AMD GPUs"
 arch=('x86_64')
@@ -13,7 +13,7 @@ makedepends=('cmake' 'systemd')
 options=(!lto)
 _git='https://github.com/ROCm-Developer-Tools/ROCmValidationSuite'
 source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz")
-sha256sums=('d6afb8a5f4eaf860fd510bcfe65e735cbf96d4b8817c758ea7aee84d4c994382')
+sha256sums=('d5e4100e2d07311dfa101563c15d026a8130442cdee8af9ef861832cd7866c0d')
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
 build() {
