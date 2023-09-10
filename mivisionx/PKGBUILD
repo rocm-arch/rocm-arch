@@ -3,7 +3,7 @@
 # Contributer: JP-Ellis <josh@jpellis.me>
 
 pkgname=mivisionx
-pkgver=5.3.0
+pkgver=5.6.1
 pkgrel=1
 pkgdesc="Set of comprehensive computer vision and machine intelligence libraries, utilities"
 arch=('x86_64')
@@ -13,7 +13,7 @@ depends=('miopen-hip' 'migraphx' 'protobuf' 'opencv' 'ffmpeg4.4' 'qt5-base')
 makedepends=('rocm-cmake')
 _git='https://github.com/GPUOpen-ProfessionalCompute-Libraries/MIVisionX'
 source=("$pkgname-$pkgver.tar.gz::$_git/archive/rocm-$pkgver.tar.gz")
-sha256sums=('58e68f1c78bbe5694e42bf61be177f9e94bfd3e0c113ec6284493c8684836c58')
+sha256sums=('b2ff95c1488e244f379482631dae4f9ab92d94a513d180e03607aa1e184b5b0a')
 options=(!lto)
 _dirname="$(basename "$_git")-$(basename "${source[0]}" ".tar.gz")"
 
