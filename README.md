@@ -12,7 +12,7 @@ pacman -S rocm-hip-sdk rocm-opencl-sdk
 ```
 which includes the low-level components and compilers, utilities like `rocminfo`
 and GPU-accelerated math libraries. See the
-[documentation](https://rocm.docs.amd.com/en/latest/deploy/linux/os-native/package_manager_integration.html#components-of-rocm-programming-models)
+[documentation](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/how-to/native-install/package-manager-integration.html#components-of-rocm-programming-models)
 for an overview on the available meta packages.
 
 ## Building from source
